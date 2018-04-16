@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:state_pressed="true">
+
+        <shape
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            >
+
+            <!-- 填充的颜色 -->
+            <solid android:color="#00d397"/>
+            <!-- 设置按钮的四个角为弧形 -->
+            <!-- android:radius 弧形的半径 -->
+            <corners android:radius="5dp"/>
+
+            <!-- padding：Button里面的文字与Button边界的间隔 -->
+            <!--  <padding
+                  android:left="10dp"
+                  android:top="10dp"
+                  android:right="10dp"
+                  android:bottom="10dp"
+                  />
+          -->
+        </shape>
+
+    </item>
+
+
+    <item android:state_pressed="false">
+
+        <shape
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            >
+            <!--创建页面的      账号，密码，验证码的背景-->
+
+            <!-- 填充的颜色 -->
+            <solid android:color="#00d397"/>
+            <!-- 设置按钮的四个角为弧形 -->
+            <!-- android:radius 弧形的半径 -->
+            <corners android:radius="5dp"/>
+
+            <!-- padding：Button里面的文字与Button边界的间隔 -->
+            <!--  <padding
+                  android:left="10dp"
+                  android:top="10dp"
+                  android:right="10dp"
+                  android:bottom="10dp"
+                  />
+          -->
+        </shape>
+
+    </item>
+
+
+    <!--HotelSelectedInfoActivity  Activity 的 “预订”红色按钮-->
+    <!--   <item android:drawable="@mipmap/red_button_no_word_pressed" android:state_selected="true"/>
+       <item android:drawable="@mipmap/red_button_no_word_pressed" android:state_pressed="true"/>
+       <item android:drawable="@mipmap/red_button_no_word_pressed" android:state_checked="true"/>
+       <item android:drawable="@mipmap/red_button_no_word"/>
+       -->
+
+</selector>

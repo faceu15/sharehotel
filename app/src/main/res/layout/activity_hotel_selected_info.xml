@@ -1,0 +1,524 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              android:background="#ffffff">
+
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/tool_bar_height"
+        android:background="@color/toolbar_color">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal">
+
+
+            <ImageView
+                android:id="@+id/close_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@mipmap/left_arrow1"
+                android:padding="5dp"/>
+
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="酒店详情"
+                android:textColor="@color/toolbar_text_color"
+                android:textSize="@dimen/activity_title"/>
+
+            <TextView
+                android:id="@+id/fenlei_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginRight="5dp"
+                android:text="分类"
+                android:textColor="@color/toolbar_color"
+                android:textSize="16sp"/>
+
+
+        </LinearLayout>
+
+
+    </android.support.v7.widget.Toolbar>
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:id="@+id/hotelmessage_RelativeLayout1"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:background="@mipmap/hotel_picture">
+
+            <Button
+                android:id="@+id/hotelmessage_btn_menu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#00000000"
+                android:drawableTop="@mipmap/hotelmessage_menu"
+                android:paddingTop="10dp"/>
+
+            <LinearLayout
+                android:id="@+id/hotellinearlayout1"
+                android:layout_width="306dp"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/main_bottom_groups"
+                android:background="@android:color/transparent"
+                android:orientation="vertical"
+                android:paddingBottom="10dp">
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:paddingBottom="8dp"
+                    android:paddingTop="10dp">
+
+
+                    <TextView
+
+                        android:id="@+id/hotel_name_tv1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:layout_centerVertical="true"
+                        android:paddingLeft="10dp"
+                        android:text="桂林万鹏金象酒店酒店"
+                        android:textColor="#fefefe"
+                        android:textSize="18dp"/>
+
+
+                </RelativeLayout>
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+
+                    android:orientation="horizontal"
+
+                    >
+
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:orientation="horizontal"
+                        android:paddingLeft="10dp">
+
+                        <ImageView
+                            android:id="@+id/hotel_red_heart11"
+                            android:layout_width="11dp"
+                            android:layout_height="11dp"
+                            android:layout_marginRight="1dp"
+                            android:src="@mipmap/start"/>
+
+
+                        <ImageView
+                            android:id="@+id/hotel_red_heart21"
+                            android:layout_width="11dp"
+                            android:layout_height="11dp"
+                            android:layout_marginRight="1dp"
+                            android:src="@mipmap/start"/>
+
+                        <ImageView
+                            android:id="@+id/hotel_red_heart31"
+                            android:layout_width="11dp"
+                            android:layout_height="11dp"
+                            android:layout_marginRight="1dp"
+                            android:src="@mipmap/start"
+
+                            />
+
+
+                        <ImageView
+                            android:id="@+id/hotel_red_heart41"
+                            android:layout_width="11dp"
+                            android:layout_height="11dp"
+                            android:layout_marginRight="1dp"
+                            android:src="@mipmap/start"/>
+
+                        <ImageView
+                            android:id="@+id/hotel_red_heart51"
+                            android:layout_width="11dp"
+                            android:layout_height="11dp"
+                            android:src="@mipmap/starthaft"/>
+
+                    </LinearLayout>
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="  "
+                        android:textColor="#ec6a4b"
+                        android:textSize="11dp"
+
+                        />
+
+                    <TextView
+                        android:id="@+id/hotel_score_tv1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="456"
+                        android:textColor="#ffffff"
+                        android:textSize="11dp"
+
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="条评论"
+                        android:textColor="#ffffff"
+                        android:textSize="11dp"
+
+                        />
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/main_bottom_groups"
+                android:layout_toRightOf="@+id/hotellinearlayout1"
+                android:background="@drawable/textview_border"
+                android:orientation="vertical"
+                android:paddingBottom="5dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="9.5"
+                    android:textColor="#ffffff"
+                    android:textSize="30dp"
+
+
+                    />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="酒店"
+                    android:textColor="#ffffff"
+                    android:textSize="15dp"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="评分"
+                    android:textColor="#ffffff"
+                    android:textSize="15dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/main_bottom_groups"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_alignParentBottom="true"
+                android:background="@mipmap/hotelmessage_shadow"
+                android:orientation="horizontal"
+                android:paddingTop="5dp"
+                android:weightSum="1">
+
+
+                <Button
+                    android:id="@+id/hotelmessage_btn_phone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.25"
+
+                    android:background="#00000000"
+                    android:button="@null"
+
+                    android:drawableTop="@mipmap/hotelmessage_phone"
+                    android:gravity="center"
+                    android:scaleX="0.8"
+                    android:scaleY="0.8"
+
+                    android:text="电话"
+                    android:textColor="#ffffff"/>
+
+                <View
+                    android:layout_width="1dip"
+                    android:layout_height="48dp"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@android:color/white"/>
+
+                <Button
+                    android:id="@+id/hotelmessage_btn_evaluation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.25"
+
+                    android:background="#00000000"
+                    android:button="@null"
+                    android:drawableTop="@mipmap/hotelmessage_evaluation"
+                    android:gravity="center"
+                    android:scaleX="0.8"
+                    android:scaleY="0.8"
+                    android:text="评价"
+                    android:textColor="#ffffff"/>
+
+                <View
+                    android:layout_width="1dip"
+                    android:layout_height="48dp"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@android:color/white"/>
+
+                <Button
+                    android:id="@+id/hotelmessage_btn_location"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.25"
+
+                    android:background="#00000000"
+                    android:button="@null"
+                    android:drawableTop="@mipmap/hotelmessage_location"
+                    android:gravity="center"
+                    android:scaleX="0.8"
+                    android:scaleY="0.8"
+                    android:text="地址"
+                    android:textColor="#ffffff"/>
+
+                <View
+                    android:layout_width="1dip"
+                    android:layout_height="48dp"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@android:color/white"/>
+
+                <Button
+                    android:id="@+id/hotelmessage_btn_colection"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.25"
+
+                    android:background="#00000000"
+                    android:button="@null"
+
+                    android:drawableTop="@mipmap/hotelmessage_collection"
+                    android:gravity="center"
+                    android:scaleX="0.8"
+                    android:scaleY="0.8"
+                    android:text="收藏"
+                    android:textColor="#ffffff"/>
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/hotelmessage_RelativeLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:layout_below="@+id/hotelmessage_RelativeLayout1"
+            android:background="#ddd7d7"
+
+            >
+
+            <TextView
+                android:id="@+id/miaoshu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerVertical="true"
+                android:paddingBottom="5dp"
+                android:paddingLeft="20dp"
+                android:paddingTop="15dp"
+                android:text="房屋描述"
+                android:textColor="#15314c"
+                android:textSize="15dp"/>
+
+            <TextView
+                android:id="@+id/miaoshuContent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/miaoshu"
+                android:layout_centerVertical="true"
+                android:lineSpacingMultiplier="1.3"
+                android:paddingBottom="5dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="10dp"
+                android:paddingTop="5dp"
+                android:text="穿梭车水马龙，放眼流光魅影，这个小家，就像一览阳光，穿梭繁华与浮躁，依然带着温暖和能量。无论是公私差还是亲朋小聚，都能感受到同样温暖...... "
+                android:textColor="#15314c"
+                android:textSize="15dp"/>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/hotelmessage_linearlayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/hotelmessage_RelativeLayout2"
+            android:orientation="horizontal"
+            android:paddingBottom="20dp"
+            android:paddingTop="20dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/refrigeration_iv1"
+                    android:layout_width="36dp"
+                    android:layout_height="27dp"
+                    android:layout_gravity="center"
+                    android:background="@mipmap/hotelmessage_swimming_pool"
+                    android:orientation="vertical"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:paddingTop="5dp"
+                    android:text="泳池"
+                    android:textColor="#999999"
+                    android:textSize="13dp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/refrigeration_iv2"
+                    android:layout_width="32dp"
+                    android:layout_height="16dp"
+                    android:layout_gravity="center"
+                    android:background="@mipmap/hotelmessage_wifi"
+                    android:orientation="vertical"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:paddingTop="15dp"
+                    android:text="无线网络"
+                    android:textColor="#999999"
+                    android:textSize="13dp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/refrigeration_iv3"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_gravity="center"
+                    android:background="@mipmap/hotelmessage_breakfast"
+                    android:orientation="vertical"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:paddingTop="6dp"
+                    android:text="早餐"
+                    android:textColor="#999999"
+                    android:textSize="13dp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/refrigeration_iv4"
+                    android:layout_width="27dp"
+                    android:layout_height="18dp"
+                    android:layout_gravity="center"
+                    android:background="@mipmap/hotelmessagesport"
+                    android:orientation="vertical"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:paddingTop="15dp"
+                    android:text="健身"
+                    android:textColor="#999999"
+                    android:textSize="13dp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/refrigeration_iv5"
+                    android:layout_width="24dp"
+                    android:layout_height="6dp"
+                    android:layout_gravity="center"
+                    android:background="@mipmap/hotelmessage_more"
+                    android:orientation="vertical"/>
+
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/hotelmessage_buttonReservation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/hotelmessage_linearlayout"
+            android:background="@drawable/activity_exercise_details_green_btn_selector"
+            android:text="立即预定"
+            android:textColor="@color/white"/>
+    </RelativeLayout>
+
+
+</LinearLayout>

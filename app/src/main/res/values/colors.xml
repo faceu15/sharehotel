@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="white">#ffffff</color>     <!--单个tab项的背景颜色-->
+    <color name="colorGreen">#00d39d</color>
+
+    <color name="home_text_color">#988067</color>      <!--预订界面字体颜色-->
+    <color name="operate_background">#f2f2f1</color>   <!---->
+    <color name="transparent">#B8bdb9b6</color>         <!--输入房间密码，透明activity背景的颜色-->
+    <color name="single_tab_backgroun_color">#f2f2f2</color>     <!--单个tab项的背景颜色-->
+    <color name="reverse_text_color">#826e58</color>    <!--预订界面tab字体颜色-->
+    <color name="my_order_single_tab_background">#c8c2c5</color>   <!--我的订单界面的 tab单项选中背景颜色-->
+    <color name="logined_background">#4b4849</color>    <!--已登录状态个人中心的背景颜色-->
+    <color name="personality_center_background">#7e7779</color>  <!--未登录状态个人中心的背景颜色-->
+    <color name="toolbar_color">#7c63e7</color>        <!--actionBar的背景颜色-->
+    <color name="toolbar_text_color">#FFFFFF</color>      <!--actionBar的背景字体颜色-->
+    <color name="first_user_text">#ebdc70</color>     <!--低碳排行第一的用户的背景字体颜色-->
+    <color name="second_user_text">#c5c8cf</color>     <!--低碳排行第二的用户的背景字体颜色-->
+    <color name="three_user_text">#b07852</color>     <!--低碳排行第三的用户的背景字体颜色-->
+    <color name="other_user_text">#abadc2</color>     <!--低碳排行其它排名的用户的背景字体颜色-->
+
+    <color name="colorWhite">#FFFFFF</color>
+    <color name="colorBlank">#00ffffff</color>
+    <color name="colorBlack">#000000</color>
+    <color name="colorGray">#bfbfbf</color>
+    <color name="colorDateBackground">#e9e9e9</color>
+    <color name="colorMainRoomsAndGuests">#15314c</color>
+    <!-- 设置里边的字体颜色-->
+    <color name="setting_text_color">#5d5c5c</color>
+
+    <!--积分字体颜色-->
+    <color name="integral">#e0456a</color>
+</resources>

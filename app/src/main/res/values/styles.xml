@@ -1,0 +1,19 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Base.Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+
+    <!--信用积分-关于积分  的弹出框的动画-->
+    <style name="popup_anim" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/pop_up_choose_bank_card_pay_enter_anim
+        </item>
+        <item name="android:windowExitAnimation">@anim/pop_up_choose_bank_card_pay_exit_anim</item>
+    </style>
+
+</resources>

@@ -1,0 +1,402 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <include layout="@layout/fragment_location_date"/>
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:background="#e9e9e9"
+        android:layout_height="50dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#dddddd"/>
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#e9e9e9"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <Button
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="64dp"
+                android:layout_height="28dp"
+                android:layout_gravity="center"
+                android:layout_margin="6dp"
+                android:background="@drawable/date_month_item_style"
+                android:text="一月"
+                android:textColor="@color/white"
+                android:textSize="6pt"/>
+
+            <Button
+                android:id="@+id/button"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="64dp"
+                android:layout_height="28dp"
+                android:layout_gravity="center"
+                android:layout_margin="6dp"
+                android:background="@drawable/date_month_item_style"
+                android:text="二月"
+                android:textColor="@color/white"
+                android:textSize="6pt"/>
+
+            <Button
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="64dp"
+                android:layout_height="28dp"
+                android:layout_gravity="center"
+                android:layout_margin="6dp"
+                android:background="@drawable/date_month_item_style"
+                android:text="三月"
+                android:textColor="@color/white"
+                android:textSize="6pt"/>
+
+            <Button
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="64dp"
+                android:layout_height="28dp"
+                android:layout_gravity="center"
+                android:layout_margin="6dp"
+                android:background="@drawable/date_month_item_style"
+                android:text="四月"
+                android:textColor="@color/white"
+                android:textSize="6pt"/>
+
+            <Button
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="64dp"
+                android:layout_height="28dp"
+                android:layout_gravity="center"
+                android:layout_margin="6dp"
+                android:background="@drawable/date_month_item_style"
+                android:text="五月"
+                android:textColor="@color/white"
+
+                android:textSize="6pt"/>
+
+            <Button
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="64dp"
+                android:layout_height="28dp"
+                android:layout_gravity="center"
+                android:layout_margin="6dp"
+                android:background="@drawable/date_month_item_style"
+                android:text="六月"
+                android:textColor="@color/white"
+
+                android:textSize="6pt"/>
+
+            <Button
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="64dp"
+                android:layout_height="28dp"
+                android:layout_gravity="center"
+                android:layout_margin="6dp"
+                android:background="@drawable/date_month_item_style"
+                android:text="七月"
+                android:textColor="@color/white"
+
+                android:textSize="6pt"/>
+
+            <Button
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="64dp"
+                android:layout_height="28dp"
+                android:layout_gravity="center"
+                android:layout_margin="6dp"
+                android:background="@drawable/date_month_item_style"
+                android:text="八月"
+                android:textColor="@color/white"
+
+                android:textSize="6pt"/>
+
+            <Button
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="64dp"
+                android:layout_height="28dp"
+                android:layout_gravity="center"
+                android:layout_margin="6dp"
+                android:background="@drawable/date_month_item_style"
+                android:text="九月"
+                android:textColor="@color/white"
+
+                android:textSize="6pt"/>
+
+            <Button
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="64dp"
+                android:layout_height="28dp"
+                android:layout_gravity="center"
+                android:layout_margin="6dp"
+                android:background="@drawable/date_month_item_style"
+                android:text="十月"
+                android:textColor="@color/white"
+
+                android:textSize="6pt"/>
+
+            <Button
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="64dp"
+                android:layout_height="28dp"
+                android:layout_gravity="center"
+                android:layout_margin="6dp"
+                android:background="@drawable/date_month_item_style"
+                android:text="十一月"
+                android:textColor="@color/white"
+
+                android:textSize="6pt"/>
+
+            <Button
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="64dp"
+                android:layout_height="28dp"
+                android:layout_gravity="center"
+                android:layout_margin="6dp"
+                android:background="@drawable/date_month_item_style"
+                android:text="十二月"
+                android:textColor="@color/white"
+                android:textSize="6pt"/>
+
+        </LinearLayout>
+    </HorizontalScrollView>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.2"
+        android:background="@color/white"/>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="46dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/main_guest_sub"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:clickable="true"
+                android:text="—"
+                android:textColor="#15314c"
+                android:textSize="14pt"/>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="0.3"></LinearLayout>
+
+            <ImageView
+                android:layout_width="26dp"
+                android:layout_height="26dp"
+                android:layout_gravity="center"
+                android:src="@mipmap/icon_main_guests"/>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="0.1"></LinearLayout>
+
+            <TextView
+                android:id="@+id/main_guest_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="1"
+                android:textColor="#15314c"
+                android:textSize="11pt"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="名客人"
+                android:textColor="#15314c"
+                android:textSize="11pt"/>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="0.5">
+
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/main_guest_add"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:clickable="true"
+                android:text="+"
+                android:textColor="#15314c"
+                android:textSize="14pt"/>
+
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#e2e2ea"/>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#bfbfbf"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.2"
+        android:background="@color/white"/>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="46dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/main_room_sub"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:clickable="true"
+                android:text="—"
+                android:textColor="#15314c"
+                android:textSize="14pt"/>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="0.3"></LinearLayout>
+
+            <ImageView
+                android:layout_width="26dp"
+                android:layout_height="26dp"
+                android:layout_gravity="center"
+                android:src="@mipmap/icon_main_rooms"/>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="0.1"></LinearLayout>
+
+            <TextView
+                android:id="@+id/main_room_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="1"
+                android:textColor="#15314c"
+                android:textSize="11pt"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="个房间"
+                android:textColor="#15314c"
+                android:textSize="11pt"/>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="0.5">
+
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/main_room_add"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:clickable="true"
+                android:text="+"
+                android:textColor="#15314c"
+                android:textSize="14pt"/>
+
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.2"
+        android:background="@color/white"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.2"
+        android:background="#00d39d"/>
+
+    <TextView
+        android:id="@+id/find_tv"
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:background="#00d39d"
+        android:gravity="center"
+        android:text="搜索"
+        android:textColor="@color/white"
+        android:textSize="14pt"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.2"
+        android:background="#00d39d"/>
+
+</LinearLayout>

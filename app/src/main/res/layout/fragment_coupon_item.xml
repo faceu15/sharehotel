@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <FrameLayout
+        android:id="@+id/coupon_frame_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="5dp"
+        android:background="@mipmap/coupon_200">
+
+        <TextView
+            android:id="@+id/time_validate_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="bottom"
+            android:layout_margin="5dp"
+            android:layout_marginLeft="10dp"
+            android:text="有效期：2017年11月11日至2018年2月20日"
+            android:textColor="#fefdfe"
+            android:textSize="12sp"/>
+
+
+    </FrameLayout>
+
+
+</LinearLayout>

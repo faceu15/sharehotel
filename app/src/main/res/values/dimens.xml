@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <dimen name="appbar_padding_top">8dp</dimen>
+    <!--活动界面  顶头actionbar的字体大小-->
+    <dimen name="activity_title">20sp</dimen>
+    <!--低碳界面  顶头actionbar的字体大小-->
+    <dimen name="low_carbon_title">20dp</dimen>
+    <!--活动界面  内容字体大小-->
+    <dimen name="activity_content">14dp</dimen>
+    <!--操作界面  顶头actionbar的字体大小-->
+    <dimen name="operate_title">20dp</dimen>
+    <!--操作界面一级页面的字体大小。-->
+    <dimen name="operate_ui">15dp</dimen>
+    <!--操作界面二级页面的字体大小。-->
+    <dimen name="operate_ui_two">15dp</dimen>
+    <!--操作界面的客房环境的标题-->
+    <dimen name="operate_guest_room_alert_dialog_title">22dp</dimen>
+    <!--操作界面的客房环境的内容-->
+    <dimen name="operate_guest_room_alert_dialog_content">17dp</dimen>
+    <!--活动  界面的日期的字体大小-->
+    <dimen name="activity_date_title">15dp</dimen>
+    <!--主页，预定酒店界面的字体-->
+    <dimen name="reverse_ui">17dp</dimen>
+    <!--HotelListActivity的布局的actionBar的字体大小-->
+    <dimen name="hotel_list_action_bar">20dp</dimen>
+    <!--主页 预定酒店 中入住红色按钮下的 “官方质量保证字体”-->
+    <dimen name="official_quality_ensure">13dp</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="nav_header_vertical_spacing">16dp</dimen>
+    <dimen name="nav_header_height">160dp</dimen>
+    <!--toolbar的高度-->
+    <dimen name="tool_bar_height">45dp</dimen>
+    <!--设置模块字体大小-->
+    <dimen name="setting_text_size">15sp</dimen>
+</resources>

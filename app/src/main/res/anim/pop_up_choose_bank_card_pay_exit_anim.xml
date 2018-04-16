@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<set xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--退出动画，退出的时候慢一点，预留一点时间给上一个弹窗退出，因为两个弹窗都是使用相同的动画。-->
+
+    <translate
+        android:duration="300"
+        android:fromYDelta="0%p"
+        android:toYDelta="100%p"
+        />
+
+    <!--背景透明的变化时间为0，这样就不会显得奇怪了，背景也跟着变化。-->
+    <alpha
+        android:duration="0"
+        android:fromAlpha="1.0"
+        android:toAlpha="0.0"
+
+        />
+</set>
