@@ -5,17 +5,13 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.guet.sharehotel.R;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import com.example.guet.sharehotel.adapter.OrderFragmentAdapter;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -35,7 +31,6 @@ public class OrderFragment extends BaseFragment implements View.OnClickListener 
 
     private TabLayout order_tab;
     private ViewPager order_viewPager;//订单界面pager
-    private List<String> mTitles = Arrays.asList("待确认", "入住中", "待评价", "历史订单");
 
 
     // TODO: Rename and change types of parameters
@@ -88,40 +83,11 @@ public class OrderFragment extends BaseFragment implements View.OnClickListener 
     private void initView(View view) {//初始化订单界面
         order_tab = (TabLayout) view.findViewById(R.id.order_tab);
         order_viewPager = (ViewPager) view.findViewById(R.id.order_viewPager);
-        final List<Fragment> orderFragments = initFragments();
-
-        FragmentStatePagerAdapter adapter = new FragmentStatePagerAdapter(getFragmentManager()) {
-            @Override
-            public Fragment getItem(int position) {
-                return orderFragments.get(position);
-            }
-
-            @Override
-            public int getCount() {
-                return orderFragments.size();
-            }
-        };
-        order_viewPager.setAdapter(adapter);
+        order_viewPager.setAdapter(new OrderFragmentAdapter(getChildFragmentManager()));
+        order_tab.setupWithViewPager(order_viewPager);
 
     }
 
-    private List<Fragment> initFragments() {//初始化订单的几个界面
-        List<Fragment> fragments = new ArrayList<>();
-        //待确认
-        Fragment uncomfirmFragment = new UncomfirmFragment();
-        fragments.add(uncomfirmFragment);
-        //入住中
-        Fragment housingFragment = new HousingFragment();
-        fragments.add(housingFragment);
-        //待评价
-        Fragment commentFragment = new CommentFragment();
-        fragments.add(commentFragment);
-        //历史订单
-        Fragment historyorderFragment = new HistoryOrderFragment();
-        fragments.add(historyorderFragment);
-
-        return fragments;
-    }
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {

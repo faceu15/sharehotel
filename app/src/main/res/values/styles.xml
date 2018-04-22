@@ -16,4 +16,5 @@
         <item name="android:windowExitAnimation">@anim/pop_up_choose_bank_card_pay_exit_anim</item>
     </style>
 
+
 </resources>

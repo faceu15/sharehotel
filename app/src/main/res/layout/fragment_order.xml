@@ -50,7 +50,12 @@
             android:id="@+id/order_tab"
             android:layout_width="match_parent"
             android:layout_height="45dp"
-            android:background="#C8C8C8"/>
+            android:background="#775fda"
+            app:tabTextColor="#f4f2fc"
+            app:tabSelectedTextColor="#02cf9a"
+            app:tabIndicatorColor="#02cf9a"
+            app:tabIndicatorHeight="3dp"/>
+
 
         <android.support.v4.view.ViewPager
             android:id="@+id/order_viewPager"

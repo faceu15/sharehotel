@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:id="@+id/choic_date_ll"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:layout_marginLeft="14dp"
@@ -8,23 +9,24 @@
               android:orientation="horizontal">
 
     <LinearLayout
+        android:id="@+id/time_in_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/start_time_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="11pt"/>
+
+        <!--<TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="周二"
             android:textColor="@color/white"
-            android:textSize="10pt"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="一月"
-            android:textColor="@color/white"
-            android:textSize="7pt"/>
+            android:textSize="7pt"/>-->
     </LinearLayout>
 
     <LinearLayout
@@ -35,13 +37,13 @@
 
     </LinearLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="11"
-        android:textColor="@color/white"
-        android:textSize="20pt"/>
+    <!-- <TextView
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:gravity="center"
+         android:text="11"
+         android:textColor="@color/white"
+         android:textSize="20pt"/>-->
 
     <LinearLayout
         android:layout_width="0dp"
@@ -64,14 +66,14 @@
 
     </LinearLayout>
 
-    <TextView
+    <!--<TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="13"
         android:textColor="@color/white"
-        android:textSize="20pt"/>
+        android:textSize="20pt"/>-->
 
     <LinearLayout
         android:layout_width="0dp"
@@ -82,24 +84,25 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/time_out_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="right"
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/end_time_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="11pt"/>
+
+        <!--<TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="周四"
             android:textColor="@color/white"
-            android:textSize="10pt"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="一月"
-            android:textColor="@color/white"
-            android:textSize="7pt"/>
+            android:textSize="7pt"/>-->
     </LinearLayout>
 
 

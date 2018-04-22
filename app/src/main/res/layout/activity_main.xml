@@ -6,46 +6,17 @@
               xmlns:tl="http://schemas.android.com/apk/res-auto"
               android:orientation="vertical">
 
-
     <android.support.v4.view.ViewPager
         android:id="@+id/view_pager"
         android:layout_width="fill_parent"
         android:layout_height="0dp"
         android:layout_weight="1"/>
 
-    <!-- <View
-        android:id="@+id/divider"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#ababab" />
-
-   让tab与上边有距离
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="5dp"
-        android:background="#313333" />-->
-
-    <!--app:tabBackground="@drawable/selector_bg 单项选中的的背景颜色-->
-    <!--app:tabIndicatorHeight设置下标的高度为0  -->
-    <!--app:tabPaddingTop 距离tab顶端的距离
-    <android.support.design.widget.TabLayout
-        android:id="@+id/tab"
-        style="@style/MyCustomTabLayout"
-        android:layout_width="match_parent"
-        android:layout_height="46dp"
-        android:background="#f2f2f2"
-        app:tabBackground="@color/single_tab_backgroun_color"
-        app:tabSelectedTextColor="#9fa0a0"
-        app:tabTextColor="#c9c9ca"
-        app:tabPaddingBottom="1dp"
-
-        />
-         -->
-
     <com.flyco.tablayout.CommonTabLayout
         android:id="@+id/tab"
         android:layout_width="match_parent"
         android:layout_height="46dp"
+        android:layout_alignParentBottom="true"
         android:background="@color/single_tab_backgroun_color"
         tl:tl_iconHeight="23dp"
         tl:tl_iconWidth="23dp"
@@ -53,17 +24,6 @@
         tl:tl_textSelectColor="#9fa0a0"
         tl:tl_textUnselectColor="#c9c9ca"
         tl:tl_textsize="12dp"
-        tl:tl_underline_height="0dp"
-
-
-        />
-
-
-    <!--防止tab里边的东西溜到手机底下去。
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="5dp"
-        android:background="#313333" />
--->
+        tl:tl_underline_height="0dp"/>
 
 </LinearLayout>

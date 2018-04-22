@@ -33,4 +33,15 @@
 
     <!--积分字体颜色-->
     <color name="integral">#e0456a</color>
+    <color name="order_normal_text_color">#403d3d</color>
+    <color name="white_color">#ffffff</color>
+
+
+    <!-- ==================Material样式日历对话框================== -->
+    <!-- 选中日期的背景颜色值 -->
+    <color name="materialcalendar_selected_color">#476BF0</color>
+    <!-- 当天日期的边框的背景颜色值 -->
+    <color name="materialcalendar_today_border_color">#FF4081</color>
+
+
 </resources>

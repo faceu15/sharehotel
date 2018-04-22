@@ -23,10 +23,14 @@ import android.widget.Toast;
 
 import com.example.guet.sharehotel.R;
 import com.example.guet.sharehotel.fragment.BaseFragment;
+import com.example.guet.sharehotel.fragment.CommentFragment;
+import com.example.guet.sharehotel.fragment.HistoryOrderFragment;
 import com.example.guet.sharehotel.fragment.HomeFragment;
+import com.example.guet.sharehotel.fragment.HousingFragment;
 import com.example.guet.sharehotel.fragment.MessageFragment;
 import com.example.guet.sharehotel.fragment.OrderFragment;
 import com.example.guet.sharehotel.fragment.PersonalCenterFragment;
+import com.example.guet.sharehotel.fragment.UncomfirmFragment;
 import com.example.guet.sharehotel.model.TabEntity;
 import com.flyco.tablayout.CommonTabLayout;
 import com.flyco.tablayout.listener.CustomTabEntity;
@@ -40,7 +44,9 @@ import java.util.List;
  */
 public class MainActivity extends FragmentActivity
         implements PersonalCenterFragment.OnFragmentInteractionListener, MessageFragment.OnFragmentInteractionListener, HomeFragment.OnFragmentInteractionListener
-        , OrderFragment.OnFragmentInteractionListener, View.OnClickListener {
+        , OrderFragment.OnFragmentInteractionListener, View.OnClickListener,
+        UncomfirmFragment.OnFragmentInteractionListener, HousingFragment.OnFragmentInteractionListener,
+        CommentFragment.OnFragmentInteractionListener, HistoryOrderFragment.OnFragmentInteractionListener {
 
     private static final String TAG = "DrawLayoutActivity";
     /**
