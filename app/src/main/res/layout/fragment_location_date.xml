@@ -5,7 +5,7 @@
     android:layout_height="wrap_content">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/main_bg_iv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:adjustViewBounds="true"
@@ -43,10 +43,9 @@
                         android:maxEms="2"
                         android:text="桂林"
                         android:textSize="16sp"
-                        android:textColor="#403d3d"/>
+                        android:textColor="#1e1c1c"/>
 
                     <ImageView
-                        android:id="@+id/main_menu"
                         android:layout_width="20dp"
                         android:layout_height="15dp"
                         android:layout_marginTop="5dp"
@@ -62,10 +61,9 @@
                     android:layout_marginLeft="5dp"
                     android:background="@mipmap/search_main"
                     android:paddingLeft="60dp"
-                    android:hint="目的地/关键词"
-                    android:inputType="textImeMultiLine"
+                    android:hint="景点/关键词"
                     android:textColor="@color/white"
-                    android:textColorHint="@color/white"
+                    android:textColorHint="#afa3a3"
                     android:textSize="6pt"/>
 
                 <LinearLayout

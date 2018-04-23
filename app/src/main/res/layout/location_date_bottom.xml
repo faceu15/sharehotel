@@ -21,12 +21,6 @@
             android:textColor="@color/white"
             android:textSize="11pt"/>
 
-        <!--<TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="周二"
-            android:textColor="@color/white"
-            android:textSize="7pt"/>-->
     </LinearLayout>
 
     <LinearLayout
@@ -37,13 +31,6 @@
 
     </LinearLayout>
 
-    <!-- <TextView
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:gravity="center"
-         android:text="11"
-         android:textColor="@color/white"
-         android:textSize="20pt"/>-->
 
     <LinearLayout
         android:layout_width="0dp"
@@ -66,14 +53,6 @@
 
     </LinearLayout>
 
-    <!--<TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="13"
-        android:textColor="@color/white"
-        android:textSize="20pt"/>-->
 
     <LinearLayout
         android:layout_width="0dp"

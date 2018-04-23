@@ -67,7 +67,7 @@ public class PersonalCenterFragment extends BaseFragment implements View.OnClick
     private ImageView set_iv;
     private ImageView user_icon_iv;
     private TextView user_name_tv;
-    private TextView mobil_phone_tv;
+    //private TextView mobil_phone_tv;
     private LinearLayout one_key_to_check_out_linear_layout;
     private LinearLayout coupon_linear_layout;
     private LinearLayout credit_score_linear_layout;
@@ -148,7 +148,7 @@ public class PersonalCenterFragment extends BaseFragment implements View.OnClick
         set_iv.setOnClickListener(this);
         user_icon_iv = (ImageView) view.findViewById(R.id.user_icon_iv);
         user_name_tv = (TextView) view.findViewById(R.id.user_name_tv);
-        mobil_phone_tv = (TextView) view.findViewById(R.id.mobil_phone_tv);
+        //mobil_phone_tv = (TextView) view.findViewById(R.id.mobil_phone_tv);
         one_key_to_check_out_linear_layout = (LinearLayout) view.findViewById(R.id.one_key_to_check_out_linear_layout);
         one_key_to_check_out_linear_layout.setOnClickListener(this);
         coupon_linear_layout = (LinearLayout) view.findViewById(R.id.coupon_linear_layout);

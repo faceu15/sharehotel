@@ -19,58 +19,22 @@
         app:contentInsetRight="0dp"
         app:contentInsetStart="0dp">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:orientation="horizontal">
 
-
-            <!--<ImageView-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_gravity="center"-->
-            <!--android:layout_marginLeft="15dp"-->
-            <!--android:gravity="center"-->
-            <!--android:text="设置"-->
-            <!--android:textColor="#2f2f2f"-->
-            <!--android:textSize="18dp"-->
-            <!--android:src="@mipmap/user_message"/>-->
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginLeft="15dp"
-                android:gravity="center"
-                android:text="设置"
-                android:textColor="#7c63e7"
-                android:textSize="17dp"/>
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="个人中心"
-                android:textColor="#7c63e7"
-                android:textSize="18sp"/>
-
-
             <ImageView
                 android:id="@+id/set_iv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
                 android:layout_gravity="center"
                 android:layout_marginRight="15dp"
                 android:gravity="center"
-                android:src="@mipmap/set"
-                />
-
-
-        </LinearLayout>
+                android:src="@mipmap/set"/>
+        </RelativeLayout>
 
     </android.support.v7.widget.Toolbar>
 
@@ -93,7 +57,7 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"></LinearLayout>
+            android:layout_weight="1"/>
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -117,18 +81,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:padding="5dp"
-                android:text="用户"
-                android:textColor="#696e6f"
-                android:textSize="16sp"/>
-
-
-            <TextView
-                android:id="@+id/mobil_phone_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:padding="5dp"
-                android:text="156****4065"
+                android:text="登录"
                 android:textColor="#696e6f"
                 android:textSize="16sp"/>
 

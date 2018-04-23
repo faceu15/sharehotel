@@ -70,6 +70,10 @@
         </service>
         -->
 
+        <activity android:name=".fragment.LoginActivity">
+        </activity>
+        <activity android:name=".activity.RegisterActivity">
+        </activity>
     </application>
 
 </manifest>

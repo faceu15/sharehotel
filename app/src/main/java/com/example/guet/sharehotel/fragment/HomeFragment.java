@@ -8,14 +8,11 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,7 +21,6 @@ import com.example.guet.sharehotel.R;
 import com.example.guet.sharehotel.activity.FindActivity;
 import com.example.guet.sharehotel.dialog.MaterialCalendarDialog;
 import com.example.guet.sharehotel.utility.DateTimeHelper;
-import com.flyco.tablayout.CommonTabLayout;
 import com.flyco.tablayout.listener.CustomTabEntity;
 
 import java.util.ArrayList;
@@ -44,25 +40,23 @@ import java.util.TimerTask;
  * 主页。
  */
 public class HomeFragment extends BaseFragment implements View.OnClickListener {
-    // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private static final String TAG = "HomeFragment";
 
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
 
     private OnFragmentInteractionListener mListener;
 
+    @SuppressLint("HandlerLeak")
     private Handler handler = new Handler() {
 
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-
 
         }
     };
@@ -81,7 +75,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
     private ArrayList<CustomTabEntity> mTabEntities = new ArrayList<>();
 
     private LinearLayout mMainLinearLayout;
-    private CommonTabLayout tabLayout;
+    private LinearLayout mLocationLinearLayout;
     private TextView mGuestSub = null;
     private TextView mGuestAdd = null;
     private TextView mRoomSub = null;
@@ -91,13 +85,8 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
 
     private String guestNumber = "";
     private String roomNumber = "";
-    private ImageView imageView;
-    private ImageView main_menu;
-    private EditText main_search;
-    private ImageView main_share;
-    private TextView textView2;
-    private TextView textView;
-    private Button button;
+    private EditText main_search;//搜索栏
+
     private TextView main_guest_sub;
     private TextView main_guest_number;
     private TextView main_guest_add;
@@ -105,7 +94,6 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
     private TextView main_room_number;
     private TextView main_room_add;
     private TextView find_tv;
-
     private LinearLayout mDatePickerLL;//日期选择dialog
     private TextView mStartTimeTextView;
     private TextView mEndTimeTextView;
@@ -124,7 +112,6 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
      * @param param2 Parameter 2.
      * @return A new instance of fragment HomeFragment.
      */
-    // TODO: Rename and change types and number of parameters
     public static HomeFragment newInstance(String param1, String param2) {
         HomeFragment fragment = new HomeFragment();
         Bundle args = new Bundle();
@@ -154,7 +141,6 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
         return view;
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
@@ -180,8 +166,8 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
 
     @SuppressLint("CutPasteId")
     private void initView(View view) {
-
         mMainLinearLayout = view.findViewById(R.id.main_ll_id);
+        mLocationLinearLayout = view.findViewById(R.id.locatioin_ll);
         mGuestSub = view.findViewById(R.id.main_guest_sub);
         mGuestAdd = view.findViewById(R.id.main_guest_add);
         mRoomSub = view.findViewById(R.id.main_room_sub);
@@ -206,8 +192,6 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
         mRoomSub.setOnClickListener(this);
         mRoomAdd.setOnClickListener(this);
 
-        imageView = view.findViewById(R.id.imageView);
-        main_menu = view.findViewById(R.id.main_menu);
         main_search = view.findViewById(R.id.main_search);
         main_guest_sub = view.findViewById(R.id.main_guest_sub);
         main_guest_number = view.findViewById(R.id.main_guest_number);
@@ -230,17 +214,17 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
 
 
     public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.main_ll_id:
-                InputMethodManager imm = (InputMethodManager)
-                        getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-                imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+            case R.id.locatioin_ll://选择城市
+
+                break;
+            case R.id.main_ll_id://隐藏键盘
+                hideKeyboard(view);
                 break;
             case R.id.start_time_tv://入住时间选择dialog
                 showDateChoiceDialog(true);
@@ -248,24 +232,22 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
             case R.id.end_time_tv:
                 showDateChoiceDialog(false);//退房时间选择dialog
                 break;
-            case R.id.main_guest_sub:
+            case R.id.main_guest_sub://减少房客
                 int guestNumberTempSub = Integer.parseInt(guestNumber);
                 if (guestNumberTempSub > 1) {
                     guestNumberTempSub--;
                 }
-                Log.d("StevenGo", "123");
                 guestNumber = String.valueOf(guestNumberTempSub);
                 mGuestNumber.setText(guestNumber);
                 break;
-            case R.id.main_guest_add:
+            case R.id.main_guest_add://增加房客
                 int guestNumberTempAdd = Integer.parseInt(guestNumber);
                 guestNumberTempAdd++;
                 guestNumber = String.valueOf(guestNumberTempAdd);
-                Log.d("StevenGo", "123");
                 mGuestNumber.setText(guestNumber);
                 break;
 
-            case R.id.main_room_sub:
+            case R.id.main_room_sub://减少房子
                 int roomNumberTempSub = Integer.parseInt(roomNumber);
                 if (roomNumberTempSub > 1) {
                     roomNumberTempSub--;
@@ -273,13 +255,13 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
                 roomNumber = String.valueOf(roomNumberTempSub);
                 mRoomNumber.setText(roomNumber);
                 break;
-            case R.id.main_room_add:
+            case R.id.main_room_add://增加房子
                 int roomNumberTempAdd = Integer.parseInt(roomNumber);
                 roomNumberTempAdd++;
                 roomNumber = String.valueOf(roomNumberTempAdd);
                 mRoomNumber.setText(roomNumber);
                 break;
-            case R.id.find_tv:
+            case R.id.find_tv://搜索
                 Intent intent = new Intent(getActivity(), FindActivity.class);
                 startActivity(intent);
                 break;
@@ -323,7 +305,6 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
      * 隐藏键盘
      */
     private void hideKeyboard(View v) {
-
         InputMethodManager imm = (InputMethodManager) v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
         if (imm.isActive()) {
             imm.hideSoftInputFromWindow(v.getApplicationWindowToken(), 0);
