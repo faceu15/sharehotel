@@ -9,6 +9,7 @@ import android.content.Context;
 public class MyApplication extends Application {
 
     private static Context context;
+    private Boolean isLogin;
 
     @Override
     public void onCreate() {
@@ -57,5 +58,11 @@ public class MyApplication extends Application {
         return context;
     }
 
+    public Boolean getLogin() {
+        return isLogin;
+    }
 
+    public void setLogin(Boolean login) {
+        isLogin = login;
+    }
 }

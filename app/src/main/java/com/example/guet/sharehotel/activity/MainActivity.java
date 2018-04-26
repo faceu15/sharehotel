@@ -2,6 +2,7 @@ package com.example.guet.sharehotel.activity;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.StateListDrawable;
 import android.net.Uri;
@@ -13,15 +14,12 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v4.widget.DrawerLayout;
 import android.view.KeyEvent;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.guet.sharehotel.R;
+import com.example.guet.sharehotel.db.AccountSQLiteOpenHelper;
 import com.example.guet.sharehotel.fragment.BaseFragment;
 import com.example.guet.sharehotel.fragment.CommentFragment;
 import com.example.guet.sharehotel.fragment.HistoryOrderFragment;
@@ -31,6 +29,7 @@ import com.example.guet.sharehotel.fragment.MessageFragment;
 import com.example.guet.sharehotel.fragment.OrderFragment;
 import com.example.guet.sharehotel.fragment.PersonalCenterFragment;
 import com.example.guet.sharehotel.fragment.UncomfirmFragment;
+import com.example.guet.sharehotel.model.MyApplication;
 import com.example.guet.sharehotel.model.TabEntity;
 import com.flyco.tablayout.CommonTabLayout;
 import com.flyco.tablayout.listener.CustomTabEntity;
@@ -39,8 +38,10 @@ import com.flyco.tablayout.listener.OnTabSelectListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.bmob.v3.Bmob;
+
 /**
- * 个人中心， 抽屉 ， 百度定位 ， 初始化Bmob
+ * 个人中心， 百度定位 ， 初始化Bmob
  */
 public class MainActivity extends FragmentActivity
         implements PersonalCenterFragment.OnFragmentInteractionListener, MessageFragment.OnFragmentInteractionListener, HomeFragment.OnFragmentInteractionListener
@@ -48,26 +49,13 @@ public class MainActivity extends FragmentActivity
         UncomfirmFragment.OnFragmentInteractionListener, HousingFragment.OnFragmentInteractionListener,
         CommentFragment.OnFragmentInteractionListener, HistoryOrderFragment.OnFragmentInteractionListener {
 
-    private static final String TAG = "DrawLayoutActivity";
-    /**
-     * 登录/注册的LinearLayout布局的height
-     */
-    private static int height;
-
-    private ViewPager mViewPager;
+    //保存登录状态
+    private MyApplication mMyApplication;
 
     /**
-     * 用于ReserveFragment中的显示本地图片的参数
+     * 数据库操作实例
      */
-    private static Context context;
-    /**
-     * 记录用户按下退出键的时间，双击退出MainActivity即主activity
-     */
-    private long exitTime;
-    /**
-     * 抽屉 ， 个人中心
-     */
-    private static DrawerLayout drawer;
+    private AccountSQLiteOpenHelper accountSQLiteOpenHelper;
     /**
      * 自动登录的账号
      */
@@ -79,19 +67,17 @@ public class MainActivity extends FragmentActivity
     /**
      * 登录或注册按钮
      */
-    private static LinearLayout loginOrRegister_LinearLayout;
+    private ViewPager mViewPager;
+
+    //用于ReserveFragment中的显示本地图片的参数
+    private static Context context;
     /**
-     * 登录/注册  字体显示  ， 登陆后显示用户账号
+     * 记录用户按下退出键的时间，双击退出MainActivity即主activity
      */
-    private static TextView loginOrRegister_tv;
-    /**
-     * 登录/注册  图片显示  ， 登陆后显示用户图片
-     */
-    private static ImageView loginOrRegister_iv;
-    /**
-     * 标记用户是否登录，来决定登录/注册按钮是否能点击
-     */
-    private static boolean isLogined = false;
+    private long exitTime;
+
+    //标记用户是否登录，来决定登录/注册按钮是否能点击
+    private boolean isLogin = false;
 
     private ArrayList<CustomTabEntity> mTabEntities = new ArrayList<>();
     private String[] mTitles = {"主页", "消息", "订单", "我的"};
@@ -122,7 +108,26 @@ public class MainActivity extends FragmentActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Bmob.initialize(this,"16565db562fea312a73203bcc8a818c6");
         initViews();
+        automaticLogin();//自动登录
+    }
+
+    //自动登录
+    private void automaticLogin() {
+        boolean isExistAccount = false;
+        SharedPreferences sp = getPreferences(MODE_PRIVATE);
+        account = sp.getString("Account", "");
+        password = sp.getString("Password", "");
+        if (account != "" && password != "") {
+            isExistAccount = true;
+        }
+        //如果存在最后登录的账号 ， 否者不自动登录
+        if (isExistAccount) {
+
+            /*mMyApplication=(MyApplication) getApplication();
+            mMyApplication.setLogin(true);*/
+        }
     }
 
     /**
@@ -135,9 +140,6 @@ public class MainActivity extends FragmentActivity
         Drawable focus = idFocused == -1 ? null : context.getResources().getDrawable(idFocused);
         //注意该处的顺序，只要有一个状态与之相配，背景就会被换掉
         //所以不要把大范围放在前面了，如果sd.addState(new[]{},normal)放在第一个的话，就没有什么效果了
-        //sd.addState(new int[]{android.R.attr.state_enabled, android.R.attr.state_focused}, focus);
-        //sd.addState(new int[]{android.R.attr.state_pressed, android.R.attr.state_enabled}, pressed);
-        //sd.addState(new int[]{android.R.attr.state_focused}, focus);
         sd.addState(new int[]{android.R.attr.state_pressed}, pressed);
         sd.addState(new int[]{android.R.attr.state_enabled}, normal);
         sd.addState(new int[]{}, normal);
@@ -201,8 +203,11 @@ public class MainActivity extends FragmentActivity
         BaseFragment noteFragment = new OrderFragment();
         fragments.add(noteFragment);
 
-        BaseFragment activityFragment = new PersonalCenterFragment();
-        fragments.add(activityFragment);
+        BaseFragment personalCenterFragment = new PersonalCenterFragment();
+        Bundle bundle = new Bundle();
+        bundle.putBoolean("isLogin", isLogin);//传递登录状态
+        personalCenterFragment.setArguments(bundle);
+        fragments.add(personalCenterFragment);
 
         return fragments;
     }
@@ -224,7 +229,6 @@ public class MainActivity extends FragmentActivity
     public void onClick(View v) {
 
     }
-
 
     /**
      * 主页，消息，订单，个人中心Fragment的ViewPager的监听器
@@ -275,6 +279,5 @@ public class MainActivity extends FragmentActivity
     public static Context getContext() {
         return context;
     }
-
 
 }

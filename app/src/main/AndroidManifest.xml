@@ -2,18 +2,17 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.example.guet.sharehotel">
 
-    <!-- Bmob所需权限 -->
-    <!-- 允许联网 -->
+    <!--允许联网 -->
     <uses-permission android:name="android.permission.INTERNET"/>
-    <!-- 获取GSM（2g）、WCDMA（联通3g）等网络状态的信息 -->
+    <!--获取GSM（2g）、WCDMA（联通3g）等网络状态的信息  -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <!-- 获取wifi网络状态的信息 -->
+    <!--获取wifi网络状态的信息 -->
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
-    <!-- 保持CPU 运转，屏幕和键盘灯有可能是关闭的,用于文件上传和下载 -->
+    <!--保持CPU 运转，屏幕和键盘灯有可能是关闭的,用于文件上传和下载 -->
     <uses-permission android:name="android.permission.WAKE_LOCK"/>
-    <!-- 获取sd卡写的权限，用于文件上传和下载 -->
+    <!--获取sd卡写的权限，用于文件上传和下载-->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <!-- 允许读取手机状态 用于创建BmobInstallation -->
+    <!--允许读取手机状态 用于创建BmobInstallation-->
     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
 
     <!-- 百度地图基础定位权限 -->
@@ -29,7 +28,7 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity
             android:name=".activity.MainActivity"
             android:label="@string/app_name"
@@ -52,6 +51,8 @@
         <activity android:name=".activity.FindActivity"/>
         <activity android:name=".activity.FilterHotelActivity"/>
         <activity android:name=".activity.HotelSelectedInfoActivity"/>
+        <activity android:name=".activity.LoginActivity"/>
+        <activity android:name=".activity.RegisterActivity"/>
 
         <!--
         地图key和服务
@@ -70,10 +71,7 @@
         </service>
         -->
 
-        <activity android:name=".fragment.LoginActivity">
-        </activity>
-        <activity android:name=".activity.RegisterActivity">
-        </activity>
+
     </application>
 
 </manifest>

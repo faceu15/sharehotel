@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+
 android {
     compileSdkVersion 27
     buildToolsVersion '25.0.3'
@@ -16,6 +17,8 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    //Bmob兼容Android6.0系统所需
+    useLibrary 'org.apache.http.legacy'
 
     sourceSets {
         main.jniLibs.srcDirs = ['libs']
@@ -29,7 +32,6 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     //底部Tab
-    compile files('libs/gson-2.6.2.jar')
     //订单顶部tab
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.flyco.tablayout:FlycoTabLayout_Lib:2.0.2@aar'
@@ -40,4 +42,7 @@ dependencies {
     compile 'com.android.support:design:27.1.1'
     //日期选择
     compile 'com.prolificinteractive:material-calendarview:1.4.3'
+    //bmob-sdk：Bmob的android sdk包，包含了Bmob的数据存储、文件等服务，以下是最新的bmob-sdk:
+    //3.5.5：请务必查看下面注释[1]
+    compile 'cn.bmob.android:bmob-sdk:3.5.5'
 }

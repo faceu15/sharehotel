@@ -41,7 +41,7 @@ public class FindActivity extends AppCompatActivity implements AdapterView.OnIte
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_find);
         initView();
-        getSupportActionBar().hide();
+        //getSupportActionBar().hide();
 
     }
 

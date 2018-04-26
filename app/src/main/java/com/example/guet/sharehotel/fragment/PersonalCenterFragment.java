@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +20,7 @@ import com.example.guet.sharehotel.R;
 import com.example.guet.sharehotel.activity.CouponActivity;
 import com.example.guet.sharehotel.activity.CreditScoreActivity;
 import com.example.guet.sharehotel.activity.CustomerServiceActivity;
+import com.example.guet.sharehotel.activity.LoginActivity;
 import com.example.guet.sharehotel.activity.MyCollectionActivity;
 import com.example.guet.sharehotel.activity.SettingActivity;
 
@@ -47,6 +49,7 @@ public class PersonalCenterFragment extends BaseFragment implements View.OnClick
 
     private View view;
 
+    private Boolean isLogin;
 
     private Handler handler = new Handler() {
 
@@ -80,15 +83,7 @@ public class PersonalCenterFragment extends BaseFragment implements View.OnClick
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment PersonalCenterFragment.
-     */
-    // TODO: Rename and change types and number of parameters
+
     public static PersonalCenterFragment newInstance(String param1, String param2) {
         PersonalCenterFragment fragment = new PersonalCenterFragment();
         Bundle args = new Bundle();
@@ -113,18 +108,18 @@ public class PersonalCenterFragment extends BaseFragment implements View.OnClick
         //本函数，在每次从其它fragment切换到此都会执行一次。
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_personal_center, container, false);
-
+        isLogin = getArguments().getBoolean("isLogin");
         initView(view);
         return view;
     }
 
 
-    // TODO: Rename method, update argument and hook method into UI event
+  /*  // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
         }
-    }
+    }*/
 
     @Override
     public void onAttach(Context context) {
@@ -143,25 +138,36 @@ public class PersonalCenterFragment extends BaseFragment implements View.OnClick
         mListener = null;
     }
 
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+    }
+
     private void initView(View view) {
-        set_iv = (ImageView) view.findViewById(R.id.set_iv);
+        set_iv = view.findViewById(R.id.set_iv);
         set_iv.setOnClickListener(this);
-        user_icon_iv = (ImageView) view.findViewById(R.id.user_icon_iv);
-        user_name_tv = (TextView) view.findViewById(R.id.user_name_tv);
+        user_icon_iv = view.findViewById(R.id.user_icon_iv);
+        user_name_tv = view.findViewById(R.id.user_name_tv);
+        //判断是否已经登录
+        if (isLogin) {
+            user_name_tv.setText(getActivity().getPreferences(Context.MODE_PRIVATE).getString("Account", ""));
+            user_name_tv.setClickable(false);
+        }
+        user_name_tv.setOnClickListener(this);
         //mobil_phone_tv = (TextView) view.findViewById(R.id.mobil_phone_tv);
-        one_key_to_check_out_linear_layout = (LinearLayout) view.findViewById(R.id.one_key_to_check_out_linear_layout);
+        one_key_to_check_out_linear_layout = view.findViewById(R.id.one_key_to_check_out_linear_layout);
         one_key_to_check_out_linear_layout.setOnClickListener(this);
-        coupon_linear_layout = (LinearLayout) view.findViewById(R.id.coupon_linear_layout);
+        coupon_linear_layout = view.findViewById(R.id.coupon_linear_layout);
         coupon_linear_layout.setOnClickListener(this);
-        credit_score_linear_layout = (LinearLayout) view.findViewById(R.id.credit_score_linear_layout);
+        credit_score_linear_layout = view.findViewById(R.id.credit_score_linear_layout);
         credit_score_linear_layout.setOnClickListener(this);
-        my_collection_linear_layout = (LinearLayout) view.findViewById(R.id.my_collection_linear_layout);
+        my_collection_linear_layout = view.findViewById(R.id.my_collection_linear_layout);
         my_collection_linear_layout.setOnClickListener(this);
-        customer_service_linear_layout = (LinearLayout) view.findViewById(R.id.customer_service_linear_layout);
+        customer_service_linear_layout = view.findViewById(R.id.customer_service_linear_layout);
         customer_service_linear_layout.setOnClickListener(this);
-        my_wallet_linear_layout = (LinearLayout) view.findViewById(R.id.my_wallet_linear_layout);
+        my_wallet_linear_layout = view.findViewById(R.id.my_wallet_linear_layout);
         my_wallet_linear_layout.setOnClickListener(this);
-        right_to_buy_iv = (ImageView) view.findViewById(R.id.right_to_buy_iv);
+        right_to_buy_iv = view.findViewById(R.id.right_to_buy_iv);
         right_to_buy_iv.setOnClickListener(this);
 
     }
@@ -190,20 +196,15 @@ public class PersonalCenterFragment extends BaseFragment implements View.OnClick
                 Intent intent4 = new Intent(getActivity(), CreditScoreActivity.class);
                 startActivity(intent4);
                 break;
+            case R.id.user_name_tv://登录
+                Intent login_intent = new Intent(getActivity(), LoginActivity.class);
+                startActivity(login_intent);
+                break;
         }
 
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p/>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
+
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);

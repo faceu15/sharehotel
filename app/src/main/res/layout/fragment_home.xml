@@ -222,20 +222,13 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.2"
-        android:background="@color/white"/>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.2"
-        />
+        android:layout_weight="0.2"/>
 
     <TextView
         android:id="@+id/find_tv"
         android:layout_width="match_parent"
         android:layout_height="46dp"
-        android:background="#ff9102"
+        android:background="#7d64e7"
         android:gravity="center"
         android:text="搜索"
         android:textColor="@color/white"
