@@ -27,7 +27,7 @@ public class CreditScoreActivity extends AppCompatActivity implements android.vi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_credit_score);
 
-        this.getSupportActionBar().hide();
+        //this.getSupportActionBar().hide();
         iniView();
 
         //创建手势检测器

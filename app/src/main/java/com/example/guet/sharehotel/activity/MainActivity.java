@@ -107,7 +107,6 @@ public class MainActivity extends FragmentActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         Bmob.initialize(this,"16565db562fea312a73203bcc8a818c6");
         initViews();
         automaticLogin();//自动登录

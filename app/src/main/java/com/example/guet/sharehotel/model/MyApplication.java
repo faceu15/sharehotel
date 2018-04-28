@@ -3,18 +3,29 @@ package com.example.guet.sharehotel.model;
 import android.app.Application;
 import android.content.Context;
 
+import com.example.guet.sharehotel.bean.User;
+
 /**
  * 用做Toast，Log等的Context参数的使用。以及一些初始化。
  */
 public class MyApplication extends Application {
 
     private static Context context;
-    private Boolean isLogin;
+    private static MyApplication myApplication;
+    private Boolean isLogin = false;
+    private User mUser;
+    private String mAccount;
+
+    public static MyApplication geInstance() {
+        return myApplication;
+    }
 
     @Override
     public void onCreate() {
         super.onCreate();
         context = getApplicationContext();
+        myApplication = this;
+        mUser = new User();
 
         //在应用中配置ImageLoaderConfiguration参数（只能配置一次，如多次配置，则默认第一次的配置参数）
        /* File cacheDir = StorageUtils.getCacheDirectory(context);    //缓存文件夹路径
@@ -58,11 +69,27 @@ public class MyApplication extends Application {
         return context;
     }
 
-    public Boolean getLogin() {
+    public Boolean isLogin() {
         return isLogin;
     }
 
     public void setLogin(Boolean login) {
         isLogin = login;
+    }
+
+    public User getUser() {
+        return mUser;
+    }
+
+    public void setUser(User user) {
+        mUser = user;
+    }
+
+    public String getAccount() {
+        return mAccount;
+    }
+
+    public void setAccount(String account) {
+        mAccount = account;
     }
 }

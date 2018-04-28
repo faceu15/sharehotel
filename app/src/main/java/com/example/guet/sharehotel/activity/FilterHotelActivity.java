@@ -29,7 +29,7 @@ public class FilterHotelActivity extends AppCompatActivity implements View.OnCli
         setContentView(R.layout.activity_filter);
         initView();
 
-        getSupportActionBar().hide();
+        //getSupportActionBar().hide();
 
 
     }

@@ -1,5 +1,6 @@
 package com.example.guet.sharehotel.fragment;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -7,8 +8,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +24,7 @@ import com.example.guet.sharehotel.activity.CustomerServiceActivity;
 import com.example.guet.sharehotel.activity.LoginActivity;
 import com.example.guet.sharehotel.activity.MyCollectionActivity;
 import com.example.guet.sharehotel.activity.SettingActivity;
+import com.example.guet.sharehotel.model.MyApplication;
 
 
 /**
@@ -48,9 +50,10 @@ public class PersonalCenterFragment extends BaseFragment implements View.OnClick
     private OnFragmentInteractionListener mListener;
 
     private View view;
-
     private Boolean isLogin;
+    //private static User user;
 
+    @SuppressLint("HandlerLeak")
     private Handler handler = new Handler() {
 
         @Override
@@ -67,7 +70,7 @@ public class PersonalCenterFragment extends BaseFragment implements View.OnClick
      * 活动数据获取中的加载框
      */
     private ProgressDialog progressDialog;
-    private ImageView set_iv;
+    private TextView set_iv;
     private ImageView user_icon_iv;
     private TextView user_name_tv;
     //private TextView mobil_phone_tv;
@@ -100,26 +103,33 @@ public class PersonalCenterFragment extends BaseFragment implements View.OnClick
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         //本函数，在每次从其它fragment切换到此都会执行一次。
-        // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_personal_center, container, false);
         isLogin = getArguments().getBoolean("isLogin");
         initView(view);
         return view;
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        resumeData();
 
-  /*  // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
+    }
+
+    private void resumeData() {
+        MyApplication myApp = MyApplication.geInstance();
+        if (myApp.isLogin()) {
+            user_name_tv.setText(myApp.getAccount());
+            user_name_tv.setClickable(false);
         }
-    }*/
+    }
 
     @Override
     public void onAttach(Context context) {
@@ -133,14 +143,15 @@ public class PersonalCenterFragment extends BaseFragment implements View.OnClick
     }
 
     @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
+    public void onResume() {
+        super.onResume();
+
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+    public void onDetach() {
+        super.onDetach();
+        mListener = null;
     }
 
     private void initView(View view) {
@@ -149,10 +160,10 @@ public class PersonalCenterFragment extends BaseFragment implements View.OnClick
         user_icon_iv = view.findViewById(R.id.user_icon_iv);
         user_name_tv = view.findViewById(R.id.user_name_tv);
         //判断是否已经登录
-        if (isLogin) {
+        /*if (isLogin) {
             user_name_tv.setText(getActivity().getPreferences(Context.MODE_PRIVATE).getString("Account", ""));
             user_name_tv.setClickable(false);
-        }
+        }*/
         user_name_tv.setOnClickListener(this);
         //mobil_phone_tv = (TextView) view.findViewById(R.id.mobil_phone_tv);
         one_key_to_check_out_linear_layout = view.findViewById(R.id.one_key_to_check_out_linear_layout);
@@ -178,7 +189,7 @@ public class PersonalCenterFragment extends BaseFragment implements View.OnClick
         switch (v.getId()) {
             case R.id.set_iv:
                 Intent intent = new Intent(getActivity(), SettingActivity.class);
-                startActivity(intent);
+                startActivityForResult(intent, 2);
                 break;
             case R.id.customer_service_linear_layout:
                 Intent intent1 = new Intent(getActivity(), CustomerServiceActivity.class);
@@ -198,15 +209,40 @@ public class PersonalCenterFragment extends BaseFragment implements View.OnClick
                 break;
             case R.id.user_name_tv://登录
                 Intent login_intent = new Intent(getActivity(), LoginActivity.class);
-                startActivity(login_intent);
+                startActivityForResult(login_intent, 1);
                 break;
         }
 
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        //super.onActivityResult(requestCode, resultCode, data);
+        MyApplication app = MyApplication.geInstance();
+        switch (resultCode) {
+            case 1://登录返回
+                if (data.getExtras().getInt("Login", 0) == 1) {
+                    String account = data.getExtras().getString("Account");
+                    user_name_tv.setText(account);//设置显示用户账号
+                    user_name_tv.setClickable(false);//设置账号不可点击
+                    app.setLogin(true);
+                    app.setAccount(account);
+                }
+                break;
+            case 2://退出当前账号
+                if (data.getExtras().getInt("Logout", 0) == 1) {
+                    Log.i(TAG, "退出登录");
+                    app.setLogin(false);
+                    app.setAccount("");
+                    user_name_tv.setText("登录");//恢复登录前设置
+                    user_name_tv.setClickable(true);
+                }
+                break;
+        }
+
+    }
 
     public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
 

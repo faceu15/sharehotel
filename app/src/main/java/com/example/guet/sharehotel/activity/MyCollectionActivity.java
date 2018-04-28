@@ -38,7 +38,7 @@ public class MyCollectionActivity extends AppCompatActivity implements AdapterVi
         setContentView(R.layout.activity_my_collection);
         initView();
 
-        getSupportActionBar().hide();
+        //getSupportActionBar().hide();
 
 
     }

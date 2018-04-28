@@ -28,7 +28,7 @@ public class IntegralRecordActivity extends AppCompatActivity implements Integra
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_integral_record);
 
-        this.getSupportActionBar().hide();
+        //this.getSupportActionBar().hide();
         iniView();
     }
 

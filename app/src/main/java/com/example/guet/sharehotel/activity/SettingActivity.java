@@ -42,7 +42,7 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
 
-        this.getSupportActionBar().hide();
+        //this.getSupportActionBar().hide();
         initView();
     }
 
@@ -93,7 +93,9 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
                 this.finish();
                 break;
             case R.id.exit_login_linear_layout: //退出登录
-//                exitLogin();
+                Intent back = new Intent();
+                back.putExtra("Logout", 1);
+                setResult(2, back);
                 this.finish();
                 break;
             case R.id.clear_data_linear_layout:  //清除缓存

@@ -25,7 +25,7 @@ public class CustomerServiceActivity extends AppCompatActivity implements View.O
         setContentView(R.layout.activity_customer_service);
         initView();
 
-        this.getSupportActionBar().hide();
+        //this.getSupportActionBar().hide();
     }
 
     @Override

@@ -28,8 +28,7 @@ public class CouponActivity extends AppCompatActivity implements View.OnClickLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_coupon);
-
-        this.getSupportActionBar().hide();
+        //this.getSupportActionBar().hide();
 
         initView();
     }
