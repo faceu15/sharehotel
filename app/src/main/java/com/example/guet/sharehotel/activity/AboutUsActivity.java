@@ -28,7 +28,7 @@ public class AboutUsActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     private void initView() {
-        close_iv = (ImageView) findViewById(R.id.close_iv);
+        close_iv = (ImageView) findViewById(R.id.iv_back);
         close_iv.setOnClickListener(this);
         about_us_linear_layout = (LinearLayout) findViewById(R.id.about_us_linear_layout);
         customer_service_linear_layout = (LinearLayout) findViewById(R.id.customer_service_linear_layout);
@@ -38,7 +38,7 @@ public class AboutUsActivity extends AppCompatActivity implements View.OnClickLi
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.close_iv:
+            case R.id.iv_back:
                 finish();
                 break;
         }

@@ -11,7 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.guet.sharehotel.R;
-import com.example.guet.sharehotel.customview.AboutIntegralPopupWindow;
+import com.example.guet.sharehotel.view.AboutIntegralPopupWindow;
 
 /**
  * 个人中心->信用积分
@@ -36,7 +36,7 @@ public class CreditScoreActivity extends AppCompatActivity implements android.vi
 
     private void iniView() {
 
-        ImageView close_iv = (ImageView) findViewById(R.id.close_iv);
+        ImageView close_iv = (ImageView) findViewById(R.id.iv_back);
         close_iv.setOnClickListener(this);
         TextView record_tv = (TextView) findViewById(R.id.record_tv);
         record_tv.setOnClickListener(this);
@@ -99,7 +99,7 @@ public class CreditScoreActivity extends AppCompatActivity implements android.vi
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.close_iv:
+            case R.id.iv_back:
                 finish();
                 break;
             case R.id.record_tv:

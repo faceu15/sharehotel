@@ -1,12 +1,21 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Base.Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+
+    <!-- <style name="CustomTheme" parent="DefaultCityPickerTheme">
+         <item name="cpCancelTextColor">@color/color_green</item>
+         <item name="cpSearchCursorDrawable">@color/color_green</item>
+         <item name="cpIndexBarNormalTextColor">@color/color_green</item>
+         <item name="cpIndexBarSelectedTextColor">@color/color_green</item>
+         <item name="cpSectionHeight">@dimen/custom_section_height</item>
+         <item name="cpOverlayBackground">@color/color_green</item>
+     </style>-->
 
 
     <!--信用积分-关于积分  的弹出框的动画-->

@@ -32,7 +32,7 @@ public class CustomerServiceActivity extends AppCompatActivity implements View.O
     public void onClick(View v) {
 
         switch (v.getId()) {
-            case R.id.close_iv:
+            case R.id.iv_back:
                 finish();
                 break;
         }
@@ -40,7 +40,7 @@ public class CustomerServiceActivity extends AppCompatActivity implements View.O
     }
 
     private void initView() {
-        close_iv = (ImageView) findViewById(R.id.close_iv);
+        close_iv = (ImageView) findViewById(R.id.iv_back);
         close_iv.setOnClickListener(this);
         demestic_linear_layout = (LinearLayout) findViewById(R.id.demestic_linear_layout);
         abrod_linear_layout = (LinearLayout) findViewById(R.id.abrod_linear_layout);

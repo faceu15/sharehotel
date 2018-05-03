@@ -43,8 +43,13 @@ dependencies {
     compile 'com.prolificinteractive:material-calendarview:1.4.3'
     //bmob-sdk：Bmob的android sdk包，包含了Bmob的数据存储、文件等服务，以下是最新的bmob-sdk:
     //3.5.5：请务必查看下面注释[1]
-    compile 'cn.bmob.android:bmob-sdk:3.5.5'
-    compile 'com.android.support:support-v4:27.1.1'
-    compile 'com.android.support:appcompat-v7:27.1.1'
-    compile 'com.android.support:design:27.1.1'
+    implementation 'cn.bmob.android:bmob-sdk:3.5.5'
+    implementation 'com.android.support:support-v4:27.1.1'
+    implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation 'com.android.support:design:27.1.1'
+    //加载progressDialog
+    implementation 'com.github.ForgetAll:LoadingDialog:v1.0.1'
+    implementation project(':citypicker')
+    //XRadioGroup
+    implementation 'com.github.fodroid:XRadioGroup:v1.1'
 }

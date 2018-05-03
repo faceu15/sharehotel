@@ -10,8 +10,8 @@ import android.widget.TextView;
 
 import com.example.guet.sharehotel.R;
 import com.example.guet.sharehotel.adapter.MyCollectionHotelAdapter1;
-import com.example.guet.sharehotel.customview.LoadingDialog;
 import com.example.guet.sharehotel.model.MyCollectionHotel1;
+import com.example.guet.sharehotel.view.LoadingDialog;
 
 import java.util.ArrayList;
 
@@ -44,7 +44,7 @@ public class MyCollectionActivity1 extends AppCompatActivity implements View.OnC
 
     private void initView() {
 
-        close_iv = (ImageView) findViewById(R.id.close_iv);
+        close_iv = (ImageView) findViewById(R.id.iv_back);
         close_iv.setOnClickListener(this);
         fenlei_tv = (TextView) findViewById(R.id.fenlei_tv);
         fenlei_tv.setOnClickListener(this);
@@ -66,7 +66,7 @@ public class MyCollectionActivity1 extends AppCompatActivity implements View.OnC
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.close_iv:
+            case R.id.iv_back:
                 finish();
                 break;
         }

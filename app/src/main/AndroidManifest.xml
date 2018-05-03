@@ -25,6 +25,7 @@
     <!-- 这个权限用于获取wifi的获取权限，wifi信息会用来进行网络定位 -->
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
 
+
     <application
         android:name=".model.MyApplication"
         android:allowBackup="true"
@@ -35,7 +36,7 @@
         <activity
             android:name=".activity.MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/Theme.AppCompat"
+            android:theme="@style/DefaultCityPickerTheme"
             android:windowSoftInputMode="adjustPan|stateHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -57,22 +58,18 @@
         <activity android:name=".activity.LoginActivity"/>
         <activity android:name=".activity.RegisterActivity"/>
 
-        <!--
+
         地图key和服务
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="48EMXulYQ0FXEoOEulfcOb3O3m03Uxse" />  key:开发者申请的key
-        -->
 
-
-        <!--
         声明service组件
         <service
             android:name="com.baidu.location.f"
             android:enabled="true"
             android:process=":remote" >
         </service>
-        -->
 
 
     </application>

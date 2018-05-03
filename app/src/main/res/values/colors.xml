@@ -43,5 +43,7 @@
     <!-- 当天日期的边框的背景颜色值 -->
     <color name="materialcalendar_today_border_color">#FF4081</color>
 
+    <color name="color_green">#13D1BE</color>
+
 
 </resources>

@@ -19,7 +19,7 @@
 
 
             <ImageView
-                android:id="@+id/close_iv"
+                android:id="@+id/iv_back"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -60,9 +60,9 @@
         <ListView
             android:id="@+id/list_view"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"></ListView>
+            android:layout_height="wrap_content"/>
 
-        <com.example.guet.sharehotel.customview.LoadingDialog
+        <com.example.guet.sharehotel.view.LoadingDialog
             android:id="@+id/loading_dialog"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

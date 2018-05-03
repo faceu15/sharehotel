@@ -44,7 +44,7 @@ public class IntegralRecordActivity extends AppCompatActivity implements Integra
         tabLayout_4.setTabData(mTitles, this, R.id.fl_change, mFragments);
 
 
-        ImageView close_iv = (ImageView) findViewById(R.id.close_iv);
+        ImageView close_iv = (ImageView) findViewById(R.id.iv_back);
         close_iv.setOnClickListener(this);
     }
 
@@ -53,7 +53,7 @@ public class IntegralRecordActivity extends AppCompatActivity implements Integra
     public void onClick(View v) {
 
         switch (v.getId()) {
-            case R.id.close_iv:
+            case R.id.iv_back:
                 finish();
                 break;
         }

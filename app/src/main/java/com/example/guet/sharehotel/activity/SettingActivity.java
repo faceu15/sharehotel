@@ -49,7 +49,7 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
     private void initView() {
 
 
-        close_iv = (ImageView) findViewById(R.id.close_iv);
+        close_iv = (ImageView) findViewById(R.id.iv_back);
         close_iv.setOnClickListener(this);
         exit_login_linear_layout = (LinearLayout) findViewById(R.id.exit_login_linear_layout);
         exit_login_linear_layout.setOnClickListener(this);
@@ -89,7 +89,7 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.close_iv:   //关闭界面
+            case R.id.iv_back:   //关闭界面
                 this.finish();
                 break;
             case R.id.exit_login_linear_layout: //退出登录

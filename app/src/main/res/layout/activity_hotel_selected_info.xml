@@ -2,8 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:orientation="vertical"
-              android:background="#ffffff">
+              android:background="#ffffff"
+              android:orientation="vertical">
 
     <android.support.v7.widget.Toolbar
         android:layout_width="match_parent"
@@ -18,7 +18,7 @@
 
 
             <ImageView
-                android:id="@+id/close_iv"
+                android:id="@+id/iv_back"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -60,16 +60,10 @@
         <RelativeLayout
             android:id="@+id/hotelmessage_RelativeLayout1"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
+            android:layout_height="250dp"
+            android:layout_alignParentTop="true"
             android:background="@mipmap/hotel_picture">
 
-            <Button
-                android:id="@+id/hotelmessage_btn_menu"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="#00000000"
-                android:drawableTop="@mipmap/hotelmessage_menu"
-                android:paddingTop="10dp"/>
 
             <LinearLayout
                 android:id="@+id/hotellinearlayout1"
@@ -84,105 +78,37 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-
                     android:paddingBottom="8dp"
                     android:paddingTop="10dp">
 
-
                     <TextView
-
-                        android:id="@+id/hotel_name_tv1"
+                        android:id="@+id/tv_hotel_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-
                         android:layout_centerVertical="true"
                         android:paddingLeft="10dp"
                         android:text="桂林万鹏金象酒店酒店"
                         android:textColor="#fefefe"
                         android:textSize="18dp"/>
 
-
                 </RelativeLayout>
 
 
                 <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-
-                    android:orientation="horizontal"
-
-                    >
-
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:orientation="horizontal"
-                        android:paddingLeft="10dp">
-
-                        <ImageView
-                            android:id="@+id/hotel_red_heart11"
-                            android:layout_width="11dp"
-                            android:layout_height="11dp"
-                            android:layout_marginRight="1dp"
-                            android:src="@mipmap/start"/>
-
-
-                        <ImageView
-                            android:id="@+id/hotel_red_heart21"
-                            android:layout_width="11dp"
-                            android:layout_height="11dp"
-                            android:layout_marginRight="1dp"
-                            android:src="@mipmap/start"/>
-
-                        <ImageView
-                            android:id="@+id/hotel_red_heart31"
-                            android:layout_width="11dp"
-                            android:layout_height="11dp"
-                            android:layout_marginRight="1dp"
-                            android:src="@mipmap/start"
-
-                            />
-
-
-                        <ImageView
-                            android:id="@+id/hotel_red_heart41"
-                            android:layout_width="11dp"
-                            android:layout_height="11dp"
-                            android:layout_marginRight="1dp"
-                            android:src="@mipmap/start"/>
-
-                        <ImageView
-                            android:id="@+id/hotel_red_heart51"
-                            android:layout_width="11dp"
-                            android:layout_height="11dp"
-                            android:src="@mipmap/starthaft"/>
-
-                    </LinearLayout>
-
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:orientation="horizontal">
 
                     <TextView
+                        android:id="@+id/tv_hotel_commnent"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="  "
-                        android:textColor="#ec6a4b"
-                        android:textSize="11dp"
-
-                        />
-
-                    <TextView
-                        android:id="@+id/hotel_score_tv1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_marginRight="2dp"
                         android:layout_gravity="center"
                         android:text="456"
                         android:textColor="#ffffff"
-                        android:textSize="11dp"
-
-                        />
+                        android:textSize="15sp"/>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -190,7 +116,7 @@
                         android:layout_gravity="center"
                         android:text="条评论"
                         android:textColor="#ffffff"
-                        android:textSize="11dp"
+                        android:textSize="15sp"
 
                         />
 
@@ -210,25 +136,14 @@
                 android:paddingBottom="5dp">
 
                 <TextView
+                    android:id="@+id/tv_hotel_grade"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:text="9.5"
+                    android:text="4.8"
                     android:textColor="#ffffff"
-                    android:textSize="30dp"
-
-
-                    />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:text="酒店"
-                    android:textColor="#ffffff"
-                    android:textSize="15dp"/>
+                    android:textSize="30dp"/>
 
                 <TextView
                     android:layout_width="match_parent"
@@ -340,9 +255,7 @@
             android:layout_width="match_parent"
             android:layout_height="120dp"
             android:layout_below="@+id/hotelmessage_RelativeLayout1"
-            android:background="#ddd7d7"
-
-            >
+            android:background="#ffffff">
 
             <TextView
                 android:id="@+id/miaoshu"
@@ -352,25 +265,92 @@
                 android:layout_centerVertical="true"
                 android:paddingBottom="5dp"
                 android:paddingLeft="20dp"
-                android:paddingTop="15dp"
+                android:paddingTop="5dp"
                 android:text="房屋描述"
                 android:textColor="#15314c"
-                android:textSize="15dp"/>
+                android:textSize="15sp"/>
 
-            <TextView
-                android:id="@+id/miaoshuContent"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/miaoshu"
-                android:layout_centerVertical="true"
-                android:lineSpacingMultiplier="1.3"
-                android:paddingBottom="5dp"
+                android:orientation="vertical"
                 android:paddingLeft="20dp"
-                android:paddingRight="10dp"
-                android:paddingTop="5dp"
-                android:text="穿梭车水马龙，放眼流光魅影，这个小家，就像一览阳光，穿梭繁华与浮躁，依然带着温暖和能量。无论是公私差还是亲朋小聚，都能感受到同样温暖...... "
-                android:textColor="#15314c"
-                android:textSize="15dp"/>
+                android:paddingRight="20dp">
+
+                <!-- <LinearLayout
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:orientation="horizontal">
+                     <TextView
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:layout_marginRight="10dp"
+                         android:text="面积"
+                         android:textSize="15sp"
+                         android:textColor="#15314c"/>
+                     <TextView
+                         android:id="@+id/miaoshuContent"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:text="20m²"
+                         android:textSize="15sp"/>
+                 </LinearLayout>-->
+
+                <me.shihao.library.XRadioGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true">
+
+                        <RadioButton
+                            android:id="@+id/radioButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentTop="true"
+                            android:checked="true"
+                            android:text="标准单人房"/>
+
+                        <RadioButton
+                            android:id="@+id/radioButton2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentRight="true"
+                            android:layout_alignParentTop="true"
+                            android:layout_gravity="center_horizontal"
+                            android:text="标准双人房"/>
+
+                        <RadioButton
+                            android:id="@+id/radioButton3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentStart="true"
+                            android:layout_below="@+id/radioButton"
+                            android:layout_gravity="center_horizontal"
+                            android:text="豪华双人间"/>
+
+                        <RadioButton
+                            android:id="@+id/radioButton4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignLeft="@+id/radioButton2"
+                            android:layout_alignTop="@+id/radioButton3"
+                            android:text="三人房"/>
+
+                    </RelativeLayout>
+
+                </me.shihao.library.XRadioGroup>
+
+
+            </LinearLayout>
         </RelativeLayout>
 
         <LinearLayout

@@ -3,214 +3,87 @@ package com.example.guet.sharehotel.activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.guet.sharehotel.R;
-import com.example.guet.sharehotel.adapter.MyCollectionHotelAdapter;
-import com.example.guet.sharehotel.customview.LoadingDialog;
+import com.example.guet.sharehotel.adapter.CommonAdapter;
+import com.example.guet.sharehotel.adapter.ViewHolder;
+import com.example.guet.sharehotel.base.BaseActivity;
+import com.example.guet.sharehotel.bean.Hotel;
 import com.example.guet.sharehotel.model.MyCollectionHotel;
+import com.example.guet.sharehotel.presenter.FindHotelPrester;
+import com.example.guet.sharehotel.view.IFindView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 主页->搜索
  */
-public class FindActivity extends AppCompatActivity implements AdapterView.OnItemClickListener, View.OnClickListener {
+public class FindActivity extends BaseActivity<IFindView, FindHotelPrester<IFindView>> implements IFindView, AdapterView.OnItemClickListener, View.OnClickListener {
 
     private static final String TAG = "FindActivity";
 
-    private MyCollectionHotelAdapter myCollectionHotelAdapter;
     /**
      * MyCollectionHotel表上的数据
      */
     private ArrayList<MyCollectionHotel> myCollectionHotelArrayList = new ArrayList<MyCollectionHotel>();
+
     private ProgressDialog progressDialog;
-    private TextView fenlei_tv;
-    private ImageView close_iv;
-    private TextView saixuan_tv;
-    private ListView list_view;
-    private LoadingDialog loading_dialog;
+
+    private ListView listView;
+
+    private List<Hotel> mCities = new ArrayList<>();
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_find);
         initView();
-        //getSupportActionBar().hide();
-
+        showLoading("加载中...");
+        mPresenter.fetch(getCity(), getSearchText());
     }
 
+    @Override
+    protected FindHotelPrester<IFindView> createPresenter() {
+        return new FindHotelPrester<>((IFindView) this);
+    }
 
     private void initView() {
+        //loading_dialog = findViewById(R.id.loading_dialog);
+        LinearLayout backLinearLayout = findViewById(R.id.find_back_ll);
+        TextView filterTextView = findViewById(R.id.tv_filter);
+        listView = findViewById(R.id.list_view);
 
-        MyCollectionHotel myCollectionHotel = new MyCollectionHotel("1", "4", R.mipmap.bg1, 4, "伊维特国际酒店", 239, 449);
-        myCollectionHotelArrayList.add(myCollectionHotel);
-        myCollectionHotelArrayList.add(myCollectionHotel);
-        myCollectionHotelArrayList.add(myCollectionHotel);
-        myCollectionHotelAdapter = new MyCollectionHotelAdapter(FindActivity.this, R.layout.activity_my_collection_item, myCollectionHotelArrayList);
-
-
-        close_iv = (ImageView) findViewById(R.id.close_iv);
-        saixuan_tv = (TextView) findViewById(R.id.saixuan_tv);
-        list_view = (ListView) findViewById(R.id.list_view);
-        list_view.setAdapter(myCollectionHotelAdapter);
-        list_view.setOnItemClickListener(this);
-
-        loading_dialog = (LoadingDialog) findViewById(R.id.loading_dialog);
-
-        close_iv.setOnClickListener(this);
-        saixuan_tv.setOnClickListener(this);
+        backLinearLayout.setOnClickListener(this);
+        filterTextView.setOnClickListener(this);
     }
 
-    /**
-     * 初始化我的收藏的ListView数据
-     */
-    private void initAdapterData() {
-
-        this.showProgressBar();     //显示加载框
-
-//        //从数据库根据用户ID获取酒店ID
-//        BmobQuery<CollectionHotel> query = new BmobQuery<CollectionHotel>();
-//        query.addWhereEqualTo("userId" , LoginActivity.getAccount());
-//        //返回50条数据，如果不加上这条语句，默认返回10条数据
-//        query.setLimit(50);
-//        //执行查询方法
-//        query.findObjects(new FindListener<CollectionHotel>() {
-//            @Override
-//            public void done(List<CollectionHotel> object, BmobException e) {
-//
-//                if (e == null) {
-//                    for (CollectionHotel collectionHotel : object) {
-//                        collectionHotelArrayList.add(collectionHotel);
-//                    }
-//
-//                    getMyCollectionHotel();  //根据酒店ID，获取酒店数据
-//
-//                } else {
-//                    LogUtil.e(TAG, "失败：" + e.getMessage() + "," + e.getErrorCode());//打印失败
-//                }
-//            }
-//        });
-
-        /*MyCollectionHotel myCollectionHotel = new MyCollectionHotel(R.mipmap.collection_hotel1  ,5  , "城市便捷酒店(桂林火车站龙船坪店)" , "象山区中山南路32号" , 120);
-        myCollectionHotelArrayList.add(myCollectionHotel);
-
-        MyCollectionHotel myCollectionHotel1 = new MyCollectionHotel(R.mipmap.collection_hotel2 ,4 ,   "7天连锁酒店(桂林兴安乐满地店)" , "象山区中山南路32号" , 160);
-        myCollectionHotelArrayList.add(myCollectionHotel1);
-
-
-        MyCollectionHotel myCollectionHotel2 = new MyCollectionHotel(R.mipmap.collection_hotel3 , 5  , "瓦舍旅行酒店(阳朔西街点)" , "象山区中山南路32号" , 45);
-        myCollectionHotelArrayList.add(myCollectionHotel2);
-
-        MyCollectionHotel myCollectionHotel3 = new MyCollectionHotel(R.mipmap.collection_hotel4  ,3  ,  "7天连锁酒店桂林八里街点", "象山区中山南路32号" , 120);
-        myCollectionHotelArrayList.add(myCollectionHotel3);
-
-        MyCollectionHotel myCollectionHotel4 = new MyCollectionHotel(R.mipmap.collection_hotel5  , 4 , "阳朔桂林金水湾国际大酒店" , "象山区中山南路32号" , 280);
-        myCollectionHotelArrayList.add(myCollectionHotel4);*/
-    }
-
-
-    /**
-     * 显示加载框
-     */
-    private void showProgressBar() {
-
-        progressDialog = new ProgressDialog(FindActivity.this, 1);//后面的参数是风格，1比较好看
-        progressDialog.setMessage("数据正在加载中......");
-        progressDialog.show();
-    }
-
-
-    /**
-     * 根据酒店ID，获取酒店数据
-     */
-    private void getMyCollectionHotel() {
-
-        myCollectionHotelArrayList.removeAll(myCollectionHotelArrayList);
-//        for (CollectionHotel c:collectionHotelArrayList) {
-//            getHotelInfoFromBmob(c); //获取酒店信息
-//        }
-    }
-
-    /**
-     * 获取酒店信息
-     */
-//    private void getHotelInfoFromBmob(CollectionHotel c) {
-//
-//        //从数据库根据酒店ID获取酒店数据
-//        BmobQuery<Hotel> query = new BmobQuery<Hotel>();
-//        query.addWhereEqualTo("hotelId" , c.getHotelId());
-//        //返回50条数据，如果不加上这条语句，默认返回10条数据
-//        query.setLimit(50);
-//        //执行查询方法
-//        query.findObjects(new FindListener<Hotel>() {
-//            @Override
-//            public void done(List<Hotel> object, BmobException e) {
-//
-//                if (e == null) {
-//                    for (Hotel h : object) {
-//
-//                        MyCollectionHotel myCollectionHotel = new MyCollectionHotel();
-//                        myCollectionHotel.setScore(Integer.parseInt(h.getHotelGrade()));
-//                        myCollectionHotel.setName(h.getHotelName());
-//                        myCollectionHotel.setAddress(h.getHotelAddress());
-//                        myCollectionHotel.setMinValue(Integer.parseInt(h.getHotelMinStartPrice()));
-//                        myCollectionHotelArrayList.add(myCollectionHotel);
-//                    }
-//
-//                    myCollectionHotelAdapter.notifyDataSetChanged();
-//                    progressDialog.cancel();     //加载完数据后使加载框消失。
-//
-//                } else {
-//                    LogUtil.e(TAG, "失败：" + e.getMessage() + "," + e.getErrorCode());//打印失败
-//                }
-//            }
-//        });
-//
-//    }
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        //点击了我的收藏ListView的item项则弹出酒店信息。
-        // parent是识别是哪个listview；
-        // view是当前listview的item的view的布局，就是可以用这个view，获取里面的控件的id后操作控件
-        // position是当前item在listview中适配器里的位置
-        // id是当前item在listview里的第几行的位置
-
-//        MyCollectionHotel myCollectionHotel=myCollectionHotelArrayList.get(position);
-//
-//        String hotelName = myCollectionHotel.getName();
-//        int hotelScore = myCollectionHotel.getScore();
-//        int hotelMinPrice = myCollectionHotel.getMinValue();
-//
-//        Intent intent = new Intent(MyCollectionActivity.this, HotelSelectedInfoActivity.class);
-//        intent.putExtra("hotelName", hotelName);
-//        intent.putExtra("hotelScore", hotelScore + "");
-//        intent.putExtra("hotelMinPrice", hotelMinPrice + "");
-//        startActivity(intent);
 
         Intent intent = new Intent(FindActivity.this, HotelSelectedInfoActivity.class);
+        intent.putExtra("Hotel", mCities.get(position));
         startActivity(intent);
-
-//
-
-
     }
 
     @Override
     public void onClick(View v) {
-
         switch (v.getId()) {
-            case R.id.close_iv:
+            case R.id.find_back_ll:
                 this.finish();
                 //提示VM清理缓存
                 System.gc();           //指示VM,它将是一个很好的时间来运行垃圾收集器。请注意,这只是一个提示。没有保证垃圾收集器会运行。
                 break;
-            case R.id.saixuan_tv:
+            case R.id.tv_filter:
                 Intent intent = new Intent(FindActivity.this, FilterHotelActivity.class);
                 startActivity(intent);
                 break;
@@ -219,4 +92,58 @@ public class FindActivity extends AppCompatActivity implements AdapterView.OnIte
     }
 
 
+    @Override
+    public void showResult(List<Hotel> datas) {
+        mCities = datas;
+        listView.setAdapter(new CommonAdapter<Hotel>(this, datas, R.layout.find_listview_item) {
+            @Override
+            public void convert(ViewHolder viewHolder, Hotel hotel) {
+                viewHolder.setImageResource(R.id.iv_find_hotel, getResources().getIdentifier("collection1", "mipmap", getPackageName()));
+                viewHolder.setText(R.id.tv_name, hotel.getName());
+                viewHolder.setText(R.id.tv_address, hotel.getAddress());
+                viewHolder.setText(R.id.tv_grade, hotel.getGrade().toString());
+                viewHolder.setText(R.id.tv_comment_num, hotel.getComment().toString());
+                viewHolder.setText(R.id.tv_price, hotel.getPrice().toString());
+            }
+        });
+        hideLoading();
+        listView.setOnItemClickListener(this);
+    }
+
+    @Override
+    public String getCity() {
+        return getIntent().getStringExtra("City");
+    }
+
+    @Override
+    public String getSearchText() {
+        return getIntent().getStringExtra("Search");
+    }
+
+    @Override
+    public void showLoading(String msg) {
+        progressDialog = new ProgressDialog(FindActivity.this, 1);//后面的参数是风格，1比较好看
+        progressDialog.setMessage(msg);
+        progressDialog.show();
+    }
+
+    @Override
+    public void hideLoading() {
+        progressDialog.hide();
+    }
+
+    @Override
+    public void showError(String msg) {
+        hideLoading();
+        Toast toast = Toast.makeText(this, msg, Toast.LENGTH_SHORT);
+        toast.setGravity(Gravity.CENTER, 0, 0);
+        toast.show();
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        progressDialog.dismiss();
+    }
 }

@@ -1,4 +1,4 @@
-package com.example.guet.sharehotel.customview;
+package com.example.guet.sharehotel.view;
 
 import android.content.Context;
 import android.graphics.drawable.ColorDrawable;

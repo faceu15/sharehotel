@@ -47,7 +47,7 @@ public class MyCollectionActivity extends AppCompatActivity implements AdapterVi
         fenlei_tv = (TextView) findViewById(R.id.fenlei_tv);
         fenlei_tv.setOnClickListener(this);
 
-        close_iv = (ImageView) findViewById(R.id.close_iv);
+        close_iv = (ImageView) findViewById(R.id.iv_back);
         close_iv.setOnClickListener(this);
 
         MyCollectionHotel myCollectionHotel = new MyCollectionHotel("1", "4", R.mipmap.bg1, 4, "伊维特国际酒店", 239, 449);
@@ -198,7 +198,7 @@ public class MyCollectionActivity extends AppCompatActivity implements AdapterVi
     public void onClick(View v) {
 
         switch (v.getId()) {
-            case R.id.close_iv:
+            case R.id.iv_back:
                 this.finish();
                 //提示VM清理缓存
                 System.gc();           //指示VM,它将是一个很好的时间来运行垃圾收集器。请注意,这只是一个提示。没有保证垃圾收集器会运行。
