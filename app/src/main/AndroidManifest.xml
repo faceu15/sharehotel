@@ -4,17 +4,17 @@
 
     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
 
-    <!--允许联网 -->
+    <!-- 允许联网 -->
     <uses-permission android:name="android.permission.INTERNET"/>
-    <!--获取GSM（2g）、WCDMA（联通3g）等网络状态的信息  -->
+    <!-- 获取GSM（2g）、WCDMA（联通3g）等网络状态的信息 -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <!--获取wifi网络状态的信息 -->
+    <!-- 获取wifi网络状态的信息 -->
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
-    <!--保持CPU 运转，屏幕和键盘灯有可能是关闭的,用于文件上传和下载 -->
+    <!-- 保持CPU 运转，屏幕和键盘灯有可能是关闭的,用于文件上传和下载 -->
     <uses-permission android:name="android.permission.WAKE_LOCK"/>
-    <!--获取sd卡写的权限，用于文件上传和下载-->
+    <!-- 获取sd卡写的权限，用于文件上传和下载 -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <!--允许读取手机状态 用于创建BmobInstallation-->
+    <!-- 允许读取手机状态 用于创建BmobInstallation -->
     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
 
     <!-- 百度地图基础定位权限 -->
@@ -27,7 +27,7 @@
 
 
     <application
-        android:name=".model.MyApplication"
+        android:name=".application.MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -57,21 +57,23 @@
         <activity android:name=".activity.HotelSelectedInfoActivity"/>
         <activity android:name=".activity.LoginActivity"/>
         <activity android:name=".activity.RegisterActivity"/>
-
-
         地图key和服务
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
-            android:value="48EMXulYQ0FXEoOEulfcOb3O3m03Uxse" />  key:开发者申请的key
+            android:value="48EMXulYQ0FXEoOEulfcOb3O3m03Uxse"/>
+        key:开发者申请的key
 
         声明service组件
         <service
             android:name="com.baidu.location.f"
             android:enabled="true"
-            android:process=":remote" >
+            android:process=":remote">
         </service>
 
-
+        <activity android:name=".activity.OrderDetailActivity">
+        </activity>
+        <activity android:name=".activity.PostHouseActivity">
+        </activity>
     </application>
 
 </manifest>

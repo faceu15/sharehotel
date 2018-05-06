@@ -11,7 +11,7 @@ import android.widget.ListView;
 
 import com.example.guet.sharehotel.R;
 import com.example.guet.sharehotel.adapter.IntegralRecordAdapter;
-import com.example.guet.sharehotel.model.IntegralRecord;
+import com.example.guet.sharehotel.bean.IntegralRecord;
 
 import java.util.ArrayList;
 import java.util.List;

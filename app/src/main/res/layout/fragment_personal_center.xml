@@ -29,12 +29,12 @@
                 android:id="@+id/set_iv"
                 android:layout_width="40dp"
                 android:layout_height="28dp"
-                android:text="设置"
-                android:textColor="@color/white"
                 android:layout_alignParentRight="true"
                 android:layout_gravity="center"
                 android:layout_marginRight="15dp"
-                android:gravity="center"/>
+                android:gravity="center"
+                android:text="设置"
+                android:textColor="@color/white"/>
             <!-- android:src="@mipmap/set"可以换成设置图片<ImageView>-->
         </RelativeLayout>
 
@@ -43,18 +43,10 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="150dp"
         android:background="#7c63e7"
         android:orientation="horizontal">
 
-        <!--<ImageView-->
-        <!--android:id="@+id/user_icon_iv"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_marginBottom="25dp"-->
-        <!--android:layout_marginLeft="26dp"-->
-        <!--android:layout_marginTop="40dp"-->
-        <!--android:src="@mipmap/login_head1" />-->
 
         <LinearLayout
             android:layout_width="0dp"
@@ -70,9 +62,9 @@
             <ImageView
                 android:id="@+id/user_icon_iv"
                 android:layout_width="60dp"
-                android:layout_marginTop="30dp"
                 android:layout_height="60dp"
                 android:layout_gravity="center"
+                android:layout_marginTop="30dp"
                 android:src="@mipmap/login_head"/>
 
             <TextView
@@ -80,8 +72,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:padding="5dp"
                 android:layout_marginTop="5dp"
+                android:padding="5dp"
                 android:text="登录"
                 android:textColor="#696e6f"
                 android:textSize="16sp"/>
@@ -92,11 +84,9 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"></LinearLayout>
-
+            android:layout_weight="1"/>
 
     </LinearLayout>
-
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -108,7 +98,7 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"></LinearLayout>
+            android:layout_weight="1"/>
 
 
         <LinearLayout
@@ -118,12 +108,10 @@
             android:layout_gravity="center"
             android:orientation="vertical">
 
-
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@mipmap/one_key_to_check_out1"/>
-
 
             <TextView
                 android:layout_width="wrap_content"
@@ -134,29 +122,24 @@
                 android:textColor="#696e6f"
                 android:textSize="10sp"/>
 
-
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"></LinearLayout>
+            android:layout_weight="1"/>
 
         <LinearLayout
             android:id="@+id/coupon_linear_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:orientation="vertical"
-
-            >
-
+            android:orientation="vertical">
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@mipmap/coupon"/>
-
 
             <TextView
                 android:layout_width="wrap_content"
@@ -173,24 +156,19 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"></LinearLayout>
-
+            android:layout_weight="1"/>
 
         <LinearLayout
             android:id="@+id/credit_score_linear_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:orientation="vertical"
-
-            >
-
+            android:orientation="vertical">
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@mipmap/credit_score"/>
-
 
             <TextView
                 android:layout_width="wrap_content"
@@ -207,11 +185,10 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"></LinearLayout>
+            android:layout_weight="1"/>
 
 
     </LinearLayout>
-
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -314,12 +291,122 @@
 
         </LinearLayout>
 
+
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"/>
 
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"></LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/post_house_ll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical">
+
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@mipmap/posthouse"/>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:text="发布房子"
+                android:textColor="#696e6f"
+                android:textSize="10sp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"></LinearLayout>
+
+        <LinearLayout
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="vertical">
+
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@mipmap/posthouse2"/>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:text="我的房子"
+                android:textColor="#696e6f"
+                android:textSize="10sp"/>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"></LinearLayout>
+
+
+        <LinearLayout
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical">
+
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@mipmap/hostorder"/>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:text="接单模块"
+                android:textColor="#696e6f"
+                android:textSize="10sp"/>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+    </LinearLayout>
+
 
     <ImageView
         android:id="@+id/right_to_buy_iv"

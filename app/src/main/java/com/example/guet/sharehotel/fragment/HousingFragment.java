@@ -4,11 +4,23 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.guet.sharehotel.R;
+import com.example.guet.sharehotel.adapter.CommonAdapter;
+import com.example.guet.sharehotel.adapter.ViewHolder;
+import com.example.guet.sharehotel.application.MyApplication;
+import com.example.guet.sharehotel.bean.Order;
+import com.example.guet.sharehotel.presenter.OrderPresenter;
+import com.example.guet.sharehotel.utils.OrderState;
+import com.example.guet.sharehotel.view.IOrderView;
+
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -18,15 +30,20 @@ import com.example.guet.sharehotel.R;
  * Use the {@link HousingFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class HousingFragment extends Fragment {
+public class HousingFragment extends Fragment implements IOrderView {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
+    private static final Integer STATE_HOUSING = 2;
+
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private ListView mListView;
+    private OrderPresenter mOrderPresenter;
 
     private OnFragmentInteractionListener mListener;
 
@@ -64,8 +81,23 @@ public class HousingFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_housing, container, false);
+        View view = inflater.inflate(R.layout.fragment_housing, container, false);
+        initView(view);
+
+        return view;
+    }
+
+    private void initView(View view) {
+        mListView = view.findViewById(R.id.housing_listview);
+        mOrderPresenter = new OrderPresenter(this);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        if (MyApplication.getInstance().isLogin()) {
+            mOrderPresenter.load(STATE_HOUSING, MyApplication.getInstance().getAccount());
+        }
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -90,6 +122,39 @@ public class HousingFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @Override
+    public void showResult(List<Order> list) {
+        mListView.setAdapter(new CommonAdapter<Order>(getContext(), list, R.layout.order_housing_item) {
+            @Override
+            public void convert(ViewHolder viewHolder, Order order) {
+                viewHolder.setText(R.id.tv_history_order_num, order.getObjectId());
+                viewHolder.setText(R.id.tv_housing_order_state, OrderState.getState(order.getState()));
+                viewHolder.setText(R.id.tv_housing_order_name, order.getHotel().getName());
+                viewHolder.setText(R.id.tv_housing_order_checkin, order.getCheckInTime().getDate());
+                viewHolder.setText(R.id.tv_housing_order_checkout, order.getCheckOutTime().getDate());
+                viewHolder.setText(R.id.tv_housing_order_price, order.getHotel().getPrice().toString());
+                viewHolder.setText(R.id.tv_housing_order_pre_price, order.getHotel().getPrice().toString());
+            }
+        });
+    }
+
+    @Override
+    public void showLoading(String msg) {
+
+    }
+
+    @Override
+    public void hideLoading() {
+
+    }
+
+    @Override
+    public void showError(String msg) {
+        Toast toast = Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT);
+        toast.setGravity(Gravity.CENTER, 0, 0);
+        toast.show();
     }
 
     /**

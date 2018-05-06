@@ -1,4 +1,4 @@
-package com.example.guet.sharehotel.db;
+package com.example.guet.sharehotel.utils.db;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

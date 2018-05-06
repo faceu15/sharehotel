@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">#3F51B5</color>
 
     <color name="white">#ffffff</color>     <!--单个tab项的背景颜色-->
     <color name="colorGreen">#00d39d</color>
@@ -44,6 +44,7 @@
     <color name="materialcalendar_today_border_color">#FF4081</color>
 
     <color name="color_green">#13D1BE</color>
+    <color name="money_color">#fc5e03</color>
 
 
 </resources>

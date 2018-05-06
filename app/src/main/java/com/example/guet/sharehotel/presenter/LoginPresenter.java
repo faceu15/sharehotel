@@ -3,7 +3,7 @@ package com.example.guet.sharehotel.presenter;
 import android.util.Log;
 
 import com.example.guet.sharehotel.base.BasePresenter;
-import com.example.guet.sharehotel.model.CallBack;
+import com.example.guet.sharehotel.listener.CallBack;
 import com.example.guet.sharehotel.model.IUserModel;
 import com.example.guet.sharehotel.model.UserModel;
 import com.example.guet.sharehotel.view.ILoginView;

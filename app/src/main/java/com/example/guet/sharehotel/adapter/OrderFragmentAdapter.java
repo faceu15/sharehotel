@@ -11,7 +11,7 @@ import com.example.guet.sharehotel.fragment.UncomfirmFragment;
 
 public class OrderFragmentAdapter extends FragmentPagerAdapter {
 
-    private final String[] titles = {"待确认", "入住中", "待评价", "历史订单"};
+    private final String[] titles = {"待付款", "已完成", "待评价", "历史订单"};
     //待确认
     private UncomfirmFragment mUncomfirmFragment;
     //入住中

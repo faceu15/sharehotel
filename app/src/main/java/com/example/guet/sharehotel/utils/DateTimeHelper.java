@@ -1,4 +1,4 @@
-package com.example.guet.sharehotel.utility;
+package com.example.guet.sharehotel.utils;
 
 import java.text.DateFormat;
 import java.text.ParseException;

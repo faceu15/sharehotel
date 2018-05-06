@@ -1,4 +1,4 @@
-package com.example.guet.sharehotel.model;
+package com.example.guet.sharehotel.bean;
 
 import com.flyco.tablayout.listener.CustomTabEntity;
 

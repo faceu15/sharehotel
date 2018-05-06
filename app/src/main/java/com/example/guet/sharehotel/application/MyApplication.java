@@ -1,4 +1,4 @@
-package com.example.guet.sharehotel.model;
+package com.example.guet.sharehotel.application;
 
 import android.app.Application;
 import android.content.Context;
@@ -16,7 +16,7 @@ public class MyApplication extends Application {
     private User mUser;
     private String mAccount;
 
-    public static MyApplication geInstance() {
+    public static MyApplication getInstance() {
         return myApplication;
     }
 

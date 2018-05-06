@@ -7,8 +7,17 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 
 import com.example.guet.sharehotel.R;
+import com.example.guet.sharehotel.adapter.CommonAdapter;
+import com.example.guet.sharehotel.adapter.ViewHolder;
+import com.example.guet.sharehotel.application.MyApplication;
+import com.example.guet.sharehotel.bean.Order;
+import com.example.guet.sharehotel.presenter.OrderPresenter;
+import com.example.guet.sharehotel.view.IOrderView;
+
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -18,15 +27,19 @@ import com.example.guet.sharehotel.R;
  * Use the {@link CommentFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class CommentFragment extends Fragment {
+public class CommentFragment extends Fragment implements IOrderView {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    private static final Integer STATE_COMMENT = 4;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private ListView mListView;
+    private OrderPresenter mOrderPresenter;
 
     private OnFragmentInteractionListener mListener;
 
@@ -65,13 +78,24 @@ public class CommentFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_comment, container, false);
+        View view = inflater.inflate(R.layout.fragment_comment, container, false);
+        mListView = view.findViewById(R.id.comment_listview);
+        mOrderPresenter = new OrderPresenter(this);
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
+        }
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        if (MyApplication.getInstance().isLogin()) {
+            mOrderPresenter.load(STATE_COMMENT, MyApplication.getInstance().getAccount());
         }
     }
 
@@ -90,6 +114,33 @@ public class CommentFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @Override
+    public void showResult(List<Order> list) {
+        mListView.setAdapter(new CommonAdapter<Order>(getContext(), list, R.layout.order_comment_item) {
+            @Override
+            public void convert(ViewHolder viewHolder, Order order) {
+                viewHolder.setText(R.id.tv_comment_order_name, order.getHotel().getName());
+                viewHolder.setText(R.id.tv_comment_order_checkin, order.getCheckInTime().getDate());
+                viewHolder.setText(R.id.tv_comment_order_checkout, order.getCheckOutTime().getDate());
+            }
+        });
+    }
+
+    @Override
+    public void showLoading(String msg) {
+
+    }
+
+    @Override
+    public void hideLoading() {
+
+    }
+
+    @Override
+    public void showError(String msg) {
+
     }
 
     /**

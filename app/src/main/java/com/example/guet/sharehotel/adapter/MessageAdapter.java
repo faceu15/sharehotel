@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.guet.sharehotel.R;
-import com.example.guet.sharehotel.model.Message;
+import com.example.guet.sharehotel.bean.Message;
 
 import java.util.List;
 

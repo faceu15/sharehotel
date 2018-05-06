@@ -17,13 +17,20 @@
             android:orientation="horizontal">
 
 
-            <ImageView
-                android:id="@+id/iv_back"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:background="@mipmap/left_arrow1"
-                android:padding="5dp"/>
+            <LinearLayout
+                android:id="@+id/hotel_back_ll"
+                android:layout_width="40dp"
+                android:layout_height="30dp"
+                android:paddingLeft="5dp">
+
+                <ImageView
+                    android:id="@+id/iv_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@mipmap/left_arrow1"
+                    android:padding="5dp"/>
+            </LinearLayout>
 
 
             <TextView
@@ -62,7 +69,7 @@
             android:layout_width="match_parent"
             android:layout_height="250dp"
             android:layout_alignParentTop="true"
-            android:background="@mipmap/hotel_picture">
+            android:background="@mipmap/hotel7">
 
 
             <LinearLayout
@@ -88,8 +95,8 @@
                         android:layout_centerVertical="true"
                         android:paddingLeft="10dp"
                         android:text="桂林万鹏金象酒店酒店"
-                        android:textColor="#fefefe"
-                        android:textSize="18dp"/>
+                        android:textColor="#ffffff"
+                        android:textSize="20sp"/>
 
                 </RelativeLayout>
 
@@ -104,8 +111,8 @@
                         android:id="@+id/tv_hotel_commnent"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="2dp"
                         android:layout_gravity="center"
+                        android:layout_marginRight="2dp"
                         android:text="456"
                         android:textColor="#ffffff"
                         android:textSize="15sp"/>
@@ -116,10 +123,7 @@
                         android:layout_gravity="center"
                         android:text="条评论"
                         android:textColor="#ffffff"
-                        android:textSize="15sp"
-
-                        />
-
+                        android:textSize="15sp"/>
 
                 </LinearLayout>
 
@@ -127,13 +131,13 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="70dp"
-                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
                 android:layout_above="@+id/main_bottom_groups"
                 android:layout_toRightOf="@+id/hotellinearlayout1"
                 android:background="@drawable/textview_border"
                 android:orientation="vertical"
-                android:paddingBottom="5dp">
+                android:layout_marginBottom="10dp">
 
                 <TextView
                     android:id="@+id/tv_hotel_grade"
@@ -143,7 +147,7 @@
                     android:gravity="center"
                     android:text="4.8"
                     android:textColor="#ffffff"
-                    android:textSize="30dp"/>
+                    android:textSize="30sp"/>
 
                 <TextView
                     android:layout_width="match_parent"
@@ -152,7 +156,30 @@
                     android:gravity="center"
                     android:text="评分"
                     android:textColor="#ffffff"
-                    android:textSize="15dp"/>
+                    android:textSize="18sp"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_hotel_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="239"
+                        android:textSize="10pt"
+                        android:textColor="#fc5e03"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="元"
+                        android:textSize="10pt"
+                        android:textColor="#ffffff"/>
+
+                </LinearLayout>
+
             </LinearLayout>
 
             <LinearLayout
@@ -254,8 +281,7 @@
             android:id="@+id/hotelmessage_RelativeLayout2"
             android:layout_width="match_parent"
             android:layout_height="120dp"
-            android:layout_below="@+id/hotelmessage_RelativeLayout1"
-            android:background="#ffffff">
+            android:layout_below="@+id/hotelmessage_RelativeLayout1">
 
             <TextView
                 android:id="@+id/miaoshu"
@@ -266,7 +292,7 @@
                 android:paddingBottom="5dp"
                 android:paddingLeft="20dp"
                 android:paddingTop="5dp"
-                android:text="房屋描述"
+                android:text="房屋类型"
                 android:textColor="#15314c"
                 android:textSize="15sp"/>
 
@@ -274,32 +300,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/miaoshu"
+                android:divider="@drawable/divider"
                 android:orientation="vertical"
                 android:paddingLeft="20dp"
-                android:paddingRight="20dp">
+                android:paddingRight="20dp"
+                android:showDividers="end|beginning">
 
-                <!-- <LinearLayout
-                     android:layout_width="wrap_content"
-                     android:layout_height="wrap_content"
-                     android:orientation="horizontal">
-                     <TextView
-                         android:layout_width="wrap_content"
-                         android:layout_height="wrap_content"
-                         android:layout_marginRight="10dp"
-                         android:text="面积"
-                         android:textSize="15sp"
-                         android:textColor="#15314c"/>
-                     <TextView
-                         android:id="@+id/miaoshuContent"
-                         android:layout_width="wrap_content"
-                         android:layout_height="wrap_content"
-                         android:text="20m²"
-                         android:textSize="15sp"/>
-                 </LinearLayout>-->
 
                 <me.shihao.library.XRadioGroup
+                    android:id="@+id/rd_hotel_type"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="wrap_content">
 
                     <RelativeLayout
                         android:layout_width="match_parent"
@@ -349,7 +360,6 @@
 
                 </me.shihao.library.XRadioGroup>
 
-
             </LinearLayout>
         </RelativeLayout>
 
@@ -359,14 +369,12 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/hotelmessage_RelativeLayout2"
             android:orientation="horizontal"
-            android:paddingBottom="20dp"
-            android:paddingTop="20dp">
+            android:paddingBottom="20dp">
 
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-
                 android:layout_weight="1"
                 android:orientation="vertical">
 
@@ -490,11 +498,13 @@
             </LinearLayout>
         </LinearLayout>
 
+
         <Button
-            android:id="@+id/hotelmessage_buttonReservation"
+            android:id="@+id/bt_hotel_book"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/hotelmessage_linearlayout"
+
+            android:layout_alignParentBottom="true"
             android:background="@drawable/activity_exercise_details_green_btn_selector"
             android:text="立即预定"
             android:textColor="@color/white"/>

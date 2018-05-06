@@ -11,7 +11,7 @@ import android.widget.ListView;
 
 import com.example.guet.sharehotel.R;
 import com.example.guet.sharehotel.adapter.CouponAdapter;
-import com.example.guet.sharehotel.model.Coupon;
+import com.example.guet.sharehotel.bean.Coupon;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -3,15 +3,15 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#f2f2f2"
+    android:background="@color/white"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    android:padding="10dp">
+    android:padding="5dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
+        android:background="#fafafa"
         android:divider="@drawable/divider"
         android:orientation="vertical"
         android:showDividers="middle">
@@ -19,7 +19,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="70dp"
-            android:background="@color/white_color"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
@@ -32,14 +31,13 @@
                     android:id="@+id/order_num_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-
                     android:layout_marginBottom="3dp"
                     android:text="订单号："
                     android:textColor="@color/order_normal_text_color"
                     android:textSize="14sp"/>
 
                 <TextView
-                    android:id="@+id/order_num"
+                    android:id="@+id/tv_history_order_num"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="3dp"
@@ -58,11 +56,12 @@
                     android:textSize="14sp"/>
 
                 <TextView
+                    android:id="@+id/tv_history_order_state"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/order_num"
+                    android:layout_below="@id/tv_history_order_num"
                     android:layout_toRightOf="@id/state"
-                    android:text="已完成"
+                    android:text="交易成功"
                     android:textColor="#02cf9a"
                     android:textSize="14sp"/>
 
@@ -73,7 +72,7 @@
                 android:layout_height="50dp"
                 android:layout_marginLeft="170dp"
                 android:layout_marginRight="5dp"
-                android:background="@color/white"
+                android:background="#fafafa"
                 android:src="@mipmap/delete_bt"/>
 
         </LinearLayout>
@@ -92,6 +91,7 @@
                 android:paddingLeft="10dp">
 
                 <TextView
+                    android:id="@+id/tv_history_order_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
@@ -111,19 +111,26 @@
                         android:text="入住："/>
 
                     <TextView
+                        android:id="@+id/tv_history_order_checkin"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:maxEms="5"
+                        android:maxLines="1"
                         android:text="2018-04-03"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="离店："/>
+                        android:layout_marginLeft="10dp"
+                        android:text="退房："/>
 
                     <TextView
+                        android:id="@+id/tv_history_order_checkout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="2018-04-06 12:00前"/>
+                        android:maxEms="5"
+                        android:maxLines="1"
+                        android:text="2018-04-06"/>
                 </LinearLayout>
             </LinearLayout>
 
@@ -156,7 +163,15 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="￥268"
+                    android:text="￥"
+                    android:textColor="#02cf9a"
+                    android:textSize="16sp"/>
+
+                <TextView
+                    android:id="@+id/tv_history_order_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="268"
                     android:textColor="#02cf9a"
                     android:textSize="16sp"/>
             </LinearLayout>
@@ -176,7 +191,15 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="￥268"
+                    android:text="￥"
+                    android:textColor="#02cf9a"
+                    android:textSize="16sp"/>
+
+                <TextView
+                    android:id="@+id/tv_history_order_pre_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="268"
                     android:textColor="#02cf9a"
                     android:textSize="16sp"/>
             </LinearLayout>

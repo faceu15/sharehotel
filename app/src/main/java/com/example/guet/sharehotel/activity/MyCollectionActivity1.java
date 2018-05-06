@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.example.guet.sharehotel.R;
 import com.example.guet.sharehotel.adapter.MyCollectionHotelAdapter1;
-import com.example.guet.sharehotel.model.MyCollectionHotel1;
+import com.example.guet.sharehotel.bean.MyCollectionHotel1;
 import com.example.guet.sharehotel.view.LoadingDialog;
 
 import java.util.ArrayList;

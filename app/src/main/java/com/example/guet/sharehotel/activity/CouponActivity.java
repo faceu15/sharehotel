@@ -9,7 +9,7 @@ import android.widget.ImageView;
 
 import com.example.guet.sharehotel.R;
 import com.example.guet.sharehotel.fragment.AllCouponFragment;
-import com.example.guet.sharehotel.utility.ViewFindUtils;
+import com.example.guet.sharehotel.utils.ViewFindUtils;
 import com.flyco.tablayout.SegmentTabLayout;
 
 import java.util.ArrayList;

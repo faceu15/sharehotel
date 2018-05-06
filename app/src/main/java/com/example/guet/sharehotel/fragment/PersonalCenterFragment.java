@@ -23,8 +23,9 @@ import com.example.guet.sharehotel.activity.CreditScoreActivity;
 import com.example.guet.sharehotel.activity.CustomerServiceActivity;
 import com.example.guet.sharehotel.activity.LoginActivity;
 import com.example.guet.sharehotel.activity.MyCollectionActivity;
+import com.example.guet.sharehotel.activity.PostHouseActivity;
 import com.example.guet.sharehotel.activity.SettingActivity;
-import com.example.guet.sharehotel.model.MyApplication;
+import com.example.guet.sharehotel.application.MyApplication;
 
 
 /**
@@ -124,7 +125,7 @@ public class PersonalCenterFragment extends BaseFragment implements View.OnClick
     }
 
     private void resumeData() {
-        MyApplication myApp = MyApplication.geInstance();
+        MyApplication myApp = MyApplication.getInstance();
         if (myApp.isLogin()) {
             user_name_tv.setText(myApp.getAccount());
             user_name_tv.setClickable(false);
@@ -142,10 +143,11 @@ public class PersonalCenterFragment extends BaseFragment implements View.OnClick
         }
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-
+    // TODO: Rename method, update argument and hook method into UI event
+    public void onButtonPressed(Uri uri) {
+        if (mListener != null) {
+            mListener.onFragmentInteraction(uri);
+        }
     }
 
     @Override
@@ -159,11 +161,7 @@ public class PersonalCenterFragment extends BaseFragment implements View.OnClick
         set_iv.setOnClickListener(this);
         user_icon_iv = view.findViewById(R.id.user_icon_iv);
         user_name_tv = view.findViewById(R.id.user_name_tv);
-        //判断是否已经登录
-        /*if (isLogin) {
-            user_name_tv.setText(getActivity().getPreferences(Context.MODE_PRIVATE).getString("Account", ""));
-            user_name_tv.setClickable(false);
-        }*/
+
         user_name_tv.setOnClickListener(this);
         //mobil_phone_tv = (TextView) view.findViewById(R.id.mobil_phone_tv);
         one_key_to_check_out_linear_layout = view.findViewById(R.id.one_key_to_check_out_linear_layout);
@@ -181,36 +179,44 @@ public class PersonalCenterFragment extends BaseFragment implements View.OnClick
         right_to_buy_iv = view.findViewById(R.id.right_to_buy_iv);
         right_to_buy_iv.setOnClickListener(this);
 
+        LinearLayout postHouseLinearLayout = view.findViewById(R.id.post_house_ll);
+        postHouseLinearLayout.setOnClickListener(this);
+
     }
 
     @Override
     public void onClick(View v) {
 
         switch (v.getId()) {
-            case R.id.set_iv:
+            case R.id.set_iv://设置
                 Intent intent = new Intent(getActivity(), SettingActivity.class);
                 startActivityForResult(intent, 2);
-                break;
-            case R.id.customer_service_linear_layout:
-                Intent intent1 = new Intent(getActivity(), CustomerServiceActivity.class);
-                startActivity(intent1);
-                break;
-            case R.id.my_collection_linear_layout:
-                Intent intent2 = new Intent(getActivity(), MyCollectionActivity.class);
-                startActivity(intent2);
-                break;
-            case R.id.coupon_linear_layout:
-                Intent intent3 = new Intent(getActivity(), CouponActivity.class);
-                startActivity(intent3);
-                break;
-            case R.id.credit_score_linear_layout:
-                Intent intent4 = new Intent(getActivity(), CreditScoreActivity.class);
-                startActivity(intent4);
                 break;
             case R.id.user_name_tv://登录
                 Intent login_intent = new Intent(getActivity(), LoginActivity.class);
                 startActivityForResult(login_intent, 1);
                 break;
+            case R.id.customer_service_linear_layout://客服
+                Intent intent1 = new Intent(getActivity(), CustomerServiceActivity.class);
+                startActivity(intent1);
+                break;
+            case R.id.my_collection_linear_layout://收藏
+                Intent intent2 = new Intent(getActivity(), MyCollectionActivity.class);
+                startActivity(intent2);
+                break;
+            case R.id.coupon_linear_layout://优惠券
+                Intent intent3 = new Intent(getActivity(), CouponActivity.class);
+                startActivity(intent3);
+                break;
+            case R.id.credit_score_linear_layout://信用积分
+                Intent intent4 = new Intent(getActivity(), CreditScoreActivity.class);
+                startActivity(intent4);
+                break;
+            case R.id.post_house_ll://发布房子
+                Intent intent5 = new Intent(getActivity(), PostHouseActivity.class);
+                startActivity(intent5);
+                break;
+
         }
 
     }
@@ -218,7 +224,7 @@ public class PersonalCenterFragment extends BaseFragment implements View.OnClick
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         //super.onActivityResult(requestCode, resultCode, data);
-        MyApplication app = MyApplication.geInstance();
+        MyApplication app = MyApplication.getInstance();
         switch (resultCode) {
             case 1://登录返回
                 if (data.getExtras().getInt("Login", 0) == 1) {

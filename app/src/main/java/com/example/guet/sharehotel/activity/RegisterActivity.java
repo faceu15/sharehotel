@@ -14,7 +14,7 @@ import com.example.guet.sharehotel.R;
 import com.example.guet.sharehotel.base.BaseActivity;
 import com.example.guet.sharehotel.base.BasePresenter;
 import com.example.guet.sharehotel.bean.User;
-import com.example.guet.sharehotel.model.LogUtil;
+import com.example.guet.sharehotel.utils.LogUtil;
 import com.example.guet.sharehotel.presenter.RegisterPresenter;
 import com.example.guet.sharehotel.view.IRegisterView;
 

@@ -11,7 +11,7 @@ import android.widget.ListView;
 
 import com.example.guet.sharehotel.R;
 import com.example.guet.sharehotel.adapter.MessageAdapter;
-import com.example.guet.sharehotel.model.Message;
+import com.example.guet.sharehotel.bean.Message;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.example.guet.sharehotel.db;
+package com.example.guet.sharehotel.utils.db;
 
 /**
  * Created by feng on 2016/7/24.

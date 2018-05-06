@@ -16,7 +16,7 @@ import com.example.guet.sharehotel.adapter.CommonAdapter;
 import com.example.guet.sharehotel.adapter.ViewHolder;
 import com.example.guet.sharehotel.base.BaseActivity;
 import com.example.guet.sharehotel.bean.Hotel;
-import com.example.guet.sharehotel.model.MyCollectionHotel;
+import com.example.guet.sharehotel.bean.MyCollectionHotel;
 import com.example.guet.sharehotel.presenter.FindHotelPrester;
 import com.example.guet.sharehotel.view.IFindView;
 
@@ -69,9 +69,11 @@ public class FindActivity extends BaseActivity<IFindView, FindHotelPrester<IFind
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+        Hotel hotel = mCities.get(position);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("Hotel", hotel);
         Intent intent = new Intent(FindActivity.this, HotelSelectedInfoActivity.class);
-        intent.putExtra("Hotel", mCities.get(position));
+        intent.putExtra("HotelBundle", bundle);
         startActivity(intent);
     }
 

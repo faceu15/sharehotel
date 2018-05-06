@@ -3,15 +3,15 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#f2f2f2"
+    android:background="#ffffff"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    android:padding="10dp">
+    android:padding="5dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
+        android:background="#fafafa"
         android:divider="@drawable/divider"
         android:orientation="vertical"
         android:showDividers="middle">
@@ -30,6 +30,7 @@
                 android:paddingLeft="10dp">
 
                 <TextView
+                    android:id="@+id/tv_comment_order_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
@@ -38,27 +39,57 @@
                     android:textSize="16sp"/>
 
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
                     android:orientation="horizontal">
 
-                    <TextView
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="入住："/>
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
 
-                    <TextView
-                        android:layout_width="wrap_content"
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="入住："/>
+
+                        <TextView
+                            android:id="@+id/tv_comment_order_checkin"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:maxEms="5"
+                            android:maxLines="1"
+                            android:text="2018-04-03"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="2018-04-03"/>
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_marginLeft="10dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="退房："/>
+
+                        <TextView
+                            android:id="@+id/tv_comment_order_checkout"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:maxEms="5"
+                            android:maxLines="1"
+                            android:text="2018-04-05"/>
+                    </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
 
             <Button
                 android:layout_width="70dp"
                 android:layout_height="35dp"
-                android:layout_marginLeft="50dp"
+                android:layout_marginLeft="10dp"
                 android:background="@mipmap/comfirm_bt"
                 android:text="评价"
                 android:textColor="@color/white"

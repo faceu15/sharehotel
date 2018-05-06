@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 27
-    buildToolsVersion '25.0.3'
+    buildToolsVersion '27.0.3'
     defaultConfig {
         applicationId "com.example.guet.sharehotel"
         minSdkVersion 14
@@ -29,27 +29,27 @@ android {
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     //底部Tab
     //订单顶部tab
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    compile 'com.flyco.tablayout:FlycoTabLayout_Lib:2.0.2@aar'
-    testCompile 'junit:junit:4.12'
-    compile files('libs/BaiduLBS_Android.jar')
+    implementation 'com.android.support.constraint:constraint-layout:1.1.0'
+    implementation 'com.flyco.tablayout:FlycoTabLayout_Lib:2.0.2@aar'
+    //testcompile 'junit:junit:4.12'
+    implementation files('libs/BaiduLBS_Android.jar')
     //日期选择
-    compile 'com.prolificinteractive:material-calendarview:1.4.3'
+    implementation 'com.prolificinteractive:material-calendarview:1.4.3'
     //bmob-sdk：Bmob的android sdk包，包含了Bmob的数据存储、文件等服务，以下是最新的bmob-sdk:
     //3.5.5：请务必查看下面注释[1]
     implementation 'cn.bmob.android:bmob-sdk:3.5.5'
-    implementation 'com.android.support:support-v4:27.1.1'
-    implementation 'com.android.support:appcompat-v7:27.1.1'
-    implementation 'com.android.support:design:27.1.1'
     //加载progressDialog
     implementation 'com.github.ForgetAll:LoadingDialog:v1.0.1'
     implementation project(':citypicker')
     //XRadioGroup
     implementation 'com.github.fodroid:XRadioGroup:v1.1'
+    implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation 'com.android.support:support-v4:27.1.1'
+    implementation 'com.android.support:design:27.1.1'
 }

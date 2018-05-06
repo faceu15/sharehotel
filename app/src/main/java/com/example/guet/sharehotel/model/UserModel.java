@@ -3,6 +3,7 @@ package com.example.guet.sharehotel.model;
 import android.util.Log;
 
 import com.example.guet.sharehotel.bean.User;
+import com.example.guet.sharehotel.listener.CallBack;
 
 import java.util.List;
 

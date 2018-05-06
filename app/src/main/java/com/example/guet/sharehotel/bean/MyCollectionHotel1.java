@@ -1,9 +1,9 @@
-package com.example.guet.sharehotel.model;
+package com.example.guet.sharehotel.bean;
 
 /**
  * Created by feng on 2016/7/25.
  */
-public class MyCollectionHotel {
+public class MyCollectionHotel1 {
 
     /**
      * 收藏ID
@@ -26,6 +26,10 @@ public class MyCollectionHotel {
      */
     private String name;
     /**
+     * 酒店地址
+     */
+    private String address;
+    /**
      * 酒店最低价
      */
     private int minValue;
@@ -34,16 +38,14 @@ public class MyCollectionHotel {
      */
     private int comment_num;
 
-    public MyCollectionHotel() {
-    }
 
-
-    public MyCollectionHotel(String id, String user_id, int hotelImageResourceId, int score, String name, int minValue, int comment_num) {
+    public MyCollectionHotel1(String id, String user_id, int hotelImageResourceId, int score, String name, String address, int minValue, int comment_num) {
         this.id = id;
         this.user_id = user_id;
         this.hotelImageResourceId = hotelImageResourceId;
         this.score = score;
         this.name = name;
+        this.address = address;
         this.minValue = minValue;
         this.comment_num = comment_num;
     }
@@ -102,5 +104,13 @@ public class MyCollectionHotel {
 
     public void setComment_num(int comment_num) {
         this.comment_num = comment_num;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 }

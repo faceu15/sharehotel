@@ -1,4 +1,4 @@
-package com.example.guet.sharehotel.dialog.decorators;
+package com.example.guet.sharehotel.view.dialog.decorators;
 
 import android.content.Context;
 import android.graphics.Typeface;

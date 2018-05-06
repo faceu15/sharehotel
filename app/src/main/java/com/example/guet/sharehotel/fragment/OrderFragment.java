@@ -85,7 +85,6 @@ public class OrderFragment extends BaseFragment implements View.OnClickListener 
         order_viewPager = (ViewPager) view.findViewById(R.id.order_viewPager);
         order_viewPager.setAdapter(new OrderFragmentAdapter(getChildFragmentManager()));
         order_tab.setupWithViewPager(order_viewPager);
-
     }
 
 

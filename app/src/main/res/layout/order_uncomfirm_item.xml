@@ -3,15 +3,17 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#f2f2f2"
+    android:background="#ffffff"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    android:padding="10dp">
+    android:padding="5dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:background="#fafafa"
         android:divider="@drawable/divider"
         android:orientation="vertical"
         android:showDividers="middle">
@@ -19,7 +21,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="70dp"
-            android:background="@color/white_color"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
@@ -39,30 +40,30 @@
                     android:textSize="14sp"/>
 
                 <TextView
-                    android:id="@+id/order_num"
+                    android:id="@+id/tv_history_order_num"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="3dp"
                     android:layout_toRightOf="@id/order_num_tv"
-                    android:text="MM2134862"
+
                     android:textSize="14sp"/>
 
                 <TextView
                     android:id="@+id/state"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-
                     android:layout_below="@id/order_num_tv"
                     android:text="状态："
                     android:textColor="@color/order_normal_text_color"
                     android:textSize="14sp"/>
 
                 <TextView
+                    android:id="@+id/tv_order_state"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/order_num"
+                    android:layout_below="@id/tv_history_order_num"
                     android:layout_toRightOf="@id/state"
-                    android:text="已支付"
+
                     android:textColor="#02cf9a"
                     android:textSize="14sp"/>
 
@@ -71,18 +72,19 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="35dp"
-                android:layout_marginLeft="65dp"
+                android:layout_marginLeft="85dp"
                 android:background="@mipmap/comfirm_bt"
-                android:text="去确认"
+                android:text="去付款"
                 android:textColor="@color/white"
-                android:textSize="16sp"/>
+                android:textSize="16sp"
+                android:layout_marginStart="85dp"/>
 
             <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="5dp"
-                android:background="@color/white"
+                android:background="#fafafa"
                 android:src="@mipmap/delete_bt"/>
 
         </LinearLayout>
@@ -101,6 +103,7 @@
                 android:paddingLeft="10dp">
 
                 <TextView
+                    android:id="@+id/tv_order_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
@@ -120,25 +123,33 @@
                         android:text="入住："/>
 
                     <TextView
+                        android:id="@+id/tv_order_checkintime"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="2018-04-03"/>
+                        android:maxEms="5"
+                        android:maxLines="1"
+                        android:text="2018-04-03 12:00"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
                         android:text="离店："/>
 
                     <TextView
+                        android:id="@+id/tv_order_checkouttime"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="2018-04-06 12:00前"/>
+                        android:maxEms="5"
+                        android:maxLines="1"
+                        android:text="2018-04-06 12:00"/>
                 </LinearLayout>
             </LinearLayout>
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="20dp"
+                android:layout_marginRight="10dp"
                 android:layout_gravity="center"
                 android:src="@mipmap/right_arrow1"/>
         </LinearLayout>
@@ -161,11 +172,18 @@
                     android:text="房费："
                     android:textColor="#403d3d"
                     android:textSize="16sp"/>
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="￥268"
+                    android:text="￥"
+                    android:textColor="#02cf9a"
+                    android:textSize="16sp"/>
+
+                <TextView
+                    android:id="@+id/tv_order_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="268"
                     android:textColor="#02cf9a"
                     android:textSize="16sp"/>
             </LinearLayout>
@@ -185,7 +203,15 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="￥268"
+                    android:text="￥"
+                    android:textColor="#02cf9a"
+                    android:textSize="16sp"/>
+
+                <TextView
+                    android:id="@+id/tv_order_pre_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="268"
                     android:textColor="#02cf9a"
                     android:textSize="16sp"/>
             </LinearLayout>

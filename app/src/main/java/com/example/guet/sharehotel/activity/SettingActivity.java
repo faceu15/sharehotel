@@ -10,9 +10,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.guet.sharehotel.R;
-import com.example.guet.sharehotel.model.LogUtil;
-import com.example.guet.sharehotel.utility.CheckVersion;
-import com.example.guet.sharehotel.utility.ClearDataManagerUtil;
+import com.example.guet.sharehotel.utils.LogUtil;
+import com.example.guet.sharehotel.utils.CheckVersion;
+import com.example.guet.sharehotel.utils.ClearDataManagerUtil;
 
 /**
  * 个人中心->右上角：设置

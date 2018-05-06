@@ -9,7 +9,7 @@ import android.widget.ImageView;
 
 import com.example.guet.sharehotel.R;
 import com.example.guet.sharehotel.fragment.IntegralRecordFragment;
-import com.example.guet.sharehotel.utility.ViewFindUtils;
+import com.example.guet.sharehotel.utils.ViewFindUtils;
 import com.flyco.tablayout.SegmentTabLayout;
 
 import java.util.ArrayList;
@@ -27,8 +27,6 @@ public class IntegralRecordActivity extends AppCompatActivity implements Integra
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_integral_record);
-
-        //this.getSupportActionBar().hide();
         iniView();
     }
 

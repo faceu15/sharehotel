@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.guet.sharehotel.R;
-import com.example.guet.sharehotel.model.IntegralRecord;
+import com.example.guet.sharehotel.bean.IntegralRecord;
 
 import java.util.List;
 

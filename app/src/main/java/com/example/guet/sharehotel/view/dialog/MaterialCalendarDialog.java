@@ -1,4 +1,4 @@
-package com.example.guet.sharehotel.dialog;
+package com.example.guet.sharehotel.view.dialog;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -17,9 +17,9 @@ import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.example.guet.sharehotel.R;
-import com.example.guet.sharehotel.dialog.decorators.MySelectorBgDecorator;
-import com.example.guet.sharehotel.dialog.decorators.SelectedDayDecorator;
-import com.example.guet.sharehotel.dialog.decorators.TodayDecorator;
+import com.example.guet.sharehotel.view.dialog.decorators.MySelectorBgDecorator;
+import com.example.guet.sharehotel.view.dialog.decorators.SelectedDayDecorator;
+import com.example.guet.sharehotel.view.dialog.decorators.TodayDecorator;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;

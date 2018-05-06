@@ -1,4 +1,4 @@
-package com.example.guet.sharehotel.utility;
+package com.example.guet.sharehotel.utils;
 
 import android.util.SparseArray;
 import android.view.View;
