@@ -15,6 +15,7 @@ public class MyApplication extends Application {
     private Boolean isLogin = false;
     private User mUser;
     private String mAccount;
+    private String objectId;
 
     public static MyApplication getInstance() {
         return myApplication;
@@ -26,7 +27,7 @@ public class MyApplication extends Application {
         context = getApplicationContext();
         myApplication = this;
         mUser = new User();
-
+        objectId = null;
         //在应用中配置ImageLoaderConfiguration参数（只能配置一次，如多次配置，则默认第一次的配置参数）
        /* File cacheDir = StorageUtils.getCacheDirectory(context);    //缓存文件夹路径
         ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(context)
@@ -91,5 +92,13 @@ public class MyApplication extends Application {
 
     public void setAccount(String account) {
         mAccount = account;
+    }
+
+    public String getObjectId() {
+        return objectId;
+    }
+
+    public void setObjectId(String objectId) {
+        this.objectId = objectId;
     }
 }

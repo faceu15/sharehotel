@@ -1,9 +1,12 @@
 package com.example.guet.sharehotel.fragment;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +24,9 @@ import com.example.guet.sharehotel.utils.OrderState;
 import com.example.guet.sharehotel.view.IOrderView;
 
 import java.util.List;
+
+import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.UpdateListener;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -46,6 +52,8 @@ public class HousingFragment extends Fragment implements IOrderView {
     private OrderPresenter mOrderPresenter;
 
     private OnFragmentInteractionListener mListener;
+    private AlertDialog mAlertDialog;
+    private Order mOrder;
 
     public HousingFragment() {
         // Required empty public constructor
@@ -129,16 +137,57 @@ public class HousingFragment extends Fragment implements IOrderView {
         mListView.setAdapter(new CommonAdapter<Order>(getContext(), list, R.layout.order_housing_item) {
             @Override
             public void convert(ViewHolder viewHolder, Order order) {
+                mOrder = order;
                 viewHolder.setText(R.id.tv_history_order_num, order.getObjectId());
                 viewHolder.setText(R.id.tv_housing_order_state, OrderState.getState(order.getState()));
                 viewHolder.setText(R.id.tv_housing_order_name, order.getHotel().getName());
                 viewHolder.setText(R.id.tv_housing_order_checkin, order.getCheckInTime().getDate());
                 viewHolder.setText(R.id.tv_housing_order_checkout, order.getCheckOutTime().getDate());
-                viewHolder.setText(R.id.tv_housing_order_price, order.getHotel().getPrice().toString());
-                viewHolder.setText(R.id.tv_housing_order_pre_price, order.getHotel().getPrice().toString());
+                viewHolder.setText(R.id.tv_housing_order_price, order.getPrice().toString());
+                viewHolder.setText(R.id.tv_housing_order_amount, order.getRooms().toString() + "套/共" + order.getDays() + "晚");
+                viewHolder.setOnClikListener(R.id.bt_housing_sure, onClick);
             }
         });
     }
+
+    View.OnClickListener onClick = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            switch (view.getId()) {
+                case R.id.bt_housing_sure:
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                    builder.setTitle("提示");
+                    builder.setMessage("确定入住完成吗？");
+                    builder.setCancelable(true);
+                    builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            mOrder.setState(4);
+                            mOrder.update(new UpdateListener() {
+                                @Override
+                                public void done(BmobException e) {
+                                    if (e == null) {
+                                        Log.i("HousingFragment", "确认入住成功");
+                                    } else {
+                                        Log.i("HousingFragment", "确认入住失败" + e.toString());
+                                    }
+                                    mAlertDialog.dismiss();
+                                }
+                            });
+                        }
+                    });
+                    builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            mAlertDialog.dismiss();
+                        }
+                    });
+                    mAlertDialog = builder.create();
+                    mAlertDialog.show();
+                    break;
+            }
+        }
+    };
 
     @Override
     public void showLoading(String msg) {
@@ -157,16 +206,7 @@ public class HousingFragment extends Fragment implements IOrderView {
         toast.show();
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
+
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);

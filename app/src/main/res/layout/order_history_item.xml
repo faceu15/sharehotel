@@ -184,23 +184,17 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="订金："
+                    android:text="数量："
                     android:textColor="#403d3d"
                     android:textSize="16sp"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="￥"
-                    android:textColor="#02cf9a"
-                    android:textSize="16sp"/>
+
 
                 <TextView
                     android:id="@+id/tv_history_order_pre_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="268"
-                    android:textColor="#02cf9a"
+                    android:text="1套/共1晚"
                     android:textSize="16sp"/>
             </LinearLayout>
 

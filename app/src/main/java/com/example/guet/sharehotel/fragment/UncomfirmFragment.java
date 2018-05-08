@@ -1,10 +1,14 @@
 package com.example.guet.sharehotel.fragment;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +17,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.guet.sharehotel.R;
+import com.example.guet.sharehotel.activity.OrderDetailActivity;
 import com.example.guet.sharehotel.adapter.CommonAdapter;
 import com.example.guet.sharehotel.adapter.ViewHolder;
 import com.example.guet.sharehotel.application.MyApplication;
@@ -23,23 +28,17 @@ import com.example.guet.sharehotel.view.IOrderView;
 
 import java.util.List;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link UncomfirmFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link UncomfirmFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.UpdateListener;
+
+
 public class UncomfirmFragment extends Fragment implements IOrderView {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
     private static final Integer STATE_UNCOMF = 1;
 
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
@@ -47,13 +46,13 @@ public class UncomfirmFragment extends Fragment implements IOrderView {
     private ListView mListView;
     private ProgressDialog progressDialog;
     private OrderPresenter mOrderPresenter;
+    private AlertDialog mAlertDialog;
+
 
     public UncomfirmFragment() {
-        // Required empty public constructor
     }
 
 
-    // TODO: Rename and change types and number of parameters
     public static UncomfirmFragment newInstance(String param1, String param2) {
         UncomfirmFragment fragment = new UncomfirmFragment();
         Bundle args = new Bundle();
@@ -74,9 +73,7 @@ public class UncomfirmFragment extends Fragment implements IOrderView {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_uncomfirm, container, false);
         initView(view);
         return view;
@@ -92,6 +89,7 @@ public class UncomfirmFragment extends Fragment implements IOrderView {
         super.onStart();
         if (MyApplication.getInstance().isLogin()) {
             mOrderPresenter.load(STATE_UNCOMF, MyApplication.getInstance().getAccount());
+
         }
     }
 
@@ -123,15 +121,58 @@ public class UncomfirmFragment extends Fragment implements IOrderView {
     public void showResult(List<Order> list) {
         mListView.setAdapter(new CommonAdapter<Order>(getContext(), list, R.layout.order_uncomfirm_item) {
             @Override
-            public void convert(ViewHolder viewHolder, Order order) {
+            public void convert(ViewHolder viewHolder, final Order order) {
                 viewHolder.setText(R.id.tv_history_order_num, order.getObjectId());
                 viewHolder.setText(R.id.tv_order_state, OrderState.getState(order.getState()));
                 viewHolder.setText(R.id.tv_order_name, order.getHotel().getName());
                 viewHolder.setText(R.id.tv_order_checkintime, order.getCheckInTime().getDate());
                 viewHolder.setText(R.id.tv_order_checkouttime, order.getCheckOutTime().getDate());
+                viewHolder.setText(R.id.tv_order_price, order.getPrice().toString());
+                viewHolder.setText(R.id.tv_order_amount, order.getRooms().toString() + "套/共" + order.getDays().toString() + "晚");
+                viewHolder.setOnClikListener(R.id.bt_uncomfirm_pay, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(getContext(), OrderDetailActivity.class);
+                        Bundle bundle = new Bundle();
+                        bundle.putSerializable("Order", order);
+                        intent.putExtra("OrderBundle", bundle);
+                        startActivity(intent);
+                    }
+                });
+                viewHolder.setImageViewOnClikListener(R.id.iv_uncomfirm_cancel, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                        builder.setTitle("取消订单");
+                        builder.setMessage("确定取消订单？");
+                        builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                order.delete(new UpdateListener() {
+                                    @Override
+                                    public void done(BmobException e) {
+                                        if (e == null) {
+                                            Log.i("UncomfirmFragment", "取消成功");
+                                            mAlertDialog.dismiss();
+                                            onStart();
+                                        } else {
+                                            Log.i("bmob", "失败：" + e.toString());
+                                        }
+                                    }
+                                });
+                            }
+                        });
+                        builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                mAlertDialog.dismiss();
+                            }
+                        });
+                        mAlertDialog = builder.create();
+                        mAlertDialog.show();
+                    }
 
-                viewHolder.setText(R.id.tv_order_price, order.getHotel().getPrice().toString());
-                viewHolder.setText(R.id.tv_order_pre_price, order.getHotel().getPrice().toString());
+                });
             }
         });
     }

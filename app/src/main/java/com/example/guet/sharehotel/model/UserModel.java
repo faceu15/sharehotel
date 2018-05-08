@@ -2,6 +2,7 @@ package com.example.guet.sharehotel.model;
 
 import android.util.Log;
 
+import com.example.guet.sharehotel.application.MyApplication;
 import com.example.guet.sharehotel.bean.User;
 import com.example.guet.sharehotel.listener.CallBack;
 
@@ -49,6 +50,7 @@ public class UserModel implements IUserModel {
                             Log.i("LoginActivity", "账号" + account);
                             if (list.get(0).getPassword().equals(password)) {
                                 Log.i("LoginActivity", "密码正确");
+                                MyApplication.getInstance().setUser(list.get(0));
                                 callBack.onSuccess();
                             } else {
                                 Log.i("LoginActivity", "密码错误");

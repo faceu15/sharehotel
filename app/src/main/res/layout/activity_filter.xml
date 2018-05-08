@@ -2,8 +2,7 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:orientation="vertical"
-              android:background="#eeece9"
-    >
+              android:background="#eeece9">
     <!--筛选界面-->
 
     <android.support.v7.widget.Toolbar
@@ -20,35 +19,36 @@
 
 
             <TextView
-                android:id="@+id/cancle"
+                android:id="@+id/tv_filter_cancle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="取消"
-                android:textSize="18dp"
-                android:textColor="#FFFFFF"
                 android:layout_gravity="center"
-                android:layout_marginLeft="10dp"/>
+                android:layout_marginLeft="10dp"
+                android:text="取消"
+                android:textColor="#FFFFFF"
+                android:textSize="18dp"/>
 
 
             <TextView
+                android:id="@+id/tv_filter_sure"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
                 android:gravity="center"
                 android:text="筛选"
                 android:textColor="@color/toolbar_text_color"
-                android:textSize="@dimen/activity_title"
-                android:layout_gravity="center"/>
+                android:textSize="@dimen/activity_title"/>
 
             <TextView
                 android:id="@+id/sure"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="确定"
-                android:textSize="18dp"
-                android:textColor="#FFFFFF"
                 android:layout_gravity="center"
-                android:layout_marginRight="20dp"/>
+                android:layout_marginRight="20dp"
+                android:text="确定"
+                android:textColor="#FFFFFF"
+                android:textSize="18dp"/>
 
 
         </LinearLayout>
@@ -100,6 +100,7 @@
             </LinearLayout>
 
 
+            <!--
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -128,10 +129,10 @@
 
                 <ImageView
                     android:layout_width="70dp"
-                    android:layout_height="70dp"
-                    android:src="@mipmap/bieshu"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"/>
+                    android:layout_marginRight="10dp"
+                    android:src="@mipmap/bieshu"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -140,7 +141,7 @@
                     android:textColor="#0d2E4B"
                     android:layout_gravity="center"/>
 
-            </LinearLayout>
+            </LinearLayout>-->
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -197,8 +198,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="¥¥"
-                android:textColor="#7D63E8"
+                android:background="#7D63E8"
+                android:text="500以下"
+                android:textColor="@color/white"
                 android:textSize="20dp"/>
 
         </LinearLayout>
@@ -219,9 +221,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="¥¥¥"
-                android:background="#7D63E8"
-                android:textColor="#ffffff"
+                android:text="500-1000"
+                android:textColor="#7D63E8"
                 android:textSize="20dp"/>
 
         </LinearLayout>
@@ -243,7 +244,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="¥¥¥¥"
+                android:text="1000以上"
                 android:textColor="#7D63E8"
                 android:textSize="20dp"/>
 
@@ -307,7 +308,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="酒店特色"
+                android:text="公寓户型"
                 android:textColor="#000000"
                 android:textSize="17dp"
                 android:layout_marginLeft="10dp"/>
@@ -327,11 +328,14 @@
             android:background="#D1D7DC">
         </View>
 
+
+        <!--
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_marginTop="13dp">
+
 
             <TextView
                 android:layout_width="0dp"
@@ -390,6 +394,7 @@
             android:layout_marginTop="10dp"
             android:background="#D1D7DC">
         </View>
+        -->
 
         <LinearLayout
             android:layout_width="match_parent"

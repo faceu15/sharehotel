@@ -51,7 +51,7 @@ public class PersonalCenterFragment extends BaseFragment implements View.OnClick
     private OnFragmentInteractionListener mListener;
 
     private View view;
-    private Boolean isLogin;
+    //private Boolean isLogin;
     //private static User user;
 
     @SuppressLint("HandlerLeak")
@@ -112,7 +112,7 @@ public class PersonalCenterFragment extends BaseFragment implements View.OnClick
                              Bundle savedInstanceState) {
         //本函数，在每次从其它fragment切换到此都会执行一次。
         view = inflater.inflate(R.layout.fragment_personal_center, container, false);
-        isLogin = getArguments().getBoolean("isLogin");
+        //isLogin = getArguments().getBoolean("isLogin");
         initView(view);
         return view;
     }
@@ -129,6 +129,7 @@ public class PersonalCenterFragment extends BaseFragment implements View.OnClick
         if (myApp.isLogin()) {
             user_name_tv.setText(myApp.getAccount());
             user_name_tv.setClickable(false);
+            user_icon_iv.setImageResource(R.mipmap.login_head);
         }
     }
 
@@ -231,6 +232,7 @@ public class PersonalCenterFragment extends BaseFragment implements View.OnClick
                     String account = data.getExtras().getString("Account");
                     user_name_tv.setText(account);//设置显示用户账号
                     user_name_tv.setClickable(false);//设置账号不可点击
+                    user_icon_iv.setImageResource(R.mipmap.login_head);
                     app.setLogin(true);
                     app.setAccount(account);
                 }
@@ -242,6 +244,7 @@ public class PersonalCenterFragment extends BaseFragment implements View.OnClick
                     app.setAccount("");
                     user_name_tv.setText("登录");//恢复登录前设置
                     user_name_tv.setClickable(true);
+                    user_icon_iv.setImageResource(R.mipmap.headpic);
                 }
                 break;
         }

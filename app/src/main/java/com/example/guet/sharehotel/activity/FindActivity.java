@@ -3,6 +3,7 @@ package com.example.guet.sharehotel.activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
@@ -47,6 +48,7 @@ public class FindActivity extends BaseActivity<IFindView, FindHotelPrester<IFind
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_find);
+
         initView();
         showLoading("加载中...");
         mPresenter.fetch(getCity(), getSearchText());
@@ -58,7 +60,6 @@ public class FindActivity extends BaseActivity<IFindView, FindHotelPrester<IFind
     }
 
     private void initView() {
-        //loading_dialog = findViewById(R.id.loading_dialog);
         LinearLayout backLinearLayout = findViewById(R.id.find_back_ll);
         TextView filterTextView = findViewById(R.id.tv_filter);
         listView = findViewById(R.id.list_view);
@@ -70,10 +71,14 @@ public class FindActivity extends BaseActivity<IFindView, FindHotelPrester<IFind
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Hotel hotel = mCities.get(position);
+        Log.i(TAG, "选择：" + hotel.getName());
         Bundle bundle = new Bundle();
         bundle.putSerializable("Hotel", hotel);
         Intent intent = new Intent(FindActivity.this, HotelSelectedInfoActivity.class);
         intent.putExtra("HotelBundle", bundle);
+        intent.putExtra("CheckInDate", getIntent().getExtras().getString("CheckInDate"));
+        intent.putExtra("CheckOutDate", getIntent().getExtras().getString("CheckOutDate"));
+        intent.putExtra("RoomNumber", getIntent().getExtras().getString("RoomNumber"));
         startActivity(intent);
     }
 
@@ -87,10 +92,10 @@ public class FindActivity extends BaseActivity<IFindView, FindHotelPrester<IFind
                 break;
             case R.id.tv_filter:
                 Intent intent = new Intent(FindActivity.this, FilterHotelActivity.class);
+
                 startActivity(intent);
                 break;
         }
-
     }
 
 

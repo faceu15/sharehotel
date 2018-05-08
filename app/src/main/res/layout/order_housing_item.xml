@@ -31,7 +31,6 @@
                     android:id="@+id/order_num_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-
                     android:layout_marginBottom="3dp"
                     android:text="订单号："
                     android:textColor="@color/order_normal_text_color"
@@ -47,7 +46,7 @@
                     android:textSize="14sp"/>
 
                 <TextView
-                    android:id="@+id/state"
+                    android:id="@+id/tv_housing_state"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
 
@@ -61,7 +60,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/tv_history_order_num"
-                    android:layout_toRightOf="@id/state"
+                    android:layout_toRightOf="@id/tv_housing_state"
                     android:text="正在入住"
                     android:textColor="#02cf9a"
                     android:textSize="14sp"/>
@@ -69,9 +68,10 @@
             </RelativeLayout>
 
             <Button
+                android:id="@+id/bt_housing_sure"
                 android:layout_width="wrap_content"
                 android:layout_height="35dp"
-                android:layout_marginLeft="110dp"
+                android:layout_marginLeft="130dp"
                 android:background="@mipmap/comfirm_bt"
                 android:text="确认入住"
                 android:textColor="@color/white"
@@ -185,23 +185,23 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="订金："
+                    android:text="数量："
                     android:textColor="#403d3d"
                     android:textSize="16sp"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="￥"
+                    android:text=""
                     android:textColor="#02cf9a"
                     android:textSize="16sp"/>
 
                 <TextView
-                    android:id="@+id/tv_housing_order_pre_price"
+                    android:id="@+id/tv_housing_order_amount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="268"
-                    android:textColor="#02cf9a"
+                    android:text="1套/共1晚"
+
                     android:textSize="16sp"/>
             </LinearLayout>
 

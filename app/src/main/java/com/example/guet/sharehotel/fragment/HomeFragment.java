@@ -22,14 +22,16 @@ import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
 import com.example.guet.sharehotel.R;
 import com.example.guet.sharehotel.activity.FindActivity;
-import com.example.guet.sharehotel.view.dialog.MaterialCalendarDialog;
 import com.example.guet.sharehotel.listener.MyBDLocationListener;
 import com.example.guet.sharehotel.utils.DateTimeHelper;
+import com.example.guet.sharehotel.view.dialog.MaterialCalendarDialog;
 import com.flyco.tablayout.listener.CustomTabEntity;
 import com.zaaach.citypicker.CityPicker;
 import com.zaaach.citypicker.adapter.OnPickListener;
 import com.zaaach.citypicker.model.City;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -263,6 +265,9 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
                 Intent intent = new Intent(getActivity(), FindActivity.class);
                 intent.putExtra("City", mCityTextView.getText().toString().trim());
                 intent.putExtra("Search", mSearchTextView.getText().toString().trim());
+                intent.putExtra("CheckInDate", mStartTimeTextView.getText().toString().trim());
+                intent.putExtra("CheckOutDate", mEndTimeTextView.getText().toString().trim());
+                intent.putExtra("RoomNumber", roomNumber);
                 startActivity(intent);
                 break;
         }
@@ -314,6 +319,14 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
                     calendar.add(Calendar.DAY_OF_MONTH, 1);
                     mEndTimeTextView.setText(DateTimeHelper.formatToString(calendar.getTime(), "yyyy-MM-dd"));
                 } else {
+                    if (mCheckInDate == null) {
+                        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                        try {
+                            mCheckInDate = sdf.parse(sdf.format(new Date()));
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+                    }
                     mCheckOutDate = date;
                     if (mCheckOutDate.getTime() > mCheckInDate.getTime()) {
                         mEndTimeTextView.setText(DateTimeHelper.formatToString(date, "yyyy-MM-dd"));
