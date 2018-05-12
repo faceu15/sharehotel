@@ -11,7 +11,7 @@ import android.widget.ListView;
 
 import com.example.guet.sharehotel.R;
 import com.example.guet.sharehotel.adapter.CouponAdapter;
-import com.example.guet.sharehotel.bean.Coupon;
+import com.example.guet.sharehotel.model.bean.Coupon;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +36,7 @@ public class AllCouponFragment extends BaseFragment {
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
-    private ListView list_view;
+    private ListView mListView;
 
     public AllCouponFragment() {
         // Required empty public constructor

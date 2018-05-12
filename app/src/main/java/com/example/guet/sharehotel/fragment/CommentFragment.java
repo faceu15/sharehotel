@@ -1,6 +1,7 @@
 package com.example.guet.sharehotel.fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -10,10 +11,11 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import com.example.guet.sharehotel.R;
+import com.example.guet.sharehotel.activity.PublishCommentActivity;
 import com.example.guet.sharehotel.adapter.CommonAdapter;
 import com.example.guet.sharehotel.adapter.ViewHolder;
 import com.example.guet.sharehotel.application.MyApplication;
-import com.example.guet.sharehotel.bean.Order;
+import com.example.guet.sharehotel.model.bean.Order;
 import com.example.guet.sharehotel.presenter.OrderPresenter;
 import com.example.guet.sharehotel.view.IOrderView;
 
@@ -40,8 +42,11 @@ public class CommentFragment extends Fragment implements IOrderView {
 
     private ListView mListView;
     private OrderPresenter mOrderPresenter;
+    private CommonAdapter mAdapter;
+    List<Order> mOrderList;
 
     private OnFragmentInteractionListener mListener;
+    private Order mOrder;
 
     public CommentFragment() {
         // Required empty public constructor
@@ -92,11 +97,21 @@ public class CommentFragment extends Fragment implements IOrderView {
     }
 
     @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser) {
+            if (MyApplication.getInstance().isLogin()) {
+                mOrderPresenter.load(STATE_COMMENT, MyApplication.getInstance().getAccount());
+            }
+        }
+    }
+
+    @Override
     public void onStart() {
         super.onStart();
-        if (MyApplication.getInstance().isLogin()) {
+      /*  if (MyApplication.getInstance().isLogin()) {
             mOrderPresenter.load(STATE_COMMENT, MyApplication.getInstance().getAccount());
-        }
+        }*/
     }
 
     @Override
@@ -117,15 +132,28 @@ public class CommentFragment extends Fragment implements IOrderView {
     }
 
     @Override
-    public void showResult(List<Order> list) {
-        mListView.setAdapter(new CommonAdapter<Order>(getContext(), list, R.layout.order_comment_item) {
+    public void showResult(final List<Order> list) {
+        mOrderList = list;
+        mAdapter = new CommonAdapter<Order>(getContext(), mOrderList, R.layout.order_comment_item) {
             @Override
-            public void convert(ViewHolder viewHolder, Order order) {
+            public void convert(ViewHolder viewHolder, final Order order) {
                 viewHolder.setText(R.id.tv_comment_order_name, order.getHotel().getName());
                 viewHolder.setText(R.id.tv_comment_order_checkin, order.getCheckInTime().getDate());
                 viewHolder.setText(R.id.tv_comment_order_checkout, order.getCheckOutTime().getDate());
+                viewHolder.setOnClikListener(R.id.bt_comment_comment, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(getContext(), PublishCommentActivity.class);
+                        Bundle bundle = new Bundle();
+                        bundle.putSerializable("Order", order);
+                        mOrder = order;
+                        intent.putExtra("OrderBundle", bundle);
+                        startActivityForResult(intent, 1);
+                    }
+                });
             }
-        });
+        };
+        mListView.setAdapter(mAdapter);
     }
 
     @Override
@@ -140,6 +168,16 @@ public class CommentFragment extends Fragment implements IOrderView {
 
     @Override
     public void showError(String msg) {
+
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (data.getExtras().getString("Comment", "Y").equals("Y")) {
+            mOrderList.remove(mOrder);
+            mAdapter.notifyDataSetChanged();
+        }
 
     }
 

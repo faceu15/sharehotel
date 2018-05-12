@@ -1,4 +1,4 @@
-package com.example.guet.sharehotel.bean;
+package com.example.guet.sharehotel.model.bean;
 
 /**
  * Created by feng on 2017/11/13.

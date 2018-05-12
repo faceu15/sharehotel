@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -12,7 +13,7 @@ import android.widget.TextView;
 
 import com.example.guet.sharehotel.R;
 import com.example.guet.sharehotel.adapter.MyCollectionHotelAdapter;
-import com.example.guet.sharehotel.bean.MyCollectionHotel;
+import com.example.guet.sharehotel.model.bean.MyCollectionHotel;
 
 import java.util.ArrayList;
 
@@ -35,6 +36,8 @@ public class MyCollectionActivity extends AppCompatActivity implements AdapterVi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         setContentView(R.layout.activity_my_collection);
         initView();
 

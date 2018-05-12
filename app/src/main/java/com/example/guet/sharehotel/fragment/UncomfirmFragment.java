@@ -21,7 +21,7 @@ import com.example.guet.sharehotel.activity.OrderDetailActivity;
 import com.example.guet.sharehotel.adapter.CommonAdapter;
 import com.example.guet.sharehotel.adapter.ViewHolder;
 import com.example.guet.sharehotel.application.MyApplication;
-import com.example.guet.sharehotel.bean.Order;
+import com.example.guet.sharehotel.model.bean.Order;
 import com.example.guet.sharehotel.presenter.OrderPresenter;
 import com.example.guet.sharehotel.utils.OrderState;
 import com.example.guet.sharehotel.view.IOrderView;
@@ -47,7 +47,8 @@ public class UncomfirmFragment extends Fragment implements IOrderView {
     private ProgressDialog progressDialog;
     private OrderPresenter mOrderPresenter;
     private AlertDialog mAlertDialog;
-
+    private List<Order> mOrderList;
+    private Order mOrder;
 
     public UncomfirmFragment() {
     }
@@ -118,8 +119,9 @@ public class UncomfirmFragment extends Fragment implements IOrderView {
     }
 
     @Override
-    public void showResult(List<Order> list) {
-        mListView.setAdapter(new CommonAdapter<Order>(getContext(), list, R.layout.order_uncomfirm_item) {
+    public void showResult(final List<Order> list) {
+        mOrderList = list;
+        mListView.setAdapter(new CommonAdapter<Order>(getContext(), mOrderList, R.layout.order_uncomfirm_item) {
             @Override
             public void convert(ViewHolder viewHolder, final Order order) {
                 viewHolder.setText(R.id.tv_history_order_num, order.getObjectId());
@@ -135,6 +137,7 @@ public class UncomfirmFragment extends Fragment implements IOrderView {
                         Intent intent = new Intent(getContext(), OrderDetailActivity.class);
                         Bundle bundle = new Bundle();
                         bundle.putSerializable("Order", order);
+                        mOrder = order;
                         intent.putExtra("OrderBundle", bundle);
                         startActivity(intent);
                     }
@@ -153,6 +156,8 @@ public class UncomfirmFragment extends Fragment implements IOrderView {
                                     public void done(BmobException e) {
                                         if (e == null) {
                                             Log.i("UncomfirmFragment", "取消成功");
+                                            list.remove(order);
+                                            notifyDataSetChanged();
                                             mAlertDialog.dismiss();
                                             onStart();
                                         } else {
@@ -176,7 +181,6 @@ public class UncomfirmFragment extends Fragment implements IOrderView {
             }
         });
     }
-
 
     @Override
     public void showLoading(String msg) {

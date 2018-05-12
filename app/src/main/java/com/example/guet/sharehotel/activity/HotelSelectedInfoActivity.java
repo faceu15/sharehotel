@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
@@ -15,9 +16,9 @@ import android.widget.Toast;
 
 import com.example.guet.sharehotel.R;
 import com.example.guet.sharehotel.application.MyApplication;
-import com.example.guet.sharehotel.bean.Hotel;
-import com.example.guet.sharehotel.bean.HotelRoomType;
-import com.example.guet.sharehotel.bean.Order;
+import com.example.guet.sharehotel.model.bean.Hotel;
+import com.example.guet.sharehotel.model.bean.HotelRoomType;
+import com.example.guet.sharehotel.model.bean.Order;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -58,6 +59,8 @@ public class HotelSelectedInfoActivity extends AppCompatActivity implements View
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         setContentView(R.layout.activity_hotel_selected_info);
         mIntent = getIntent();
         mHotel = (Hotel) mIntent.getBundleExtra("HotelBundle").getSerializable("Hotel");
@@ -74,6 +77,9 @@ public class HotelSelectedInfoActivity extends AppCompatActivity implements View
     private void initView() {
         LinearLayout backLinearLayout = findViewById(R.id.hotel_back_ll);
         backLinearLayout.setOnClickListener(this);
+        //评论
+        Button commentButton = findViewById(R.id.hotelmessage_btn_evaluation);
+        commentButton.setOnClickListener(this);
         TextView hotelNameTextView = findViewById(R.id.tv_hotel_name);
         TextView commnetTextView = findViewById(R.id.tv_hotel_commnent);
         TextView gradeTextView = findViewById(R.id.tv_hotel_grade);
@@ -151,6 +157,13 @@ public class HotelSelectedInfoActivity extends AppCompatActivity implements View
             case R.id.hotel_back_ll:
                 this.finish();
                 break;
+            case R.id.hotelmessage_btn_evaluation:
+                Intent intent = new Intent(this, CommentActivity.class);
+                intent.putExtra("HotelId", mHotel.getObjectId());
+                startActivity(intent);
+                break;
+            default:
+                break;
         }
     }
 
@@ -206,6 +219,8 @@ public class HotelSelectedInfoActivity extends AppCompatActivity implements View
             case R.id.radioButton4:
                 mPriceTextView.setText(String.valueOf(mRoomTypelist.get(3).getPrice()));
                 mHotel.setPrice(mRoomTypelist.get(3).getPrice());
+                break;
+            default:
                 break;
         }
     }

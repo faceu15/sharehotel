@@ -1,4 +1,4 @@
-package com.example.guet.sharehotel.bean;
+package com.example.guet.sharehotel.model.bean;
 
 import cn.bmob.v3.BmobObject;
 

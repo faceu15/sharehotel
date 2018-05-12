@@ -2,10 +2,12 @@ package com.example.guet.sharehotel.activity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -16,10 +18,11 @@ import com.example.guet.sharehotel.R;
 import com.example.guet.sharehotel.adapter.CommonAdapter;
 import com.example.guet.sharehotel.adapter.ViewHolder;
 import com.example.guet.sharehotel.base.BaseActivity;
-import com.example.guet.sharehotel.bean.Hotel;
-import com.example.guet.sharehotel.bean.MyCollectionHotel;
+import com.example.guet.sharehotel.model.bean.Hotel;
+import com.example.guet.sharehotel.model.bean.MyCollectionHotel;
 import com.example.guet.sharehotel.presenter.FindHotelPrester;
 import com.example.guet.sharehotel.view.IFindView;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,11 +45,15 @@ public class FindActivity extends BaseActivity<IFindView, FindHotelPrester<IFind
 
     private List<Hotel> mCities = new ArrayList<>();
 
+    private DisplayImageOptions mOptions;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         setContentView(R.layout.activity_find);
 
         initView();
@@ -102,10 +109,14 @@ public class FindActivity extends BaseActivity<IFindView, FindHotelPrester<IFind
     @Override
     public void showResult(List<Hotel> datas) {
         mCities = datas;
+        mOptions = createOptions();
         listView.setAdapter(new CommonAdapter<Hotel>(this, datas, R.layout.find_listview_item) {
             @Override
             public void convert(ViewHolder viewHolder, Hotel hotel) {
-                viewHolder.setImageResource(R.id.iv_find_hotel, getResources().getIdentifier("collection1", "mipmap", getPackageName()));
+
+                viewHolder.setImageBitmap(R.id.iv_find_hotel, hotel.getPhoto().getFileUrl(), mOptions);
+
+                // viewHolder.setImageResource(R.id.iv_find_hotel,R.mipmap.collection1);
                 viewHolder.setText(R.id.tv_name, hotel.getName());
                 viewHolder.setText(R.id.tv_address, hotel.getAddress());
                 viewHolder.setText(R.id.tv_grade, hotel.getGrade().toString());
@@ -115,6 +126,17 @@ public class FindActivity extends BaseActivity<IFindView, FindHotelPrester<IFind
         });
         hideLoading();
         listView.setOnItemClickListener(this);
+    }
+
+    private DisplayImageOptions createOptions() {
+        DisplayImageOptions options = new DisplayImageOptions.Builder()
+                .showImageOnLoading(R.mipmap.image_loading)
+                .cacheInMemory(true)
+                .cacheOnDisk(true)
+                .bitmapConfig(Bitmap.Config.RGB_565)
+                // .delayBeforeLoading(100)
+                .build();
+        return options;
     }
 
     @Override

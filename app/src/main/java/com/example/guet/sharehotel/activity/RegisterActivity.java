@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.text.InputType;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -13,9 +14,9 @@ import android.widget.Toast;
 import com.example.guet.sharehotel.R;
 import com.example.guet.sharehotel.base.BaseActivity;
 import com.example.guet.sharehotel.base.BasePresenter;
-import com.example.guet.sharehotel.bean.User;
-import com.example.guet.sharehotel.utils.LogUtil;
+import com.example.guet.sharehotel.model.bean.User;
 import com.example.guet.sharehotel.presenter.RegisterPresenter;
+import com.example.guet.sharehotel.utils.LogUtil;
 import com.example.guet.sharehotel.view.IRegisterView;
 
 import java.util.List;
@@ -39,6 +40,7 @@ public class RegisterActivity extends BaseActivity implements IRegisterView, Vie
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_register);
         initView();
 

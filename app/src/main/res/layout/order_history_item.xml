@@ -5,12 +5,13 @@
     android:layout_height="wrap_content"
     android:background="@color/white"
     android:gravity="center_horizontal"
-    android:orientation="vertical"
-    android:padding="5dp">
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp"
         android:background="#fafafa"
         android:divider="@drawable/divider"
         android:orientation="vertical"
@@ -49,7 +50,6 @@
                     android:id="@+id/state"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-
                     android:layout_below="@id/order_num_tv"
                     android:text="状态："
                     android:textColor="@color/order_normal_text_color"
@@ -67,13 +67,19 @@
 
             </RelativeLayout>
 
-            <ImageButton
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"/>
+
+            <ImageView
+                android:id="@+id/iv_history_del"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
-                android:layout_marginLeft="170dp"
-                android:layout_marginRight="5dp"
+                android:layout_marginRight="20dp"
                 android:background="#fafafa"
-                android:src="@mipmap/delete_bt"/>
+                android:src="@mipmap/delete_bt"
+                android:layout_marginEnd="20dp"/>
 
         </LinearLayout>
 
@@ -191,7 +197,7 @@
 
 
                 <TextView
-                    android:id="@+id/tv_history_order_pre_price"
+                    android:id="@+id/tv_history_order_amount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="1套/共1晚"

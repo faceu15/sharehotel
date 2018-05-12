@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
           package="com.example.guet.sharehotel">
 
     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
@@ -35,8 +37,8 @@
         <activity
             android:name=".activity.MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/DefaultCityPickerTheme"
             android:launchMode="singleTask"
+            android:theme="@style/DefaultCityPickerTheme"
             android:windowSoftInputMode="adjustPan|stateHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -75,6 +77,10 @@
         <activity android:name=".activity.PostHouseActivity">
         </activity>
         <activity android:name=".activity.PaySuccessActivity">
+        </activity>
+        <activity android:name=".activity.PublishCommentActivity">
+        </activity>
+        <activity android:name=".activity.CommentActivity">
         </activity>
     </application>
 

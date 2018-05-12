@@ -14,7 +14,7 @@ import android.os.Message;
 import android.support.v7.app.AlertDialog;
 import android.widget.Toast;
 
-import com.example.guet.sharehotel.bean.UpdateInfo;
+import com.example.guet.sharehotel.model.bean.UpdateInfo;
 import com.google.gson.Gson;
 
 import java.io.BufferedInputStream;

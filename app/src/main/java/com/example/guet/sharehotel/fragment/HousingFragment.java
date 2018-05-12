@@ -18,7 +18,7 @@ import com.example.guet.sharehotel.R;
 import com.example.guet.sharehotel.adapter.CommonAdapter;
 import com.example.guet.sharehotel.adapter.ViewHolder;
 import com.example.guet.sharehotel.application.MyApplication;
-import com.example.guet.sharehotel.bean.Order;
+import com.example.guet.sharehotel.model.bean.Order;
 import com.example.guet.sharehotel.presenter.OrderPresenter;
 import com.example.guet.sharehotel.utils.OrderState;
 import com.example.guet.sharehotel.view.IOrderView;
@@ -133,7 +133,8 @@ public class HousingFragment extends Fragment implements IOrderView {
     }
 
     @Override
-    public void showResult(List<Order> list) {
+    public void showResult(final List<Order> list) {
+
         mListView.setAdapter(new CommonAdapter<Order>(getContext(), list, R.layout.order_housing_item) {
             @Override
             public void convert(ViewHolder viewHolder, Order order) {
@@ -145,49 +146,47 @@ public class HousingFragment extends Fragment implements IOrderView {
                 viewHolder.setText(R.id.tv_housing_order_checkout, order.getCheckOutTime().getDate());
                 viewHolder.setText(R.id.tv_housing_order_price, order.getPrice().toString());
                 viewHolder.setText(R.id.tv_housing_order_amount, order.getRooms().toString() + "套/共" + order.getDays() + "晚");
-                viewHolder.setOnClikListener(R.id.bt_housing_sure, onClick);
+                viewHolder.setOnClikListener(R.id.bt_housing_sure, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                        builder.setTitle("提示");
+                        builder.setMessage("确定入住完成吗？");
+                        builder.setCancelable(true);
+                        builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                mOrder.setState(4);
+                                mOrder.update(new UpdateListener() {
+                                    @Override
+                                    public void done(BmobException e) {
+                                        if (e == null) {
+                                            list.remove(mOrder);
+                                            notifyDataSetChanged();
+                                            Log.i("HousingFragment", "确认入住成功");
+
+                                        } else {
+                                            Log.i("HousingFragment", "确认入住失败" + e.toString());
+                                        }
+                                        mAlertDialog.dismiss();
+                                    }
+                                });
+                            }
+                        });
+                        builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                mAlertDialog.dismiss();
+                            }
+                        });
+                        mAlertDialog = builder.create();
+                        mAlertDialog.show();
+                    }
+                });
             }
         });
     }
 
-    View.OnClickListener onClick = new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            switch (view.getId()) {
-                case R.id.bt_housing_sure:
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                    builder.setTitle("提示");
-                    builder.setMessage("确定入住完成吗？");
-                    builder.setCancelable(true);
-                    builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            mOrder.setState(4);
-                            mOrder.update(new UpdateListener() {
-                                @Override
-                                public void done(BmobException e) {
-                                    if (e == null) {
-                                        Log.i("HousingFragment", "确认入住成功");
-                                    } else {
-                                        Log.i("HousingFragment", "确认入住失败" + e.toString());
-                                    }
-                                    mAlertDialog.dismiss();
-                                }
-                            });
-                        }
-                    });
-                    builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            mAlertDialog.dismiss();
-                        }
-                    });
-                    mAlertDialog = builder.create();
-                    mAlertDialog.show();
-                    break;
-            }
-        }
-    };
 
     @Override
     public void showLoading(String msg) {

@@ -69,6 +69,12 @@
                     android:textColorHint="#afa3a3"
                     android:textSize="6pt"/>
 
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:layout_gravity="center"
+                    android:src="@mipmap/sao"/>
+
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"

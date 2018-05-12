@@ -16,10 +16,12 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.example.guet.sharehotel.R;
-import com.example.guet.sharehotel.utils.db.AccountSQLiteOpenHelper;
+import com.example.guet.sharehotel.application.MyApplication;
+import com.example.guet.sharehotel.model.bean.TabEntity;
 import com.example.guet.sharehotel.fragment.BaseFragment;
 import com.example.guet.sharehotel.fragment.CommentFragment;
 import com.example.guet.sharehotel.fragment.HistoryOrderFragment;
@@ -29,8 +31,7 @@ import com.example.guet.sharehotel.fragment.MessageFragment;
 import com.example.guet.sharehotel.fragment.OrderFragment;
 import com.example.guet.sharehotel.fragment.PersonalCenterFragment;
 import com.example.guet.sharehotel.fragment.UncomfirmFragment;
-import com.example.guet.sharehotel.application.MyApplication;
-import com.example.guet.sharehotel.bean.TabEntity;
+import com.example.guet.sharehotel.utils.db.AccountSQLiteOpenHelper;
 import com.flyco.tablayout.CommonTabLayout;
 import com.flyco.tablayout.listener.CustomTabEntity;
 import com.flyco.tablayout.listener.OnTabSelectListener;
@@ -106,10 +107,12 @@ public class MainActivity extends FragmentActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         setContentView(R.layout.activity_main);
         Bmob.initialize(this,"16565db562fea312a73203bcc8a818c6");
         initViews();
-        automaticLogin();//自动登录
+        //automaticLogin();//自动登录
     }
 
     //自动登录
@@ -124,8 +127,6 @@ public class MainActivity extends FragmentActivity
         //如果存在最后登录的账号 ， 否者不自动登录
         if (isExistAccount) {
 
-            /*mMyApplication=(MyApplication) getApplication();
-            mMyApplication.setLogin(true);*/
         }
     }
 

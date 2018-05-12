@@ -15,8 +15,8 @@
         android:layout_height="wrap_content">
         <ImageView
             android:id="@+id/iv_register_back"
-            android:layout_width="40dp"
-            android:layout_height="30dp"
+            android:layout_width="30dp"
+            android:layout_height="28dp"
             android:layout_gravity="center"
             android:src="@mipmap/left_arrow"/>
 

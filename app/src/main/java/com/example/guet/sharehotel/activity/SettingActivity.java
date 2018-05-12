@@ -4,15 +4,16 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.guet.sharehotel.R;
-import com.example.guet.sharehotel.utils.LogUtil;
 import com.example.guet.sharehotel.utils.CheckVersion;
 import com.example.guet.sharehotel.utils.ClearDataManagerUtil;
+import com.example.guet.sharehotel.utils.LogUtil;
 
 /**
  * 个人中心->右上角：设置
@@ -40,6 +41,8 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         setContentView(R.layout.activity_setting);
 
         //this.getSupportActionBar().hide();

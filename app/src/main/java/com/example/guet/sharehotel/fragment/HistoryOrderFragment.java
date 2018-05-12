@@ -1,9 +1,12 @@
 package com.example.guet.sharehotel.fragment;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,12 +16,15 @@ import com.example.guet.sharehotel.R;
 import com.example.guet.sharehotel.adapter.CommonAdapter;
 import com.example.guet.sharehotel.adapter.ViewHolder;
 import com.example.guet.sharehotel.application.MyApplication;
-import com.example.guet.sharehotel.bean.Order;
+import com.example.guet.sharehotel.model.bean.Order;
 import com.example.guet.sharehotel.presenter.OrderPresenter;
 import com.example.guet.sharehotel.utils.OrderState;
 import com.example.guet.sharehotel.view.IOrderView;
 
 import java.util.List;
+
+import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.UpdateListener;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -41,6 +47,7 @@ public class HistoryOrderFragment extends Fragment implements IOrderView {
 
     private ListView mListView;
     private OrderPresenter mOrderPresenter;
+    private AlertDialog mAlertDialog;
 
     private OnFragmentInteractionListener mListener;
 
@@ -117,17 +124,54 @@ public class HistoryOrderFragment extends Fragment implements IOrderView {
     }
 
     @Override
-    public void showResult(List<Order> list) {
+    public void showResult(final List<Order> list) {
         mListView.setAdapter(new CommonAdapter<Order>(getContext(), list, R.layout.order_history_item) {
             @Override
-            public void convert(ViewHolder viewHolder, Order order) {
+            public void convert(ViewHolder viewHolder, final Order order) {
                 viewHolder.setText(R.id.tv_history_order_num, order.getHotel().getObjectId());
                 viewHolder.setText(R.id.tv_history_order_state, OrderState.getState(order.getState()));
                 viewHolder.setText(R.id.tv_history_order_name, order.getHotel().getName());
-                viewHolder.setText(R.id.tv_housing_order_checkin, order.getCheckInTime().getDate());
+                viewHolder.setText(R.id.tv_history_order_checkin, order.getCheckInTime().getDate());
                 viewHolder.setText(R.id.tv_history_order_checkout, order.getCheckOutTime().getDate());
                 viewHolder.setText(R.id.tv_history_order_price, order.getPrice().toString());
-                viewHolder.setText(R.id.tv_history_order_pre_price, order.getRooms().toString() + "套/共" + order.getDays() + "晚");
+                viewHolder.setText(R.id.tv_history_order_amount, order.getRooms().toString() + "套/共" + order.getDays() + "晚");
+                viewHolder.setImageViewOnClikListener(R.id.iv_history_del, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                        builder.setTitle("提示");
+                        builder.setMessage("确定入住完成吗？");
+                        builder.setCancelable(true);
+                        builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                order.delete(new UpdateListener() {
+                                    @Override
+                                    public void done(BmobException e) {
+                                        if (e == null) {
+                                            list.remove(order);
+                                            notifyDataSetChanged();
+                                            Log.i("HistoryOrderFragment", "成功删除订单");
+
+                                        } else {
+                                            Log.i("HistoryOrderFragment", "删除订单失败");
+                                        }
+                                    }
+                                });
+                            }
+                        });
+                        builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                mAlertDialog.dismiss();
+                            }
+                        });
+                        mAlertDialog = builder.create();
+                        mAlertDialog.show();
+
+
+                    }
+                });
             }
         });
     }
