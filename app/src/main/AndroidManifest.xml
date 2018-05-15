@@ -15,6 +15,7 @@
     <!-- 保持CPU 运转，屏幕和键盘灯有可能是关闭的,用于文件上传和下载 -->
     <uses-permission android:name="android.permission.WAKE_LOCK"/>
     <!-- 获取sd卡写的权限，用于文件上传和下载 -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <!-- 允许读取手机状态 用于创建BmobInstallation -->
     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
@@ -26,6 +27,9 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <!-- 这个权限用于获取wifi的获取权限，wifi信息会用来进行网络定位 -->
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
+
+
+    <uses-permission android:name="android.permission.CAMERA"/>
 
     <application
         android:name=".application.MyApplication"
@@ -74,14 +78,18 @@
 
         <activity android:name=".activity.OrderDetailActivity">
         </activity>
-        <activity android:name=".activity.PostHouseActivity">
+        <activity
+            android:name=".activity.PostHouseActivity"
+            android:theme="@style/DefaultCityPickerTheme">
         </activity>
         <activity android:name=".activity.PaySuccessActivity">
         </activity>
         <activity android:name=".activity.PublishCommentActivity">
         </activity>
-        <activity android:name=".activity.CommentActivity">
-        </activity>
+        <activity android:name=".activity.CommentActivity"/>
+
+        <activity android:name="com.zzti.fengyongge.imagepicker.PhotoSelectorActivity"/>//选择图片
+        <activity android:name="com.zzti.fengyongge.imagepicker.PhotoPreviewActivity"/>//预览图片
     </application>
 
 </manifest>

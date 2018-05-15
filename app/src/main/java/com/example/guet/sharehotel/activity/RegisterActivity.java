@@ -35,6 +35,7 @@ public class RegisterActivity extends BaseActivity implements IRegisterView, Vie
     private EditText mAccountEditText;
     private EditText mPasswordEditText;
     private EditText mVerifyEditText;
+    private EditText mPasswordEditText2;
     private Button mGetVerifyButton;
 
     @Override
@@ -54,13 +55,12 @@ public class RegisterActivity extends BaseActivity implements IRegisterView, Vie
     private void initView() {
         mAccountEditText = findViewById(R.id.et_register_account);
         mPasswordEditText = findViewById(R.id.et_register_password);
+        mPasswordEditText2 = findViewById(R.id.et_register_password2);
         mVerifyEditText = findViewById(R.id.et_register_verification);
         mGetVerifyButton = findViewById(R.id.bt_register_verification);
-        ImageView passwordVisibleImageView = findViewById(R.id.iv_password_visible);
         ImageView backImageView = findViewById(R.id.iv_register_back);
         Button registerButton = findViewById(R.id.register_btn);
 
-        passwordVisibleImageView.setOnClickListener(this);
         backImageView.setOnClickListener(this);
         mGetVerifyButton.setOnClickListener(this);
         registerButton.setOnClickListener(this);
@@ -134,15 +134,15 @@ public class RegisterActivity extends BaseActivity implements IRegisterView, Vie
             case R.id.iv_register_back:
                 finish();
                 break;
-            case R.id.iv_password_visible:
-                changeInputType();
-                break;
-
             case R.id.bt_register_verification:
                 getVerification();//获取验证码并验证
                 break;
             case R.id.register_btn:
-                verify();
+                if (getPassWord().equals(mPasswordEditText2.getText().toString().trim())) {
+                    verify();
+                } else {
+                    Toast.makeText(this, "两次输入密码不一样", Toast.LENGTH_SHORT).show();
+                }
                 break;
         }
 

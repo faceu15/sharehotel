@@ -1,1 +1,1 @@
-include ':app', "citypicker","CustomPopwindow","library"
+include ':app', "citypicker","CustomPopwindow","library","imagepicker"

@@ -114,8 +114,7 @@ public class FindActivity extends BaseActivity<IFindView, FindHotelPrester<IFind
             @Override
             public void convert(ViewHolder viewHolder, Hotel hotel) {
 
-                viewHolder.setImageBitmap(R.id.iv_find_hotel, hotel.getPhoto().getFileUrl(), mOptions);
-
+                viewHolder.setImageBitmap(R.id.iv_find_hotel, hotel.getUrl(), mOptions);
                 // viewHolder.setImageResource(R.id.iv_find_hotel,R.mipmap.collection1);
                 viewHolder.setText(R.id.tv_name, hotel.getName());
                 viewHolder.setText(R.id.tv_address, hotel.getAddress());
@@ -131,6 +130,8 @@ public class FindActivity extends BaseActivity<IFindView, FindHotelPrester<IFind
     private DisplayImageOptions createOptions() {
         DisplayImageOptions options = new DisplayImageOptions.Builder()
                 .showImageOnLoading(R.mipmap.image_loading)
+                .showImageForEmptyUri(R.mipmap.image_loading)
+                .showImageOnFail(R.mipmap.image_loading)
                 .cacheInMemory(true)
                 .cacheOnDisk(true)
                 .bitmapConfig(Bitmap.Config.RGB_565)

@@ -133,11 +133,42 @@
                 android:hint="6-12位字母、数字"
                 android:textColorHint="@color/white"/>
 
-            <ImageView
-                android:id="@+id/iv_password_visible"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@mipmap/eye"/>
+            <!--  <ImageView
+                  android:id="@+id/iv_password_visible"
+                  android:layout_width="30dp"
+                  android:layout_height="30dp"
+                  android:layout_marginRight="10dp"
+                  android:src="@mipmap/eye"/>-->
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="重输密码"
+                android:textColor="@color/white"
+                android:textSize="20sp"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"/>
+
+
+            <EditText
+                android:id="@+id/et_register_password2"
+                android:layout_width="150dp"
+                android:layout_height="match_parent"
+                android:inputType="textPassword"
+                android:background="@null"
+                android:hint="请再次输入密码"
+                android:textColorHint="@color/white"/>
+
         </LinearLayout>
 
     </LinearLayout>

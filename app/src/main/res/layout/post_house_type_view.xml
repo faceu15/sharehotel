@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:background="#686868"
+              android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/type_item1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="6dp"
+        android:onClick="onViewClicked"
+        android:text="酒店/旅馆"
+        android:textSize="8pt"
+        android:textColor="@color/white"/>
+
+    <TextView
+        android:id="@+id/type_item2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="onViewClicked"
+        android:text="公寓/民宿"
+        android:textSize="8pt"
+        android:textColor="@color/white"/>
+
+</LinearLayout>

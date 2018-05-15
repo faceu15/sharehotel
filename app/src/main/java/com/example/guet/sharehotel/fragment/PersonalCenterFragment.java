@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.guet.sharehotel.R;
 import com.example.guet.sharehotel.activity.CouponActivity;
@@ -214,8 +215,12 @@ public class PersonalCenterFragment extends BaseFragment implements View.OnClick
                 startActivity(intent4);
                 break;
             case R.id.post_house_ll://发布房子
-                Intent intent5 = new Intent(getActivity(), PostHouseActivity.class);
-                startActivity(intent5);
+                if (MyApplication.getInstance().getAccount() == null) {
+                    Toast.makeText(getContext(), "请先登录", Toast.LENGTH_SHORT).show();
+                } else {
+                    Intent intent5 = new Intent(getActivity(), PostHouseActivity.class);
+                    startActivity(intent5);
+                }
                 break;
 
         }
