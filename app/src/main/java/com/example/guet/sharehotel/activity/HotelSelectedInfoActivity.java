@@ -10,34 +10,27 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.guet.sharehotel.R;
 import com.example.guet.sharehotel.application.MyApplication;
 import com.example.guet.sharehotel.model.bean.Hotel;
-import com.example.guet.sharehotel.model.bean.HotelRoomType;
 import com.example.guet.sharehotel.model.bean.Order;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 
-import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.datatype.BmobDate;
 import cn.bmob.v3.exception.BmobException;
-import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.SaveListener;
-import me.shihao.library.XRadioGroup;
 
 /**
  * 主页-.搜索->选择酒店->酒店详情
  */
-public class HotelSelectedInfoActivity extends AppCompatActivity implements View.OnClickListener, XRadioGroup.OnCheckedChangeListener {
+public class HotelSelectedInfoActivity extends AppCompatActivity implements View.OnClickListener {
 
     private static final String TAG = "HotelSelectedInfo";
     /**
@@ -49,18 +42,17 @@ public class HotelSelectedInfoActivity extends AppCompatActivity implements View
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
     private String mCheckInDate;
     private String mCheckOutDate;
-    private XRadioGroup mXRadioGroup;
-    private RadioButton mRadioButton, mRadioButton2, mRadioButton3, mRadioButton4;
-    private List<RadioButton> mRadioButtons = new ArrayList<>();
-    private List<HotelRoomType> mRoomTypelist;
-    private Integer mRoomNum;
+    /* private XRadioGroup mXRadioGroup;
+     private RadioButton mRadioButton, mRadioButton2, mRadioButton3, mRadioButton4;
+     private List<RadioButton> mRadioButtons = new ArrayList<>();
+     private List<HotelRoomType> mRoomTypelist;*/
+    //private Integer mRoomNum;
     private Integer mDays;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
         setContentView(R.layout.activity_hotel_selected_info);
         mIntent = getIntent();
         mHotel = (Hotel) mIntent.getBundleExtra("HotelBundle").getSerializable("Hotel");
@@ -90,15 +82,30 @@ public class HotelSelectedInfoActivity extends AppCompatActivity implements View
         commnetTextView.setText(mHotel.getComment().toString());
         gradeTextView.setText(mHotel.getGrade().toString());
         mPriceTextView.setText(mHotel.getPrice().toString());
+        TextView modeTextView = findViewById(R.id.tv_detail_mode);
+        modeTextView.setText(mHotel.getMode());
+        TextView houseTypeTextView = findViewById(R.id.tv_detail_house_type);
+        houseTypeTextView.setText(mHotel.getHouseType());
+        TextView areaTextView = findViewById(R.id.tv_detail_area);
+        areaTextView.setText(String.valueOf(mHotel.getArea()));
+        TextView addressTextView = findViewById(R.id.tv_detail_address);
+        addressTextView.setText(mHotel.getAddress());
+        TextView descTextView = findViewById(R.id.tv_detail_description);
+        if (mHotel.getDescription() == null) {
+            descTextView.setText("暂无数据");
+        } else {
+            descTextView.setText(mHotel.getDescription());
+        }
+
         //天数和房间数
         try {
             mDays = getCountDays(sdf.parse(mCheckInDate), sdf.parse(mCheckOutDate));
-            mRoomNum = Integer.valueOf(getIntent().getExtras().getString("RoomNumber"));
+            //mRoomNum = Integer.valueOf(getIntent().getExtras().getString("RoomNumber"));
         } catch (ParseException e) {
             e.printStackTrace();
         }
 
-        //类型单选框
+      /*  //类型单选框
         mXRadioGroup = findViewById(R.id.rd_hotel_type);
         mRadioButton = findViewById(R.id.radioButton);
         mRadioButtons.add(mRadioButton);
@@ -110,12 +117,11 @@ public class HotelSelectedInfoActivity extends AppCompatActivity implements View
         mRadioButtons.add(mRadioButton4);
         mRoomTypelist = new ArrayList<>();
         initXRadioGroup();
-
-        mXRadioGroup.setOnCheckedChangeListener(this);
+        mXRadioGroup.setOnCheckedChangeListener(this);*/
 
     }
 
-    private void initXRadioGroup() {
+  /*  private void initXRadioGroup() {
         BmobQuery<HotelRoomType> query = new BmobQuery<HotelRoomType>("HotelRoomType");
         query.addWhereEqualTo("hotel", mHotel);
         query.setLimit(4);
@@ -139,9 +145,7 @@ public class HotelSelectedInfoActivity extends AppCompatActivity implements View
                 }
             }
         });
-
-
-    }
+    }*/
 
     @Override
     public void onClick(View v) {
@@ -158,6 +162,7 @@ public class HotelSelectedInfoActivity extends AppCompatActivity implements View
                 this.finish();
                 break;
             case R.id.hotelmessage_btn_evaluation:
+                //查看评价
                 Intent intent = new Intent(this, CommentActivity.class);
                 intent.putExtra("HotelId", mHotel.getObjectId());
                 startActivity(intent);
@@ -171,9 +176,9 @@ public class HotelSelectedInfoActivity extends AppCompatActivity implements View
         final Order order = new Order();
         order.setUser(MyApplication.getInstance().getUser());
         order.setHotel(mHotel);
-        order.setPrice(mHotel.getPrice() * mRoomNum * mDays);
+        order.setPrice(mHotel.getPrice() * mDays);
         order.setDays(mDays);
-        order.setRooms(mRoomNum);
+        // order.setRooms(mRoomNum);
         order.setState(1);
         try {
             BmobDate bmobDateIn = new BmobDate(sdf.parse(mCheckInDate));
@@ -188,8 +193,9 @@ public class HotelSelectedInfoActivity extends AppCompatActivity implements View
             public void done(String objectId, BmobException e) {
                 if (e == null) {
                     Log.i(TAG, "订单号：" + objectId);
+
                     Intent intent = new Intent(context, activity);
-                    intent.putExtra("RoomNumber", getIntent().getExtras().getString("RoomNumber"));
+                    // intent.putExtra("RoomNumber", getIntent().getExtras().getString("RoomNumber"));
                     Bundle bundle = new Bundle();
                     bundle.putSerializable("Order", order);
                     intent.putExtra("OrderBundle", bundle);
@@ -201,7 +207,7 @@ public class HotelSelectedInfoActivity extends AppCompatActivity implements View
         });
     }
 
-    @Override
+  /*  @Override
     public void onCheckedChanged(XRadioGroup xRadioGroup, int i) {
         switch (i) {
             case R.id.radioButton:
@@ -223,7 +229,7 @@ public class HotelSelectedInfoActivity extends AppCompatActivity implements View
             default:
                 break;
         }
-    }
+    }*/
 
     public Integer getCountDays(Date startDate, Date endDate) {
         Calendar fromCalendar = Calendar.getInstance();

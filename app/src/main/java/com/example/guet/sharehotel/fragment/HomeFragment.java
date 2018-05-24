@@ -87,13 +87,13 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
     private LinearLayout mLocationLinearLayout;
     private TextView mCityTextView;
     private TextView mGuestNumber = null;
-    private TextView mRoomNumber = null;
+    // private TextView mRoomNumber = null;
 
     private String guestNumber = "";
-    private String roomNumber = "";
+    //private String roomNumber = "";
     private EditText mSearchTextView;//搜索栏
 
-    private TextView main_room_number;
+    //private TextView main_room_number;
     private LinearLayout mDatePickerLL;//日期选择dialog
     private TextView mStartTimeTextView;
     private TextView mEndTimeTextView;
@@ -167,12 +167,22 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
         mMainLinearLayout = view.findViewById(R.id.main_ll_id);
         mLocationLinearLayout = view.findViewById(R.id.locatioin_ll);
         mCityTextView = view.findViewById(R.id.tv_city);
+        //合租
+        LinearLayout shareRentLL = view.findViewById(R.id.ll_home_share_rent);
+        shareRentLL.setOnClickListener(this);
+        //整租
+        LinearLayout entireLL = view.findViewById(R.id.ll_home_entire_rent);
+        entireLL.setOnClickListener(this);
+        //公寓
+        LinearLayout apartmentLL = view.findViewById(R.id.ll_home_apartment);
+        apartmentLL.setOnClickListener(this);
+
         TextView guestSub = view.findViewById(R.id.main_guest_sub);
         TextView guestAdd = view.findViewById(R.id.main_guest_add);
-        TextView roomSub = view.findViewById(R.id.main_room_sub);
-        TextView roomAdd = view.findViewById(R.id.main_room_add);
+        //TextView roomSub = view.findViewById(R.id.main_room_sub);
+        //TextView roomAdd = view.findViewById(R.id.main_room_add);
         mGuestNumber = view.findViewById(R.id.main_guest_number);
-        mRoomNumber = view.findViewById(R.id.main_room_number);
+        // mRoomNumber = view.findViewById(R.id.main_room_number);
 
         //日期选择dialog
         mDatePickerLL = view.findViewById(R.id.choic_date_ll);
@@ -184,31 +194,30 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
         mEndTimeTextView.setText(DateTimeHelper.formatToString(c.getTime(), "yyyy-MM-dd"));
 
         guestNumber = mGuestNumber.getText().toString();
-        roomNumber = mRoomNumber.getText().toString();
+        //roomNumber = mRoomNumber.getText().toString();
         mMainLinearLayout.setOnClickListener(this);
         mLocationLinearLayout.setOnClickListener(this);
         guestSub.setOnClickListener(this);
         guestAdd.setOnClickListener(this);
-        roomSub.setOnClickListener(this);
-        roomAdd.setOnClickListener(this);
+        //roomSub.setOnClickListener(this);
+        //roomAdd.setOnClickListener(this);
 
         mSearchTextView = view.findViewById(R.id.main_search);
         TextView main_guest_sub = view.findViewById(R.id.main_guest_sub);
         TextView main_guest_number = view.findViewById(R.id.main_guest_number);
         TextView main_guest_add = view.findViewById(R.id.main_guest_add);
-        TextView main_room_sub = view.findViewById(R.id.main_room_sub);
-        main_room_number = view.findViewById(R.id.main_room_number);
-        TextView main_room_add = view.findViewById(R.id.main_room_add);
+        // TextView main_room_sub = view.findViewById(R.id.main_room_sub);
+        //main_room_number = view.findViewById(R.id.main_room_number);
+        // TextView main_room_add = view.findViewById(R.id.main_room_add);
         TextView find_tv = view.findViewById(R.id.find_tv);
 
         mStartTimeTextView.setOnClickListener(this);//选择入住时间
         mEndTimeTextView.setOnClickListener(this);
 
-        //button.setOnClickListener(this);
         main_guest_sub.setOnClickListener(this);
         main_guest_add.setOnClickListener(this);
-        main_room_sub.setOnClickListener(this);
-        main_room_add.setOnClickListener(this);
+        // main_room_sub.setOnClickListener(this);
+        //main_room_add.setOnClickListener(this);
         find_tv.setOnClickListener(this);
     }
 
@@ -232,6 +241,16 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
             case R.id.end_time_tv:
                 showDateChoiceDialog(false);//退房时间选择dialog
                 break;
+
+            case R.id.ll_home_share_rent://合租
+                searchHouse("ShareRent");
+                break;
+            case R.id.ll_home_entire_rent://整租
+                searchHouse("EntireRent");
+                break;
+            case R.id.ll_home_apartment://公寓
+                searchHouse("Apartment");
+                break;
             case R.id.main_guest_sub://减少房客
                 int guestNumberTempSub = Integer.parseInt(guestNumber);
                 if (guestNumberTempSub > 1) {
@@ -247,30 +266,22 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
                 mGuestNumber.setText(guestNumber);
                 break;
 
-            case R.id.main_room_sub://减少房子
-                int roomNumberTempSub = Integer.parseInt(roomNumber);
-                if (roomNumberTempSub > 1) {
-                    roomNumberTempSub--;
-                }
-                roomNumber = String.valueOf(roomNumberTempSub);
-                mRoomNumber.setText(roomNumber);
-                break;
-            case R.id.main_room_add://增加房子
-                int roomNumberTempAdd = Integer.parseInt(roomNumber);
-                roomNumberTempAdd++;
-                roomNumber = String.valueOf(roomNumberTempAdd);
-                mRoomNumber.setText(roomNumber);
-                break;
+
             case R.id.find_tv://搜索
-                Intent intent = new Intent(getActivity(), FindActivity.class);
-                intent.putExtra("City", mCityTextView.getText().toString().trim());
-                intent.putExtra("Search", mSearchTextView.getText().toString().trim());
-                intent.putExtra("CheckInDate", mStartTimeTextView.getText().toString().trim());
-                intent.putExtra("CheckOutDate", mEndTimeTextView.getText().toString().trim());
-                intent.putExtra("RoomNumber", roomNumber);
-                startActivity(intent);
+                searchHouse("All");
                 break;
         }
+    }
+
+    private void searchHouse(String searchMode) {
+        Intent intent = new Intent(getActivity(), FindActivity.class);
+        intent.putExtra("City", mCityTextView.getText().toString().trim());
+        intent.putExtra("Search", mSearchTextView.getText().toString().trim());
+        intent.putExtra("CheckInDate", mStartTimeTextView.getText().toString().trim());
+        intent.putExtra("CheckOutDate", mEndTimeTextView.getText().toString().trim());
+        intent.putExtra("SearchMode", searchMode);
+        // intent.putExtra("RoomNumber", roomNumber);
+        startActivity(intent);
     }
 
     //城市定位和选择

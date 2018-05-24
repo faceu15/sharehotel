@@ -13,6 +13,7 @@
         android:layout_height="0.5dp"
         android:background="#dddddd"/>
 
+    <!--
 
     <TextView
         android:layout_width="match_parent"
@@ -22,10 +23,107 @@
         android:textSize="16sp"
         android:textColor="#403d3d"/>
 
+-->
     <View
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
         android:background="#dddddd"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.2"
+        android:background="@color/white"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <LinearLayout
+            android:id="@+id/ll_home_share_rent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@mipmap/people"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="合租"
+                android:textColor="@color/order_normal_text_color"
+                android:textSize="7pt"/>
+
+        </LinearLayout>
+
+        <Space
+            android:layout_width="45dp"
+            android:layout_height="match_parent"/>
+
+        <LinearLayout
+            android:id="@+id/ll_home_entire_rent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@mipmap/allrental"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="整租"
+                android:textColor="@color/order_normal_text_color"
+                android:textSize="7pt"/>
+
+        </LinearLayout>
+
+        <Space
+            android:layout_width="45dp"
+            android:layout_height="match_parent"/>
+
+        <LinearLayout
+            android:id="@+id/ll_home_apartment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@mipmap/own"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="公寓"
+                android:textColor="@color/order_normal_text_color"
+                android:textSize="7pt"/>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#e2e2ea"/>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#bfbfbf"/>
 
     <TextView
         android:layout_width="match_parent"
@@ -42,7 +140,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="46dp"
+            android:layout_height="50dp"
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp"
             android:orientation="horizontal">
@@ -135,6 +233,7 @@
         android:background="@color/white"/>
 
 
+    <!--
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -217,7 +316,7 @@
 
 
     </RelativeLayout>
-
+-->
 
     <TextView
         android:layout_width="match_parent"

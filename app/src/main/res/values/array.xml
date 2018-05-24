@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="rental_mode">
+        <item>整租</item>
+        <item>合租</item>
+    </string-array>
+
+    <string-array name="house_type">
+        <item>1室/0厅/1卫</item>
+        <item>1室/1厅/1卫</item>
+        <item>2室/1厅/1卫</item>
+        <item>2室/1厅/2卫</item>
+        <item>3室/1厅/1卫</item>
+        <item>3室/1厅/2卫</item>
+        <item>4室/1厅/2卫</item>
+        <item>5室/1厅/2卫</item>
+    </string-array>
+
+    <string-array name="price_type">
+        <item>/月</item>
+        <item>/天</item>
+        <item>/年</item>
+    </string-array>
+
+</resources>

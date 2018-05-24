@@ -93,7 +93,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="酒店"
+                    android:text="民宿"
                     android:textColor="#0d2E4B"
                     android:layout_gravity="center"/>
 
@@ -199,7 +199,7 @@
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:background="#7D63E8"
-                android:text="500以下"
+                android:text="1000以下"
                 android:textColor="@color/white"
                 android:textSize="20dp"/>
 
@@ -221,7 +221,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="500-1000"
+                android:text="1000-2000"
                 android:textColor="#7D63E8"
                 android:textSize="20dp"/>
 
@@ -244,7 +244,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="1000以上"
+                android:text="2000以上"
                 android:textColor="#7D63E8"
                 android:textSize="20dp"/>
 
@@ -277,7 +277,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="酒店设施"
+                android:text="房屋设施"
                 android:textColor="#000000"
                 android:textSize="17dp"
                 android:layout_marginLeft="10dp"/>
@@ -308,7 +308,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="公寓户型"
+                android:text="户型"
                 android:textColor="#000000"
                 android:textSize="17dp"
                 android:layout_marginLeft="10dp"/>

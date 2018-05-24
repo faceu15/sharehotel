@@ -24,6 +24,7 @@ import com.example.guet.sharehotel.activity.CreditScoreActivity;
 import com.example.guet.sharehotel.activity.CustomerServiceActivity;
 import com.example.guet.sharehotel.activity.LoginActivity;
 import com.example.guet.sharehotel.activity.MyCollectionActivity;
+import com.example.guet.sharehotel.activity.MyHouseActivity;
 import com.example.guet.sharehotel.activity.PostHouseActivity;
 import com.example.guet.sharehotel.activity.SettingActivity;
 import com.example.guet.sharehotel.application.MyApplication;
@@ -181,8 +182,12 @@ public class PersonalCenterFragment extends BaseFragment implements View.OnClick
         right_to_buy_iv = view.findViewById(R.id.right_to_buy_iv);
         right_to_buy_iv.setOnClickListener(this);
 
+        //发布房子
         LinearLayout postHouseLinearLayout = view.findViewById(R.id.post_house_ll);
         postHouseLinearLayout.setOnClickListener(this);
+        //我的房子
+        LinearLayout myHouseLinearLayout = view.findViewById(R.id.ll_center_myhouse);
+        myHouseLinearLayout.setOnClickListener(this);
 
     }
 
@@ -220,6 +225,14 @@ public class PersonalCenterFragment extends BaseFragment implements View.OnClick
                 } else {
                     Intent intent5 = new Intent(getActivity(), PostHouseActivity.class);
                     startActivity(intent5);
+                }
+                break;
+            case R.id.ll_center_myhouse://我的房子
+                if (MyApplication.getInstance().getAccount() == null) {
+                    Toast.makeText(getContext(), "请先登录", Toast.LENGTH_SHORT).show();
+                } else {
+                    Intent myhouse = new Intent(getActivity(), MyHouseActivity.class);
+                    startActivity(myhouse);
                 }
                 break;
 

@@ -10,6 +10,8 @@ public class User extends BmobObject{
 
     private String account;
     private String password;
+    private String name;
+    private String sexy;
 
     public User(){
         //this.setTableName("_User");
@@ -34,5 +36,21 @@ public class User extends BmobObject{
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getSexy() {
+        return sexy;
+    }
+
+    public void setSexy(String sexy) {
+        this.sexy = sexy;
     }
 }

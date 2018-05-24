@@ -58,7 +58,7 @@ public class FindActivity extends BaseActivity<IFindView, FindHotelPrester<IFind
 
         initView();
         showLoading("加载中...");
-        mPresenter.fetch(getCity(), getSearchText());
+        mPresenter.fetch(getCity(), getSearchText(), getIntent().getExtras().getString("SearchMode"));
     }
 
     @Override
@@ -85,7 +85,7 @@ public class FindActivity extends BaseActivity<IFindView, FindHotelPrester<IFind
         intent.putExtra("HotelBundle", bundle);
         intent.putExtra("CheckInDate", getIntent().getExtras().getString("CheckInDate"));
         intent.putExtra("CheckOutDate", getIntent().getExtras().getString("CheckOutDate"));
-        intent.putExtra("RoomNumber", getIntent().getExtras().getString("RoomNumber"));
+        //intent.putExtra("RoomNumber", getIntent().getExtras().getString("RoomNumber"));
         startActivity(intent);
     }
 
@@ -99,7 +99,6 @@ public class FindActivity extends BaseActivity<IFindView, FindHotelPrester<IFind
                 break;
             case R.id.tv_filter:
                 Intent intent = new Intent(FindActivity.this, FilterHotelActivity.class);
-
                 startActivity(intent);
                 break;
         }
@@ -113,13 +112,12 @@ public class FindActivity extends BaseActivity<IFindView, FindHotelPrester<IFind
         listView.setAdapter(new CommonAdapter<Hotel>(this, datas, R.layout.find_listview_item) {
             @Override
             public void convert(ViewHolder viewHolder, Hotel hotel) {
-
                 viewHolder.setImageBitmap(R.id.iv_find_hotel, hotel.getUrl(), mOptions);
-                // viewHolder.setImageResource(R.id.iv_find_hotel,R.mipmap.collection1);
                 viewHolder.setText(R.id.tv_name, hotel.getName());
                 viewHolder.setText(R.id.tv_address, hotel.getAddress());
-                viewHolder.setText(R.id.tv_grade, hotel.getGrade().toString());
-                viewHolder.setText(R.id.tv_comment_num, hotel.getComment().toString());
+                viewHolder.setText(R.id.tv_find_mode, hotel.getMode());
+                viewHolder.setText(R.id.tv_find_housetype, hotel.getHouseType());
+                viewHolder.setText(R.id.tv_find_area, hotel.getArea().toString());
                 viewHolder.setText(R.id.tv_price, hotel.getPrice().toString());
             }
         });
