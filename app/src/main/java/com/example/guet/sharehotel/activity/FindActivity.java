@@ -5,8 +5,10 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup.LayoutParams;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
@@ -16,6 +18,7 @@ import android.widget.Toast;
 
 import com.example.guet.sharehotel.R;
 import com.example.guet.sharehotel.adapter.CommonAdapter;
+import com.example.guet.sharehotel.adapter.ListDropDownAdapter;
 import com.example.guet.sharehotel.adapter.ViewHolder;
 import com.example.guet.sharehotel.base.BaseActivity;
 import com.example.guet.sharehotel.model.bean.Hotel;
@@ -23,8 +26,10 @@ import com.example.guet.sharehotel.model.bean.MyCollectionHotel;
 import com.example.guet.sharehotel.presenter.FindHotelPrester;
 import com.example.guet.sharehotel.view.IFindView;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.yyydjk.library.DropDownMenu;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -46,6 +51,16 @@ public class FindActivity extends BaseActivity<IFindView, FindHotelPrester<IFind
     private List<Hotel> mCities = new ArrayList<>();
 
     private DisplayImageOptions mOptions;
+
+    private List<View> popupViews = new ArrayList<>();
+    private DropDownMenu mDropDownMenu;
+    private String headers[] = {"类型", "价格", "户型"};
+    private ListDropDownAdapter styleAdapter;
+    private ListDropDownAdapter priceAdapter;
+    private ListDropDownAdapter modeAdapter;
+    private String style[] = {"不限", "1室0厅1卫", "1室1厅1卫", "2室1厅1卫", "3室1厅1卫", "3室1厅2卫", "4室1厅2卫"};
+    private String price[] = {"不限", "1000以下", "1000-2000", "2000-3000", "3000以上"};
+    private String mode[] = {"不限", "整租", "合租"};
 
 
 
@@ -70,9 +85,78 @@ public class FindActivity extends BaseActivity<IFindView, FindHotelPrester<IFind
         LinearLayout backLinearLayout = findViewById(R.id.find_back_ll);
         TextView filterTextView = findViewById(R.id.tv_filter);
         listView = findViewById(R.id.list_view);
-
+        mDropDownMenu = findViewById(R.id.ddm_find_filter);
         backLinearLayout.setOnClickListener(this);
         filterTextView.setOnClickListener(this);
+
+        //户型
+        final ListView styleView = new ListView(this);
+        styleView.setDividerHeight(0);
+        styleAdapter = new ListDropDownAdapter(this, Arrays.asList(style));
+        styleView.setAdapter(styleAdapter);
+
+        //价格
+        final ListView priceView = new ListView(this);
+        priceView.setDividerHeight(0);
+        priceAdapter = new ListDropDownAdapter(this, Arrays.asList(price));
+        priceView.setAdapter(priceAdapter);
+
+        //模式
+        final ListView modeView = new ListView(this);
+        modeView.setDividerHeight(0);
+        modeAdapter = new ListDropDownAdapter(this, Arrays.asList(mode));
+        modeView.setAdapter(modeAdapter);
+
+        popupViews.add(styleView);
+        popupViews.add(priceView);
+        popupViews.add(modeView);
+
+        styleView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                styleAdapter.setCheckItem(position);
+                mDropDownMenu.setTabText(position == 0 ? headers[0] : style[position]);
+                String msg = style[position];
+
+                mDropDownMenu.closeMenu();
+            }
+        });
+
+        priceView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                priceAdapter.setCheckItem(position);
+                mDropDownMenu.setTabText(position == 0 ? headers[1] : price[position]);
+                mDropDownMenu.closeMenu();
+            }
+        });
+
+        modeView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                modeAdapter.setCheckItem(position);
+                mDropDownMenu.setTabText(position == 0 ? headers[2] : mode[position]);
+                mDropDownMenu.closeMenu();
+            }
+        });
+
+
+        TextView contentView = new TextView(this);
+        contentView.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, 1));
+        contentView.setGravity(Gravity.CENTER);
+        contentView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
+        mDropDownMenu.setDropDownMenu(Arrays.asList(headers), popupViews, contentView);
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        if (mDropDownMenu.isShowing()) {
+            mDropDownMenu.closeMenu();
+        } else {
+            super.onBackPressed();
+        }
     }
 
     @Override
@@ -85,7 +169,6 @@ public class FindActivity extends BaseActivity<IFindView, FindHotelPrester<IFind
         intent.putExtra("HotelBundle", bundle);
         intent.putExtra("CheckInDate", getIntent().getExtras().getString("CheckInDate"));
         intent.putExtra("CheckOutDate", getIntent().getExtras().getString("CheckOutDate"));
-        //intent.putExtra("RoomNumber", getIntent().getExtras().getString("RoomNumber"));
         startActivity(intent);
     }
 

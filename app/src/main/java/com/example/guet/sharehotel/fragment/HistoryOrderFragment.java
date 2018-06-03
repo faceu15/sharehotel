@@ -134,13 +134,14 @@ public class HistoryOrderFragment extends Fragment implements IOrderView {
                 viewHolder.setText(R.id.tv_history_order_checkin, order.getCheckInTime().getDate());
                 viewHolder.setText(R.id.tv_history_order_checkout, order.getCheckOutTime().getDate());
                 viewHolder.setText(R.id.tv_history_order_price, order.getPrice().toString());
-                viewHolder.setText(R.id.tv_history_order_amount, order.getRooms().toString() + "套/共" + order.getDays() + "晚");
+                viewHolder.setText(R.id.tv_history_order_amount, order.getHotel().getMode() + "/"
+                        + order.getHotel().getHouseType() + "/" + order.getHotel().getArea() + "m²");
                 viewHolder.setImageViewOnClikListener(R.id.iv_history_del, new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                        builder.setTitle("提示");
-                        builder.setMessage("确定入住完成吗？");
+                        builder.setTitle("删除");
+                        builder.setMessage("删除订单？");
                         builder.setCancelable(true);
                         builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
                             @Override

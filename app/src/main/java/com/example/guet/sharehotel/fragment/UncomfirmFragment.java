@@ -130,7 +130,8 @@ public class UncomfirmFragment extends Fragment implements IOrderView {
                 viewHolder.setText(R.id.tv_order_checkintime, order.getCheckInTime().getDate());
                 viewHolder.setText(R.id.tv_order_checkouttime, order.getCheckOutTime().getDate());
                 viewHolder.setText(R.id.tv_order_price, order.getPrice().toString());
-                viewHolder.setText(R.id.tv_order_amount, "1套/共" + order.getDays().toString() + "天");
+                viewHolder.setText(R.id.tv_order_amount, order.getHotel().getMode() + "/"
+                        + order.getHotel().getHouseType() + "/" + order.getHotel().getArea() + "m²");
                 viewHolder.setOnClikListener(R.id.bt_uncomfirm_pay, new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -155,11 +156,22 @@ public class UncomfirmFragment extends Fragment implements IOrderView {
                                     @Override
                                     public void done(BmobException e) {
                                         if (e == null) {
-                                            Log.i("UncomfirmFragment", "取消成功");
-                                            list.remove(order);
-                                            notifyDataSetChanged();
-                                            mAlertDialog.dismiss();
-                                            onStart();
+                                            order.getHotel().setAvailable(1);
+                                            order.getHotel().update(new UpdateListener() {
+                                                @Override
+                                                public void done(BmobException e) {
+                                                    if (e == null) {
+                                                        Log.i("UncomfirmFragment", "取消成功");
+                                                        list.remove(order);
+                                                        notifyDataSetChanged();
+                                                        mAlertDialog.dismiss();
+                                                        onStart();
+                                                    } else {
+                                                        Log.i("UncomfirmFragment", "取消失败");
+                                                    }
+                                                }
+                                            });
+
                                         } else {
                                             Log.i("bmob", "失败：" + e.toString());
                                         }

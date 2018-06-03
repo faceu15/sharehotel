@@ -108,8 +108,8 @@ public class MessageFragment extends BaseFragment {
     private void initView(View view) {
 
         List<Message> list = new ArrayList<Message>();
-        Message message = new Message("1", " ", "优惠促销", "双十一优惠重磅来袭!", "这是详细内容", "2017-11-11");
-        Message message1 = new Message("2", " ", "系统通知", "您已预订成功!", "这是详细内容", "2017-11-11");
+        Message message = new Message("1", " ", "优惠促销", "双十一优惠重磅来袭!", "这是详细内容", "2018-11-11");
+        Message message1 = new Message("2", " ", "系统通知", "您已预订成功!", "这是详细内容", "2018-05-13");
         list.add(message);
         list.add(message1);
 

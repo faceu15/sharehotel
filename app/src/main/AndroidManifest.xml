@@ -27,6 +27,8 @@
     <!-- 这个权限用于获取wifi的获取权限，wifi信息会用来进行网络定位 -->
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
     <uses-permission android:name="android.permission.CAMERA"/>
+    <!-- 打电话 -->
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
 
     <application
         android:name=".application.MyApplication"
@@ -50,7 +52,6 @@
         <activity android:name=".activity.SettingActivity"/>
         <activity android:name=".activity.CustomerServiceActivity"/>
         <activity android:name=".activity.AboutUsActivity"/>
-        <activity android:name=".activity.MyCollectionActivity"/>
         <activity android:name=".activity.CouponActivity"/>
         <activity android:name=".activity.CreditScoreActivity"/>
         <activity android:name=".activity.IntegralRecordActivity"/>
@@ -89,6 +90,14 @@
         <activity android:name="com.zzti.fengyongge.imagepicker.PhotoPreviewActivity"/>
         //预览图片
         <activity android:name=".activity.MyHouseActivity">
+        </activity>
+        <activity android:name=".activity.MapActivity">
+        </activity>
+        <activity android:name=".activity.ModifyActivity">
+        </activity>
+        <activity android:name=".activity.CheckOutActivity">
+        </activity>
+        <activity android:name=".activity.WalletActivity">
         </activity>
     </application>
 

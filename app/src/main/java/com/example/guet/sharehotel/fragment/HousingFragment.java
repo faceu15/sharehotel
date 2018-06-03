@@ -145,7 +145,8 @@ public class HousingFragment extends Fragment implements IOrderView {
                 viewHolder.setText(R.id.tv_housing_order_checkin, order.getCheckInTime().getDate());
                 viewHolder.setText(R.id.tv_housing_order_checkout, order.getCheckOutTime().getDate());
                 viewHolder.setText(R.id.tv_housing_order_price, order.getPrice().toString());
-                viewHolder.setText(R.id.tv_housing_order_amount, order.getRooms().toString() + "套/共" + order.getDays() + "晚");
+                viewHolder.setText(R.id.tv_housing_order_style, order.getHotel().getMode() + "/"
+                        + order.getHotel().getHouseType() + "/" + order.getHotel().getArea() + "m²");
                 viewHolder.setOnClikListener(R.id.bt_housing_sure, new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {

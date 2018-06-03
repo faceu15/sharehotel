@@ -14,7 +14,7 @@ public class User extends BmobObject{
     private String sexy;
 
     public User(){
-        //this.setTableName("_User");
+
     }
 
     public String getAccount() {

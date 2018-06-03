@@ -53,4 +53,8 @@
     <dimen name="material_calendar_dialog_monthday_textsize">26sp</dimen>
 
     <dimen name="custom_section_height">36dp</dimen>
+
+    <dimen name="padding_huge">16dp</dimen>
+    <dimen name="item_left_tv_padding">15dp</dimen>
+    <dimen name="item_distance">10dp</dimen>
 </resources>

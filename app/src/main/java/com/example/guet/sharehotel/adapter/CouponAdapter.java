@@ -39,8 +39,6 @@ public class CouponAdapter extends ArrayAdapter<Coupon> {
             this.rootView = rootView;
             this.coupon_frame_layout = (FrameLayout) rootView.findViewById(R.id.coupon_frame_layout);
             this.time_validate_tv = (TextView) rootView.findViewById(R.id.time_validate_tv);
-
-
         }
 
     }

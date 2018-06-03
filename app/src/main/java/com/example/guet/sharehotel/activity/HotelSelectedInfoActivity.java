@@ -1,9 +1,14 @@
 package com.example.guet.sharehotel.activity;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -15,8 +20,10 @@ import android.widget.Toast;
 
 import com.example.guet.sharehotel.R;
 import com.example.guet.sharehotel.application.MyApplication;
+import com.example.guet.sharehotel.model.bean.Collection;
 import com.example.guet.sharehotel.model.bean.Hotel;
 import com.example.guet.sharehotel.model.bean.Order;
+import com.example.guet.sharehotel.view.dialog.AlertDialog;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -26,6 +33,7 @@ import java.util.Date;
 import cn.bmob.v3.datatype.BmobDate;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.SaveListener;
+import cn.bmob.v3.listener.UpdateListener;
 
 /**
  * 主页-.搜索->选择酒店->酒店详情
@@ -42,12 +50,9 @@ public class HotelSelectedInfoActivity extends AppCompatActivity implements View
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
     private String mCheckInDate;
     private String mCheckOutDate;
-    /* private XRadioGroup mXRadioGroup;
-     private RadioButton mRadioButton, mRadioButton2, mRadioButton3, mRadioButton4;
-     private List<RadioButton> mRadioButtons = new ArrayList<>();
-     private List<HotelRoomType> mRoomTypelist;*/
-    //private Integer mRoomNum;
     private Integer mDays;
+    private Button mCollectButton;
+    private AlertDialog mAlertDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +67,7 @@ public class HotelSelectedInfoActivity extends AppCompatActivity implements View
 
     }
 
+
     /**
      * 初始化控件
      */
@@ -69,9 +75,19 @@ public class HotelSelectedInfoActivity extends AppCompatActivity implements View
     private void initView() {
         LinearLayout backLinearLayout = findViewById(R.id.hotel_back_ll);
         backLinearLayout.setOnClickListener(this);
+        //联系
+        Button callButton = findViewById(R.id.hotelmessage_btn_phone);
+        callButton.setOnClickListener(this);
         //评论
         Button commentButton = findViewById(R.id.hotelmessage_btn_evaluation);
         commentButton.setOnClickListener(this);
+        //收藏
+        mCollectButton = findViewById(R.id.btn_detail_colection);
+        mCollectButton.setOnClickListener(this);
+        //地图
+        Button locationButton = findViewById(R.id.btn_detail_location);
+        locationButton.setOnClickListener(this);
+
         TextView hotelNameTextView = findViewById(R.id.tv_hotel_name);
         TextView commnetTextView = findViewById(R.id.tv_hotel_commnent);
         TextView gradeTextView = findViewById(R.id.tv_hotel_grade);
@@ -100,52 +116,11 @@ public class HotelSelectedInfoActivity extends AppCompatActivity implements View
         //天数和房间数
         try {
             mDays = getCountDays(sdf.parse(mCheckInDate), sdf.parse(mCheckOutDate));
-            //mRoomNum = Integer.valueOf(getIntent().getExtras().getString("RoomNumber"));
         } catch (ParseException e) {
             e.printStackTrace();
         }
-
-      /*  //类型单选框
-        mXRadioGroup = findViewById(R.id.rd_hotel_type);
-        mRadioButton = findViewById(R.id.radioButton);
-        mRadioButtons.add(mRadioButton);
-        mRadioButton2 = findViewById(R.id.radioButton2);
-        mRadioButtons.add(mRadioButton2);
-        mRadioButton3 = findViewById(R.id.radioButton3);
-        mRadioButtons.add(mRadioButton3);
-        mRadioButton4 = findViewById(R.id.radioButton4);
-        mRadioButtons.add(mRadioButton4);
-        mRoomTypelist = new ArrayList<>();
-        initXRadioGroup();
-        mXRadioGroup.setOnCheckedChangeListener(this);*/
-
     }
 
-  /*  private void initXRadioGroup() {
-        BmobQuery<HotelRoomType> query = new BmobQuery<HotelRoomType>("HotelRoomType");
-        query.addWhereEqualTo("hotel", mHotel);
-        query.setLimit(4);
-        query.findObjects(new FindListener<HotelRoomType>() {
-            @Override
-            public void done(List<HotelRoomType> list, BmobException e) {
-                if (e == null) {
-                    mRoomTypelist = list;
-                    if (list.size() == 1) {
-                        mRadioButton.setText(list.get(0).getType());
-                        mRadioButton2.setVisibility(View.GONE);
-                        mRadioButton3.setVisibility(View.GONE);
-                        mRadioButton4.setVisibility(View.GONE);
-                    } else {
-                        for (int i = 0; i < list.size(); i++) {
-                            mRadioButtons.get(i).setText(list.get(i).getType());
-                        }
-                    }
-                } else {
-                    Log.i(TAG, "获取房型失败" + e.toString());
-                }
-            }
-        });
-    }*/
 
     @Override
     public void onClick(View v) {
@@ -167,8 +142,72 @@ public class HotelSelectedInfoActivity extends AppCompatActivity implements View
                 intent.putExtra("HotelId", mHotel.getObjectId());
                 startActivity(intent);
                 break;
+            case R.id.btn_detail_colection:
+                //收藏
+                if (!MyApplication.getInstance().isLogin()) {
+                    Toast.makeText(this, "请先登录", Toast.LENGTH_SHORT).show();
+                } else {
+                    Drawable star = getResources().getDrawable(R.mipmap.star_choice);
+                    star.setBounds(0, 0, star.getMinimumWidth(), star.getMinimumHeight());
+                    mCollectButton.setCompoundDrawables(null, star, null, null);
+                    collect(this);
+                }
+                break;
+            case R.id.btn_detail_location:
+                //地图
+                Intent mapIntent = new Intent(HotelSelectedInfoActivity.this, MapActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("Hotel", mHotel);
+                mapIntent.putExtra("HotelBundle", bundle);
+                startActivity(mapIntent);
+                break;
+            case R.id.hotelmessage_btn_phone:
+                //打电话
+                mAlertDialog = new AlertDialog(this, true, "联系", "拨打房主电话？",
+                        true, 1, new AlertDialog.OnDialogButtonClickListener() {
+                    @Override
+                    public void onDialogButtonClick(int requestCode, boolean isPositive) {
+                        if (requestCode == 1 && isPositive) {
+                            callHost();
+                        }
+                    }
+                });
+                mAlertDialog.show();
+                break;
+
             default:
                 break;
+        }
+    }
+
+    private void callHost() {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CALL_PHONE}, 1);
+            Intent callIntent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + mHotel.getHost().getAccount()));
+            this.startActivity(callIntent);
+        } else {
+            Intent callIntent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + mHotel.getHost().getAccount()));
+            this.startActivity(callIntent);
+        }
+    }
+
+
+    private void collect(final Context context) {
+        if (MyApplication.getInstance().getUser() == null) {
+            Toast.makeText(this, "请先登录", Toast.LENGTH_SHORT).show();
+        } else {
+            Collection collection = new Collection(MyApplication.getInstance().getUser(), mHotel);
+            collection.save(new SaveListener<String>() {
+                @Override
+                public void done(String s, BmobException e) {
+                    if (e == null) {
+                        Toast.makeText(context, "已添收藏", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(context, "已收藏，请勿重复提交", Toast.LENGTH_SHORT).show();
+                        Log.i(TAG, "收藏失败");
+                    }
+                }
+            });
         }
     }
 
@@ -178,7 +217,6 @@ public class HotelSelectedInfoActivity extends AppCompatActivity implements View
         order.setHotel(mHotel);
         order.setPrice(mHotel.getPrice() * mDays);
         order.setDays(mDays);
-        // order.setRooms(mRoomNum);
         order.setState(1);
         try {
             BmobDate bmobDateIn = new BmobDate(sdf.parse(mCheckInDate));
@@ -192,44 +230,28 @@ public class HotelSelectedInfoActivity extends AppCompatActivity implements View
             @Override
             public void done(String objectId, BmobException e) {
                 if (e == null) {
-                    Log.i(TAG, "订单号：" + objectId);
-
-                    Intent intent = new Intent(context, activity);
-                    // intent.putExtra("RoomNumber", getIntent().getExtras().getString("RoomNumber"));
-                    Bundle bundle = new Bundle();
-                    bundle.putSerializable("Order", order);
-                    intent.putExtra("OrderBundle", bundle);
-                    startActivity(intent);
+                    order.getHotel().setAvailable(0);
+                    order.getHotel().update(new UpdateListener() {
+                        @Override
+                        public void done(BmobException e) {
+                            if (e == null) {
+                                Toast.makeText(context, "预定成功", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(context, activity);
+                                Bundle bundle = new Bundle();
+                                bundle.putSerializable("Order", order);
+                                intent.putExtra("OrderBundle", bundle);
+                                startActivity(intent);
+                            } else {
+                                Log.i(TAG, "预定失败" + e.toString());
+                            }
+                        }
+                    });
                 } else {
                     Log.i(TAG, "预定失败" + e.toString());
                 }
             }
         });
     }
-
-  /*  @Override
-    public void onCheckedChanged(XRadioGroup xRadioGroup, int i) {
-        switch (i) {
-            case R.id.radioButton:
-                mPriceTextView.setText(String.valueOf(mRoomTypelist.get(0).getPrice()));
-                mHotel.setPrice(mRoomTypelist.get(0).getPrice());
-                break;
-            case R.id.radioButton2:
-                mPriceTextView.setText(String.valueOf(mRoomTypelist.get(1).getPrice()));
-                mHotel.setPrice(mRoomTypelist.get(1).getPrice());
-                break;
-            case R.id.radioButton3:
-                mPriceTextView.setText(String.valueOf(mRoomTypelist.get(2).getPrice()));
-                mHotel.setPrice(mRoomTypelist.get(2).getPrice());
-                break;
-            case R.id.radioButton4:
-                mPriceTextView.setText(String.valueOf(mRoomTypelist.get(3).getPrice()));
-                mHotel.setPrice(mRoomTypelist.get(3).getPrice());
-                break;
-            default:
-                break;
-        }
-    }*/
 
     public Integer getCountDays(Date startDate, Date endDate) {
         Calendar fromCalendar = Calendar.getInstance();

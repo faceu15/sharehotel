@@ -2,7 +2,6 @@ package com.example.guet.sharehotel.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.InputType;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
@@ -32,6 +31,7 @@ import cn.bmob.v3.listener.UpdateListener;
 public class RegisterActivity extends BaseActivity implements IRegisterView, View.OnClickListener {
 
 
+    private EditText mNameEditText;
     private EditText mAccountEditText;
     private EditText mPasswordEditText;
     private EditText mVerifyEditText;
@@ -53,6 +53,7 @@ public class RegisterActivity extends BaseActivity implements IRegisterView, Vie
     }
 
     private void initView() {
+        mNameEditText = findViewById(R.id.et_register_name);
         mAccountEditText = findViewById(R.id.et_register_account);
         mPasswordEditText = findViewById(R.id.et_register_password);
         mPasswordEditText2 = findViewById(R.id.et_register_password2);
@@ -89,6 +90,10 @@ public class RegisterActivity extends BaseActivity implements IRegisterView, Vie
 
             e.printStackTrace();
         }
+    }
+
+    private String getName() {
+        return mNameEditText.getText().toString().trim();
     }
 
     @Override
@@ -138,24 +143,21 @@ public class RegisterActivity extends BaseActivity implements IRegisterView, Vie
                 getVerification();//获取验证码并验证
                 break;
             case R.id.register_btn:
-                if (getPassWord().equals(mPasswordEditText2.getText().toString().trim())) {
-                    verify();
+                if (!mNameEditText.getText().toString().equals("")) {
+                    if (getPassWord().equals(mPasswordEditText2.getText().toString().trim())) {
+                        verify();
+                    } else {
+                        Toast.makeText(this, "两次输入密码不一样", Toast.LENGTH_SHORT).show();
+                    }
                 } else {
-                    Toast.makeText(this, "两次输入密码不一样", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "请输入真实姓名", Toast.LENGTH_SHORT).show();
+
                 }
                 break;
         }
 
     }
 
-    private void changeInputType() {
-        if (mPasswordEditText.getInputType() == InputType.TYPE_TEXT_VARIATION_PASSWORD) {
-            mPasswordEditText.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
-        }
-        if (mPasswordEditText.getInputType() == InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD) {
-            mPasswordEditText.setInputType(InputType.TYPE_TEXT_VARIATION_PASSWORD);
-        }
-    }
 
     private void verify() {
         if (mVerifyEditText.getText() != null) {
@@ -164,7 +166,7 @@ public class RegisterActivity extends BaseActivity implements IRegisterView, Vie
                 public void done(BmobException e) {
                     if (e == null) {//验证通过
                         if (mPasswordEditText.getText() != null) {
-                            createAccount(getAccount(), getPassWord());
+                            createAccount(getAccount(), getPassWord(), getName());
                         }
 
                     } else {//验证失败
@@ -178,7 +180,7 @@ public class RegisterActivity extends BaseActivity implements IRegisterView, Vie
 
     }
 
-    public void createAccount(final String ac, final String pw) {
+    public void createAccount(final String ac, final String pw, final String name) {
         BmobQuery<User> query = new BmobQuery<>();
         //查询Bmob中account字段叫account的数据
         query.addWhereEqualTo("account", ac);
@@ -191,6 +193,7 @@ public class RegisterActivity extends BaseActivity implements IRegisterView, Vie
                     if (object.size() == 0)    //没有创建账号
                     {//保存注册信息，创建账号
                         User user = new User();
+                        user.setName(name);
                         user.setAccount(ac);
                         user.setPassword(pw);
                         user.save(new SaveListener<String>() {

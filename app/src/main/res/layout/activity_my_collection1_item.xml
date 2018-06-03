@@ -15,9 +15,10 @@
 
 
         <ImageView
-            android:id="@+id/image_url_iv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/iv_collection_photo"
+            android:layout_width="96dp"
+            android:layout_height="110dp"
+            android:scaleType="fitXY"
             android:layout_marginBottom="2dp"
             android:layout_marginLeft="1dp"
             android:layout_marginTop="1dp"
@@ -29,12 +30,12 @@
             android:orientation="horizontal">
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="170dp"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/home_name_tv"
+                    android:id="@+id/tv_collection_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
@@ -44,7 +45,7 @@
                     android:textSize="14sp"/>
 
                 <TextView
-                    android:id="@+id/home_address_tv"
+                    android:id="@+id/tv_collection_address"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
@@ -55,48 +56,43 @@
 
 
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
-                    android:layout_marginTop="5dp"
+                    android:gravity="center_vertical"
                     android:orientation="horizontal">
 
 
-                    <ImageView
-                        android:id="@+id/start1_iv"
+                    <TextView
+                        android:id="@+id/tv_collection_mode"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@mipmap/start"/>
+                        android:layout_marginRight="2dp"
+                        android:text="整租"/>
 
-
-                    <ImageView
-                        android:id="@+id/start2_iv"
+                    <TextView
+                        android:id="@+id/tv_collection_housetype"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="2dp"
-                        android:src="@mipmap/start"/>
+                        android:text="1室0厅1卫"/>
 
-                    <ImageView
-                        android:id="@+id/start3_iv"
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="2dp"
-                        android:src="@mipmap/start"/>
+                        android:text="/"/>
 
-                    <ImageView
-                        android:id="@+id/start4_iv"
+                    <TextView
+                        android:id="@+id/tv_collection_area"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="2dp"
-                        android:src="@mipmap/gray_start"/>
+                        android:text="35"/>
 
-
-                    <ImageView
-                        android:id="@+id/start5_iv"
-                        android:layout_width="wrap_content"
+                    <TextView
+                        android:layout_width="30dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="2dp"
-                        android:src="@mipmap/gray_start"/>
+                        android:layout_marginRight="10dp"
+                        android:text="m²"/>
+
                 </LinearLayout>
 
 
@@ -106,26 +102,16 @@
                     android:orientation="horizontal">
 
                     <Button
-                        android:id="@+id/score_tv"
+                        android:id="@+id/btn_collection_style"
                         android:layout_width="60dp"
                         android:layout_height="20dp"
                         android:layout_marginLeft="15dp"
                         android:layout_marginTop="5dp"
-                        android:text="9.7"
-                        android:textColor="#5eab5f"
                         android:background="@drawable/activity_collection1_btn1_shape"
+                        android:text="公寓"
+                        android:textColor="#5eab5f"
                         android:textSize="14sp"/>
 
-
-                    <TextView
-                        android:id="@+id/comment_num_tv"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginTop="5dp"
-                        android:text="52条评价"
-                        android:textColor="#6c7883"
-                        android:textSize="12sp"/>
 
                 </LinearLayout>
 
@@ -134,17 +120,9 @@
 
             <LinearLayout
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"></LinearLayout>
+                android:layout_height="1dp"
+                android:layout_weight="1"/>
 
-            <LinearLayout
-                android:layout_width="0.5dp"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="10dp"
-                android:layout_marginTop="10dp"
-                android:background="#dcdee0"
-
-                ></LinearLayout>
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -153,12 +131,12 @@
 
 
                 <ImageView
-                    android:id="@+id/like_iv"
+                    android:id="@+id/iv_collection_like"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="5dp"
-                    android:src="@mipmap/like"/>
+                    android:src="@mipmap/heart_like"/>
 
 
                 <TextView
@@ -166,7 +144,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="5dp"
-                    android:text="每晚"
+                    android:text="每月"
                     android:textColor="#00213b"
                     android:textSize="12sp"/>
 
@@ -193,11 +171,11 @@
 
 
                     <TextView
-                        android:id="@+id/integer_price_tv"
+                        android:id="@+id/tv_collection_price"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="506.00"
-                        android:textColor="#00213b"
+                        android:textColor="@color/money_color"
                         android:textSize="15sp"/>
 
 
@@ -205,7 +183,7 @@
 
 
                 <Button
-                    android:id="@+id/reserve_tv"
+                    android:id="@+id/btn_collection_book"
                     android:layout_width="80dp"
                     android:layout_height="27dp"
                     android:layout_gravity="center"

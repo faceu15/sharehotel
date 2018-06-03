@@ -16,15 +16,14 @@
             android:layout_gravity="center"
             android:orientation="horizontal">
 
-
-            <ImageView
-                android:id="@+id/iv_back"
+            <TextView
+                android:id="@+id/tv_collection_back"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:padding="5dp"
-                android:background="@mipmap/left_arrow1"/>
-
+                android:layout_marginRight="20dp"
+                android:text="返回"
+                android:textColor="@color/toolbar_text_color"
+                android:textSize="8pt"/>
 
             <TextView
                 android:layout_width="0dp"
@@ -37,18 +36,15 @@
                 android:textSize="@dimen/activity_title"/>
 
             <TextView
-                android:id="@+id/fenlei_tv"
+                android:id="@+id/tv_posthouse_next"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginRight="5dp"
-                android:text="分类"
-                android:textColor="@color/toolbar_color"
-                android:textSize="16sp"/>
+                android:layout_marginRight="40dp"
 
+                android:textColor="@color/toolbar_text_color"
+                android:textSize="8pt"/>
 
         </LinearLayout>
-
 
     </android.support.v7.widget.Toolbar>
 

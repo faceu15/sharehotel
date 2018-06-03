@@ -22,10 +22,15 @@ import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
 import com.example.guet.sharehotel.R;
 import com.example.guet.sharehotel.activity.FindActivity;
+import com.example.guet.sharehotel.adapter.GlideImageLoader;
 import com.example.guet.sharehotel.listener.MyBDLocationListener;
 import com.example.guet.sharehotel.utils.DateTimeHelper;
+import com.example.guet.sharehotel.utils.DateUtil;
 import com.example.guet.sharehotel.view.dialog.MaterialCalendarDialog;
 import com.flyco.tablayout.listener.CustomTabEntity;
+import com.youth.banner.Banner;
+import com.youth.banner.BannerConfig;
+import com.youth.banner.Transformer;
 import com.zaaach.citypicker.CityPicker;
 import com.zaaach.citypicker.adapter.OnPickListener;
 import com.zaaach.citypicker.model.City;
@@ -35,8 +40,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -70,27 +74,17 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
         }
     };
 
-    /**ViewPager控件实例*/
-    //  private ImageCircleViewPager1 image_circle_view_pager;
-    /**
-     * 定时器
-     */
-    private Timer timer;
-    /**
-     * 定时器任务
-     */
-    private TimerTask timerTask;
 
     private ArrayList<CustomTabEntity> mTabEntities = new ArrayList<>();
+
+    private Banner mBanner;
 
     private LinearLayout mMainLinearLayout;
     private LinearLayout mLocationLinearLayout;
     private TextView mCityTextView;
     private TextView mGuestNumber = null;
-    // private TextView mRoomNumber = null;
 
-    private String guestNumber = "";
-    //private String roomNumber = "";
+    //private String guestNumber = "";
     private EditText mSearchTextView;//搜索栏
 
     //private TextView main_room_number;
@@ -164,6 +158,22 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
 
     @SuppressLint("CutPasteId")
     private void initView(View view) {
+        List<Integer> imageList = new ArrayList<>();
+        imageList.add(R.mipmap.b1);
+        imageList.add(R.mipmap.b2);
+        imageList.add(R.mipmap.b3);
+        imageList.add(R.mipmap.b5);
+        imageList.add(R.mipmap.b6);
+
+        //图片轮播
+        mBanner = view.findViewById(R.id.banner_home);
+        mBanner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR);
+        mBanner.setBannerAnimation(Transformer.Default);
+        mBanner.setViewPagerIsScroll(true);
+        mBanner.setImages(imageList);
+        mBanner.setImageLoader(new GlideImageLoader());
+        mBanner.start();
+
         mMainLinearLayout = view.findViewById(R.id.main_ll_id);
         mLocationLinearLayout = view.findViewById(R.id.locatioin_ll);
         mCityTextView = view.findViewById(R.id.tv_city);
@@ -177,50 +187,49 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
         LinearLayout apartmentLL = view.findViewById(R.id.ll_home_apartment);
         apartmentLL.setOnClickListener(this);
 
-        TextView guestSub = view.findViewById(R.id.main_guest_sub);
-        TextView guestAdd = view.findViewById(R.id.main_guest_add);
-        //TextView roomSub = view.findViewById(R.id.main_room_sub);
-        //TextView roomAdd = view.findViewById(R.id.main_room_add);
-        mGuestNumber = view.findViewById(R.id.main_guest_number);
-        // mRoomNumber = view.findViewById(R.id.main_room_number);
+        // TextView guestSub = view.findViewById(R.id.main_guest_sub);
+        // TextView guestAdd = view.findViewById(R.id.main_guest_add);
+        //mGuestNumber = view.findViewById(R.id.main_guest_number);
 
         //日期选择dialog
-        mDatePickerLL = view.findViewById(R.id.choic_date_ll);
+        // mDatePickerLL = view.findViewById(R.id.choic_date_ll);
+        LinearLayout checkInLL = view.findViewById(R.id.ll_home_checkin);
+        checkInLL.setOnClickListener(this);
+        LinearLayout checkOutLL = view.findViewById(R.id.ll_home_checkout);
+        checkOutLL.setOnClickListener(this);
+
         mStartTimeTextView = view.findViewById(R.id.start_time_tv);
         mEndTimeTextView = view.findViewById(R.id.end_time_tv);
-        Calendar c = Calendar.getInstance();
-        mStartTimeTextView.setText(DateTimeHelper.formatToString(c.getTime(), "yyyy-MM-dd"));
-        c.add(Calendar.DAY_OF_MONTH, 1);
-        mEndTimeTextView.setText(DateTimeHelper.formatToString(c.getTime(), "yyyy-MM-dd"));
+        mStartTimeTextView.setText(DateUtil.getTomorro());
+        mEndTimeTextView.setText(DateUtil.getDayNextMonth());
 
-        guestNumber = mGuestNumber.getText().toString();
-        //roomNumber = mRoomNumber.getText().toString();
+        //guestNumber = mGuestNumber.getText().toString();
         mMainLinearLayout.setOnClickListener(this);
         mLocationLinearLayout.setOnClickListener(this);
-        guestSub.setOnClickListener(this);
-        guestAdd.setOnClickListener(this);
-        //roomSub.setOnClickListener(this);
-        //roomAdd.setOnClickListener(this);
+        // guestSub.setOnClickListener(this);
+        // guestAdd.setOnClickListener(this);
 
         mSearchTextView = view.findViewById(R.id.main_search);
-        TextView main_guest_sub = view.findViewById(R.id.main_guest_sub);
-        TextView main_guest_number = view.findViewById(R.id.main_guest_number);
-        TextView main_guest_add = view.findViewById(R.id.main_guest_add);
-        // TextView main_room_sub = view.findViewById(R.id.main_room_sub);
-        //main_room_number = view.findViewById(R.id.main_room_number);
-        // TextView main_room_add = view.findViewById(R.id.main_room_add);
+        //TextView main_guest_sub = view.findViewById(R.id.main_guest_sub);
+        // TextView main_guest_number = view.findViewById(R.id.main_guest_number);
+        // TextView main_guest_add = view.findViewById(R.id.main_guest_add);
         TextView find_tv = view.findViewById(R.id.find_tv);
 
         mStartTimeTextView.setOnClickListener(this);//选择入住时间
         mEndTimeTextView.setOnClickListener(this);
 
-        main_guest_sub.setOnClickListener(this);
-        main_guest_add.setOnClickListener(this);
-        // main_room_sub.setOnClickListener(this);
-        //main_room_add.setOnClickListener(this);
+        // main_guest_sub.setOnClickListener(this);
+        // main_guest_add.setOnClickListener(this);
+
         find_tv.setOnClickListener(this);
+
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        mBanner.startAutoPlay();
+    }
 
     public interface OnFragmentInteractionListener {
         void onFragmentInteraction(Uri uri);
@@ -235,10 +244,10 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
             case R.id.main_ll_id://隐藏键盘
                 hideKeyboard(view);
                 break;
-            case R.id.start_time_tv://入住时间选择dialog
+            case R.id.ll_home_checkin://入住时间选择dialog
                 showDateChoiceDialog(true);
                 break;
-            case R.id.end_time_tv:
+            case R.id.ll_home_checkout:
                 showDateChoiceDialog(false);//退房时间选择dialog
                 break;
 
@@ -251,7 +260,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
             case R.id.ll_home_apartment://公寓
                 searchHouse("Apartment");
                 break;
-            case R.id.main_guest_sub://减少房客
+           /* case R.id.main_guest_sub://减少房客
                 int guestNumberTempSub = Integer.parseInt(guestNumber);
                 if (guestNumberTempSub > 1) {
                     guestNumberTempSub--;
@@ -264,9 +273,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
                 guestNumberTempAdd++;
                 guestNumber = String.valueOf(guestNumberTempAdd);
                 mGuestNumber.setText(guestNumber);
-                break;
-
-
+                break;*/
             case R.id.find_tv://搜索
                 searchHouse("All");
                 break;
@@ -280,7 +287,6 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
         intent.putExtra("CheckInDate", mStartTimeTextView.getText().toString().trim());
         intent.putExtra("CheckOutDate", mEndTimeTextView.getText().toString().trim());
         intent.putExtra("SearchMode", searchMode);
-        // intent.putExtra("RoomNumber", roomNumber);
         startActivity(intent);
     }
 
@@ -312,7 +318,6 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
                     }
                 }).show();
     }
-
 
     /**
      * 选择日期dialog

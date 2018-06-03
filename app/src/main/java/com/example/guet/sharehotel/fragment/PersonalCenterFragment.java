@@ -23,7 +23,7 @@ import com.example.guet.sharehotel.activity.CouponActivity;
 import com.example.guet.sharehotel.activity.CreditScoreActivity;
 import com.example.guet.sharehotel.activity.CustomerServiceActivity;
 import com.example.guet.sharehotel.activity.LoginActivity;
-import com.example.guet.sharehotel.activity.MyCollectionActivity;
+import com.example.guet.sharehotel.activity.MyCollectionActivity1;
 import com.example.guet.sharehotel.activity.MyHouseActivity;
 import com.example.guet.sharehotel.activity.PostHouseActivity;
 import com.example.guet.sharehotel.activity.SettingActivity;
@@ -208,7 +208,7 @@ public class PersonalCenterFragment extends BaseFragment implements View.OnClick
                 startActivity(intent1);
                 break;
             case R.id.my_collection_linear_layout://收藏
-                Intent intent2 = new Intent(getActivity(), MyCollectionActivity.class);
+                Intent intent2 = new Intent(getActivity(), MyCollectionActivity1.class);
                 startActivity(intent2);
                 break;
             case R.id.coupon_linear_layout://优惠券

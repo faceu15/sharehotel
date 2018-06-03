@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:orientation="vertical">
@@ -57,22 +58,28 @@
 
     </android.support.v7.widget.Toolbar>
 
-    <FrameLayout
+    <com.yyydjk.library.DropDownMenu
+        android:id="@+id/ddm_find_filter"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        app:dddividerColor="@color/gray"
+        app:ddmaskColor="@color/mask_color"
+        app:ddmenuBackgroundColor="@color/white"
+        app:ddmenuMenuHeightPercent="0.5"
+        app:ddmenuSelectedIcon="@mipmap/tab_up"
+        app:ddmenuTextSize="8pt"
+        app:ddmenuUnselectedIcon="@mipmap/tab_down"
+        app:ddtextSelectedColor="@color/drop_down_selected"
+        app:ddtextUnselectedColor="@color/drop_down_unselected"
+        app:ddunderlineColor="@color/gray">
 
-        <ListView
-            android:id="@+id/list_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
 
-        <!-- <com.example.guet.sharehotel.view.LoadingDialog
-             android:id="@+id/loading_dialog"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             />-->
+    </com.yyydjk.library.DropDownMenu>
 
-    </FrameLayout>
+    <ListView
+        android:id="@+id/list_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
 
 </LinearLayout>
